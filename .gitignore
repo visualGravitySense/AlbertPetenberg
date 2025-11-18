@@ -37,3 +37,5 @@ lerna-debug.log*
 # Vite
 .vite
 
+bakers.md
+product-design.md
