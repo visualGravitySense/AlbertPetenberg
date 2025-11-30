@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global font family - Orbitron */
+@layer base {
+  * {
+    font-family: "Orbitron", sans-serif;
+  }
+  
+  body {
+    font-family: "Orbitron", sans-serif;
+  }
+  
+  /* Sci-Fi glowing text effect for all headings */
+  h1, h2, h3, h4, h5, h6 {
+    color: white !important;
+    text-shadow: 3px 3px 3px cyan;
+
+    /* text-shadow: 
+      0 0 5px rgba(0, 255, 255, 0.5),
+      0 0 10px rgba(0, 255, 255, 0.4),
+      0 0 15px rgba(0, 255, 255, 0.3),
+      0 0 20px rgba(0, 255, 255, 0.2),
+      0 2px 0 rgba(0, 255, 255, 0.1); */
+    animation: textGlow 3s ease-in-out infinite;
+  }
+}
+
 /* CREATE Action Funnel - Custom Animations for CUE, REACTION, TIMING, EXECUTION */
 
 @keyframes fadeIn {
@@ -74,6 +99,25 @@
   }
 }
 
+@keyframes textGlow {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px rgba(0, 255, 255, 0.5),
+      0 0 10px rgba(0, 255, 255, 0.4),
+      0 0 15px rgba(0, 255, 255, 0.3),
+      0 0 20px rgba(0, 255, 255, 0.2),
+      0 2px 0 rgba(0, 255, 255, 0.1);
+  }
+  50% {
+    text-shadow: 
+      0 0 8px rgba(0, 255, 255, 0.8),
+      0 0 15px rgba(0, 255, 255, 0.6),
+      0 0 25px rgba(0, 255, 255, 0.4),
+      0 0 35px rgba(0, 255, 255, 0.3),
+      0 2px 0 rgba(0, 255, 255, 0.2);
+  }
+}
+
 .animate-fadeIn {
   animation: fadeIn 0.6s ease-out forwards;
 }
@@ -140,5 +184,174 @@
 .delay-800 {
   animation-delay: 0.8s;
   opacity: 0;
+}
+
+/* Grid pattern background - combines gradient and grid */
+.bg-grid-pattern {
+  background: 
+    /* Grid pattern */
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.05) 0,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px,
+      transparent 35rem
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.05) 0,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px,
+      transparent 35rem
+    ),
+    /* Base gradient */
+    linear-gradient(to bottom right, rgb(11, 2, 46), rgb(2, 10, 32), rgb(18, 4, 20));
+  
+  /* Modern browsers with color-mix support */
+  @supports (color-mix(in oklab, white, transparent)) {
+    background: 
+      repeating-linear-gradient(
+        0deg,
+        color-mix(in oklab, white 5%, transparent) 0,
+        color-mix(in oklab, white 5%, transparent) 1px,
+        transparent 1px,
+        transparent 35rem
+      ),
+      repeating-linear-gradient(
+        90deg,
+        color-mix(in oklab, white 5%, transparent) 0,
+        color-mix(in oklab, white 5%, transparent) 1px,
+        transparent 1px,
+        transparent 35rem
+      ),
+      linear-gradient(to bottom right, rgb(88, 28, 135), rgb(30, 58, 138), rgb(0, 0, 0));
+  }
+}
+
+/* Sci-Fi CTA Bar - Bottom sticky bar with header design */
+.sci-cta-bar {
+  background: 
+    repeating-linear-gradient(0deg, #ffffff0d 0, #ffffff0d 1px, #0000 1px, #0000 35rem), 
+    repeating-linear-gradient(90deg, #ffffff0d 0, #ffffff0d 1px, #0000 1px, #0000 35rem),
+    rgba(0, 255, 255, 0.06);
+  border-top: 2px solid cyan;
+  font-family: "Orbitron", sans-serif;
+  color: #ffffff;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 -2px 10px rgba(0, 255, 255, 0.1);
+}
+
+.sci-cta-progress-value {
+  font-weight: bold;
+  font-size: 1.125rem;
+  color: cyan;
+  text-shadow: 0 0 6px cyan, 0 0 12px rgba(0, 255, 255, 0.5);
+}
+
+.sci-cta-progress-label {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.75rem;
+  text-shadow: 0 0 4px cyan;
+}
+
+.sci-cta-timer {
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 0 4px cyan;
+}
+
+.sci-cta-timer svg {
+  color: cyan;
+  filter: drop-shadow(0 0 4px cyan);
+}
+
+/* Sci-Fi CTA Button */
+.sci-cta-button-main {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 200px;
+  height: 50px;
+  padding: 0 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  overflow: visible;
+  transition: all 0.3s ease;
+}
+
+.sci-cta-button-frame {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+  overflow: visible;
+}
+
+.sci-cta-button-path {
+  fill: rgba(0, 255, 255, 0.15);
+  stroke: cyan;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 8px cyan) drop-shadow(0 0 16px rgba(0, 255, 255, 0.4));
+  transition: all 0.3s ease;
+}
+
+.sci-cta-button-main:hover .sci-cta-button-path {
+  fill: rgba(0, 255, 255, 0.25);
+  filter: drop-shadow(0 0 12px cyan) drop-shadow(0 0 24px rgba(0, 255, 255, 0.6));
+  stroke-width: 2.5;
+}
+
+.sci-cta-button-label {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: cyan;
+  font-family: "Orbitron", sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-shadow: 0 0 6px cyan, 0 0 12px rgba(0, 255, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+.sci-cta-button-main:hover .sci-cta-button-label {
+  text-shadow: 0 0 10px cyan, 0 0 20px rgba(0, 255, 255, 0.8);
+  transform: scale(1.05);
+}
+
+.sci-cta-button-main:hover {
+  transform: scale(1.05);
+}
+
+.sci-cta-button-label svg {
+  filter: drop-shadow(0 0 4px cyan);
+}
+
+/* Sci-Fi text glow effect - can be applied to any text */
+.text-glow-cyan {
+  color: white;
+  text-shadow: 
+    0 0 5px rgba(0, 255, 255, 0.8),
+    0 0 10px rgba(0, 255, 255, 0.6),
+    0 0 15px rgba(0, 255, 255, 0.4),
+    0 0 20px rgba(0, 255, 255, 0.3),
+    0 0 30px rgba(0, 255, 255, 0.2),
+    0 2px 0 rgba(0, 255, 255, 0.1);
+}
+
+/* Stronger glow for main headings */
+.text-glow-cyan-strong {
+  color: white;
+  text-shadow: 
+    0 0 8px rgba(0, 255, 255, 1),
+    0 0 15px rgba(0, 255, 255, 0.8),
+    0 0 25px rgba(0, 255, 255, 0.6),
+    0 0 35px rgba(0, 255, 255, 0.4),
+    0 0 50px rgba(0, 255, 255, 0.2),
+    0 3px 0 rgba(0, 255, 255, 0.2);
 }
 

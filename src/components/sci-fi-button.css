@@ -1,0 +1,41 @@
+.sci-btn {
+  position: relative;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  width: 200px;
+  height: 60px;
+  margin: 4px;
+  overflow: visible;
+}
+
+.sci-btn-frame {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+  overflow: visible;
+}
+
+.sci-btn-path {
+  fill: rgba(0, 255, 255, 0.1);
+  stroke: cyan;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 6px cyan) drop-shadow(0 0 12px rgba(0, 255, 255, 0.3));
+  transition: 0.2s;
+}
+
+.sci-btn:hover .sci-btn-path {
+  fill: rgba(0, 255, 255, 0.2);
+  filter: drop-shadow(0 0 12px cyan) drop-shadow(0 0 20px rgba(0, 255, 255, 0.5));
+}
+
+.sci-btn-label {
+  position: relative;
+  color: cyan;
+  font-family: "Orbitron", sans-serif;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
