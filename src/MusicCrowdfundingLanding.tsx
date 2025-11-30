@@ -12,10 +12,14 @@ import { ProductCard } from "./components/ProductCard";
 
 import { Frame } from "./components/Frame";
 import { Button } from "./components/SciFiButton2";
+import { Language, getTranslation } from "./locales";
               
               
 
 export default function MusicCrowdfundingLanding() {
+  const [language, setLanguage] = useState<Language>('et');
+  const t = (key: keyof typeof import('./locales').translations.ru) => getTranslation(language, key);
+  
   const [progress] = useState(0);
   const goal = 500;
   const progressPercent = (progress / goal) * 100;
@@ -68,36 +72,36 @@ export default function MusicCrowdfundingLanding() {
   const rewards = [
     {
       amount: 8,
-      title: "Благодарность и цифровой буклет",
-      description: "Красивая открытка с рукописными словами благодарности + цифровой буклет с текстами и переводом + обои для телефона с кадрами из клипа + личное спасибо в соцсетях",
+      title: t('reward1Title'),
+      description: t('reward1Desc'),
       icon: Heart,
       backers: 0
     },
     {
       amount: 25,
-      title: "Цифровой релиз",
-      description: "Трек в студийном качестве FLAC/WAV + акустическая версия песни (только голос и инструмент) + видео 'как создавалась песня' + ноты/аккорды для тех, кто играет + имя в титрах",
+      title: t('reward2Title'),
+      description: t('reward2Desc'),
       icon: Headphones,
       backers: 0
     },
     {
       amount: 50,
-      title: "Премиум пакет",
-      description: "Все предыдущее + печатный сборник текстов с красивым оформлением + рукописный лист с текстом песни + именное упоминание в благодарностях",
+      title: t('reward3Title'),
+      description: t('reward3Desc'),
       icon: Video,
       backers: 0
     },
     {
       amount: 100,
-      title: "Особая благодарность",
-      description: "Все предыдущее + винил или CD в подарочной упаковке с автографом + персональное видеообращение от исполнителя + приглашение на живой концерт/запись",
+      title: t('reward4Title'),
+      description: t('reward4Desc'),
       icon: Award,
       backers: 0
     },
     {
       amount: 150,
-      title: "VIP поддержка",
-      description: "Все предыдущее + частный мини-концерт онлайн + личная встреча с артистом + ваше имя вдохновило песню (соавторство)",
+      title: t('reward5Title'),
+      description: t('reward5Desc'),
       icon: Users,
       backers: 0
     }
@@ -108,13 +112,13 @@ export default function MusicCrowdfundingLanding() {
     const numAmount = typeof amount === 'string' ? parseInt(amount) : amount;
     
     if (!numAmount || isNaN(numAmount)) {
-      return { valid: false, error: 'Пожалуйста, введите сумму' };
+      return { valid: false, error: t('validationEnterAmount') };
     }
     if (numAmount < 5) {
-      return { valid: false, error: 'Минимальная сумма: €5' };
+      return { valid: false, error: t('validationMinAmount') };
     }
     if (numAmount > 1000) {
-      return { valid: false, error: 'Максимальная сумма: €1,000' };
+      return { valid: false, error: t('validationMaxAmount') };
     }
     return { valid: true };
   };
@@ -222,12 +226,14 @@ export default function MusicCrowdfundingLanding() {
       {/* Header - Navigation */}
       <div className="pt-0">
         <Header 
-          links={[{ label: 'Main', href: '/' }, { label: 'About', href: '/about' }, { label: 'Support Us', href: '/contact' }]} 
+          links={[{ label: t('main'), href: '/' }, { label: t('about'), href: '/about' }, { label: t('supportUs'), href: '/contact' }]} 
           title="Tiiva All"
           githubUrl="https://github.com/visualGravitySense/AlbertPetenberg"
           daysLeft={timeLeft.days}
           totalBackers={totalBackers}
           progressPercent={progressPercent}
+          currentLanguage={language}
+          onLanguageChange={setLanguage}
         />
       </div>
 
@@ -236,15 +242,15 @@ export default function MusicCrowdfundingLanding() {
         <div className="fixed top-20 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white px-6 py-4 rounded-lg shadow-2xl z-[55] flex items-center gap-4 animate-fadeIn border-2 border-blue-400">
           <CheckCircle2 className="w-5 h-5" />
           <div>
-            <div className="font-semibold">Поддержка на €{lastAction.amount.toLocaleString()} принята</div>
-            <div className="text-sm text-blue-100">Вы можете отменить в течение 10 секунд</div>
+            <div className="font-semibold">{t('supportAccepted').replace('{amount}', lastAction.amount.toLocaleString())}</div>
+            <div className="text-sm text-blue-100">{t('canUndo')}</div>
           </div>
           <button
             onClick={handleUndo}
             className="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg font-semibold transition-all flex items-center gap-2"
           >
             <RotateCcw className="w-4 h-4" />
-            Отменить
+            {t('undo')}
           </button>
           <button
             onClick={() => setShowUndo(false)}
@@ -261,32 +267,32 @@ export default function MusicCrowdfundingLanding() {
           <div className="bg-gradient-to-br from-green-600 to-emerald-700 rounded-2xl p-8 max-w-md mx-4 shadow-2xl border-2 border-green-400 animate-scaleIn">
             <div className="text-center">
               <CheckCircle className="w-16 h-16 text-white mx-auto mb-4 animate-bounce" />
-              <h3 className="text-2xl font-bold mb-2">Спасибо за поддержку! 🎉</h3>
+              <h3 className="text-2xl font-bold mb-2">{t('thanksForSupportModal')}</h3>
               {lastSupportedAmount && (
                 <div className="space-y-2 mb-4">
                   <p className="text-lg text-green-100">
-                    Ваш вклад: <span className="font-bold text-white">€{lastSupportedAmount.toLocaleString()}</span>
+                    {t('yourContribution')} <span className="font-bold text-white">€{lastSupportedAmount.toLocaleString()}</span>
                   </p>
                   {/* SYSTEM 2: Detailed impact calculation */}
                   <div className="bg-green-700/30 rounded-lg p-3 text-sm text-green-100">
                     <div className="grid grid-cols-2 gap-2 text-xs">
-                      <div>Ваш вклад к цели:</div>
+                      <div>{t('contributionToGoal')}</div>
                       <div className="font-bold">{(lastSupportedAmount / goal * 100).toFixed(2)}%</div>
-                      <div>Новый прогресс:</div>
+                      <div>{t('newProgress')}</div>
                       <div className="font-bold">{((progress + lastSupportedAmount) / goal * 100).toFixed(1)}%</div>
                     </div>
                   </div>
                 </div>
               )}
               <p className="text-green-100 mb-6">
-                Вы помогли приблизить нас к цели на {lastSupportedAmount ? ((lastSupportedAmount / goal) * 100).toFixed(1) : 'новый'}%!
+                {t('helpedProgress').replace('{percent}', lastSupportedAmount ? ((lastSupportedAmount / goal) * 100).toFixed(1) : t('newPercent'))}
               </p>
               <div className="flex gap-3 justify-center">
                 <button
                   onClick={() => setShowConfirmation(false)}
                   className="bg-white text-green-700 font-bold py-2 px-6 rounded-lg hover:bg-gray-100 transition-all"
                 >
-                  Закрыть
+                  {t('close')}
                 </button>
                 {/* SYSTEM 1: Quick repeat action */}
                 {lastSupportedAmount && (
@@ -297,7 +303,7 @@ export default function MusicCrowdfundingLanding() {
                     }}
                     className="bg-green-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-400 transition-all"
                   >
-                    Поддержать еще
+                    {t('supportAgain')}
                   </button>
                 )}
               </div>
@@ -311,12 +317,12 @@ export default function MusicCrowdfundingLanding() {
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 md:gap-4">
             <div className="text-sm">
-              <div className="sci-cta-progress-value animate-pulse-once">€{progress.toLocaleString()} собрано</div>
-              <div className="sci-cta-progress-label">{progressPercent.toFixed(1)}% от цели</div>
+              <div className="sci-cta-progress-value animate-pulse-once">€{progress.toLocaleString()} {t('collected')}</div>
+              <div className="sci-cta-progress-label">{progressPercent.toFixed(1)}% {t('fromGoal')}</div>
             </div>
             <div className="hidden md:flex items-center gap-2 text-sm sci-cta-timer">
               <Clock className="w-4 h-4 animate-pulse" />
-              <span>Осталось: <span className="font-bold">{timeLeft.days}д {timeLeft.hours}ч</span></span>
+              <span>{t('left')} <span className="font-bold">{timeLeft.days}{t('days')} {timeLeft.hours}{t('hours')}</span></span>
             </div>
           </div>
           <button 
@@ -328,7 +334,7 @@ export default function MusicCrowdfundingLanding() {
             </svg>
             <span className="sci-cta-button-label">
               <Zap className="w-5 h-5" />
-              Поддержать проект
+              {t('supportProject')}
               <ArrowRight className="w-4 h-4" />
             </span>
           </button>
@@ -347,37 +353,37 @@ export default function MusicCrowdfundingLanding() {
                   icon={<Music className="w-5 h-5 animate-bounce-subtle" />}
                   className="animate-fadeIn"
                 >
-                  Краудфандинг
+                  {t('crowdfunding')}
                 </SciFiBadge>
                 <SciFiBadge 
                   icon={<TrendingUp className="w-5 h-5" />}
                   className="animate-fadeIn delay-100"
                 >
-                  {totalBackers} спонсоров
+                  {totalBackers} {t('sponsors')}
                 </SciFiBadge>
                 <SciFiBadge 
                   icon={<Clock className="w-5 h-5 animate-pulse" />}
                   className="animate-fadeIn delay-200"
                 >
-                  {timeLeft.days} дней до конца
+                  {timeLeft.days} {t('daysLeft')}
                 </SciFiBadge>
               </div>
               
               {/* REACTION: Emotional hook with visual appeal */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-pink-400 bg-clip-text text-transparent animate-fadeIn delay-300 text-left">
-                Tiiva All — Новая песня Альберта Плеттенберг
+                {t('title')}
               </h1>
 
               {/* REACTION: Personalized emotional storytelling */}
               <div className="mb-6 animate-fadeIn delay-400">
                 <p className="text-lg md:text-xl text-gray-300 mb-4 text-left">
-                  Атмосферная композиция о доме и вечной любви. Профессиональная запись с участием талантливых эстонских музыкантов и создание визуального клипа мирового уровня.
+                  {t('description')}
                 </p>
                 <p className="text-base md:text-lg text-cyan-300 mb-6 font-medium text-left">
                   {totalBackers > 0 ? (
-                    <>Присоединяйтесь к <span className="text-pink-400 font-bold">{totalBackers} людям</span>, которые уже помогают создать эту особенную музыку ✨</>
+                    <>{t('joinText')} <span className="text-pink-400 font-bold">{totalBackers} {t('people')}</span>{t('joinTextContinuation')}</>
                   ) : (
-                    <>Станьте первым, кто поможет создать эту особенную музыку ✨</>
+                    <>{t('joinTextFirst')}</>
                   )}
                 </p>
               </div>
@@ -386,7 +392,7 @@ export default function MusicCrowdfundingLanding() {
                 <span className="text-sm text-gray-400 w-full mb-2 flex items-center gap-2">
                   <Zap className="w-4 h-4 text-yellow-400" />
                   <ShoppingCart className="w-4 h-4 text-cyan-400" />
-                  ⚡ Быстрая поддержка одним кликом:
+                  {t('quickSupport')}
                 </span>
                 <div className="flex flex-wrap items-center justify-start gap-3">
                   {[8, 25, 50, 100].map((amount) => {
@@ -406,7 +412,7 @@ export default function MusicCrowdfundingLanding() {
                             {isRecommended && <Star className="w-4 h-4 fill-current" />}
                             {isBestValue && (
                               <span className="text-xs bg-green-500/90 px-1.5 py-0.5 rounded text-white font-bold">
-                                Лучшее
+                                {t('best')}
                               </span>
                             )}
                           </span>
@@ -415,7 +421,7 @@ export default function MusicCrowdfundingLanding() {
                         <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-ping"></div>
                         {isRecommended && (
                           <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 text-xs bg-yellow-500 text-black px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity font-semibold shadow-lg z-20">
-                            ⭐ Самый популярный
+                            ⭐ {t('mostPopularTooltip')}
                           </div>
                         )}
                       </div>
@@ -430,7 +436,7 @@ export default function MusicCrowdfundingLanding() {
                       className="transform hover:scale-110 transition-all"
                     >
                       {showCustomInput ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                      <span>Своя сумма</span>
+                      <span>{t('customAmount')}</span>
                     </QuickSupportButton>
                     {showCustomInput && (
                       <div className="absolute top-full mt-2 left-0 bg-gray-800 border-2 border-cyan-500 rounded-lg p-4 shadow-2xl z-10 min-w-[200px] animate-fadeIn">
@@ -441,7 +447,7 @@ export default function MusicCrowdfundingLanding() {
                             setCustomAmount(e.target.value);
                             setErrors(errors.filter(e => e.field !== 'amount'));
                           }}
-                          placeholder="От €5"
+                          placeholder={t('fromAmount')}
                           className="w-full bg-gray-900 border border-cyan-500/50 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-400"
                           min={5}
                           max={1000}
@@ -456,7 +462,7 @@ export default function MusicCrowdfundingLanding() {
                           onClick={() => handleSupport()}
                           className="w-full mt-3 bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 rounded-lg transition-all"
                         >
-                          Подтвердить
+                          {t('confirm')}
                         </button>
                       </div>
                     )}
@@ -469,7 +475,7 @@ export default function MusicCrowdfundingLanding() {
                 <div className="mb-8 bg-gray-800/30 rounded-xl p-6 border border-cyan-500/20">
                   <div className="flex items-center gap-2 mb-4">
                     <Star className="w-5 h-5 text-yellow-400" />
-                    <h3 className="text-lg font-bold">Недавние спонсоры</h3>
+                    <h3 className="text-lg font-bold">{t('recentSponsors')}</h3>
                   </div>
                   <div className="flex flex-wrap gap-3 mb-4">
                     {recentBackers.map((name, idx) => (
@@ -483,7 +489,7 @@ export default function MusicCrowdfundingLanding() {
                     {totalBackers > recentBackers.length && (
                       <div className="flex items-center gap-2 bg-green-600/20 px-3 py-2 rounded-lg border border-green-500/30">
                         <CheckCircle className="w-4 h-4 text-green-400" />
-                        <span className="text-sm text-green-300">И еще {totalBackers - recentBackers.length}...</span>
+                        <span className="text-sm text-green-300">{t('andMore')} {totalBackers - recentBackers.length}...</span>
                       </div>
                     )}
                   </div>
@@ -568,16 +574,14 @@ export default function MusicCrowdfundingLanding() {
             <div className="flex flex-col justify-center mt-4 md:mt-0">
               <div className="inline-flex items-center gap-2 bg-cyan-600/30 px-4 md:px-6 py-2 md:py-3 rounded-full border border-cyan-500/50 mb-4 w-fit">
                 <Music className="w-5 h-5 md:w-6 md:h-6 text-cyan-400" style={{ filter: 'drop-shadow(0 0 4px cyan)' }} />
-                <span className="text-base md:text-lg font-bold text-cyan-400" style={{ textShadow: '0 0 8px cyan' }}>О песне</span>
+                <span className="text-base md:text-lg font-bold text-cyan-400" style={{ textShadow: '0 0 8px cyan' }}>{t('aboutSong')}</span>
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 text-cyan-300" style={{ textShadow: '0 0 8px cyan' }}>Tiiva All — Под крылом</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-4 text-cyan-300" style={{ textShadow: '0 0 8px cyan' }}>{t('songTitle')}</h2>
               <p className="text-base md:text-lg text-gray-300 leading-relaxed mb-4">
-                Песня рассказывает о том, как мы находим утешение и силу под защитой близких, 
-                как река несет нас через жизненные испытания, а свет любви рассеивает все тучи.
+                {t('songDescription')}
               </p>
               <p className="text-md text-cyan-300 mt-4 font-medium" style={{ textShadow: '0 0 6px rgba(0, 255, 255, 0.5)' }}>
-                "Särab su valgus minule ja tuul viib pilved eemale" — 
-                "Твой свет сияет мне, и ветер уносит облака прочь"
+                {t('songQuote')}
               </p>
             </div>
           </div>
@@ -587,10 +591,10 @@ export default function MusicCrowdfundingLanding() {
         <div className="max-w-5xl mx-auto mb-8 md:mb-16 px-4">
           <div className="text-center mb-6 md:mb-8">
             <h2 className="text-2xl md:text-3xl font-bold mb-3 text-cyan-400" style={{ textShadow: '0 0 12px cyan' }}>
-              Команда проекта
+              {t('teamTitle')}
             </h2>
             <p className="text-sm md:text-base text-gray-300" style={{ textShadow: '0 0 4px rgba(0, 255, 255, 0.3)' }}>
-              Профессиональные музыканты и звукорежиссеры с мировым опытом
+              {t('teamSubtitle')}
             </p>
           </div>
           
@@ -598,15 +602,15 @@ export default function MusicCrowdfundingLanding() {
             {[
               { 
                 name: "Альберт Петенберг", 
-                role: "Композитор и автор музыки", 
-                desc: "Создатель мелодии, которая трогает сердце",
+                role: t('composer'), 
+                desc: t('composerDesc'),
                 icon: Music,
                 color: "cyan"
               },
               { 
                 name: "Ребекка Контус", 
-                role: "Автор текста", 
-                desc: "Поэтесса, написавшая пронзительные слова о любви и доме",
+                role: t('lyricist'), 
+                desc: t('lyricistDesc'),
                 icon: BookOpen,
                 color: "pink"
               },
@@ -640,8 +644,8 @@ export default function MusicCrowdfundingLanding() {
               // },
               { 
                 name: "Дмитрий Горнаков", 
-                role: "Видео и визуализация", 
-                desc: "AMOE Studio — создание атмосферного музыкального клипа",
+                role: t('videoDirector'), 
+                desc: t('videoDirectorDesc'),
                 icon: Video,
                 color: "cyan"
               }
@@ -756,14 +760,14 @@ export default function MusicCrowdfundingLanding() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-4">
             <h2 className="text-2xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-cyan-400 to-pink-400 bg-clip-text text-transparent">
-              Подарки за поддержку
+              {t('rewardsTitle')}
             </h2>
             <p className="text-gray-400 text-base md:text-lg mb-2">
-              Выберите свой уровень поддержки и получите эксклюзивные бонусы
+              {t('rewardsSubtitle')}
             </p>
             {/* EVALUATION: Value proposition */}
             <p className="text-cyan-300 text-xs md:text-sm font-medium">
-              💎 Каждый подарок создан специально для вас • 🎁 Ограниченное количество
+              {t('rewardsNote')}
             </p>
           </div>
 
@@ -771,8 +775,8 @@ export default function MusicCrowdfundingLanding() {
           <div className="text-center mb-6 md:mb-8">
             <span className="inline-flex flex-wrap items-center justify-center gap-2 bg-cyan-600/30 text-white-200 px-3 md:px-4 py-2 rounded-full border-2 border-blue-500/50 text-xs md:text-sm font-semibold shadow-lg animate-pulse">
               <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-              <span>Самый популярный: €25 - Цифровой релиз</span>
-              <span className="text-xs">• Осталось мало мест!</span>
+              <span>{t('mostPopular')}</span>
+              <span className="text-xs">{t('limitedStock')}</span>
             </span>
           </div>
 
@@ -792,13 +796,13 @@ export default function MusicCrowdfundingLanding() {
                 >
                   {isPopular && (
                     <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-yellow-500 text-black text-xs font-bold px-3 py-1 rounded-full">
-                      ПОПУЛЯРНЫЙ ВЫБОР
+                      {t('popularChoice')}
                     </div>
                   )}
                   {isLimited && (
                     <div className="absolute -top-2 right-4 bg-orange-600 text-white text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
                       <Zap className="w-3 h-3" />
-                      Осталось мало!
+                      {t('limitedLeft')}
                     </div>
                   )}
                   
@@ -807,7 +811,7 @@ export default function MusicCrowdfundingLanding() {
                       <Icon className={`w-6 h-6 ${isPopular ? 'text-yellow-400' : 'text-cyan-400'}`} />
                     </div>
                     <div className="text-right">
-                      <div className="text-sm text-gray-400">от</div>
+                      <div className="text-sm text-gray-400">{t('from')}</div>
                       <div className={`text-2xl font-bold ${isPopular ? 'text-yellow-400' : 'text-cyan-400'}`}>
                         €{reward.amount.toLocaleString()}
                       </div>
@@ -822,18 +826,18 @@ export default function MusicCrowdfundingLanding() {
                     <div className="flex items-center gap-2 text-gray-400">
                       <Users className="w-4 h-4" />
                       <span>
-                        {reward.backers} {reward.backers === 1 ? 'спонсор' : 'спонсоров'} выбрали
+                        {reward.backers} {reward.backers === 1 ? t('sponsor') : t('sponsorsChose')}
                       </span>
                       {/* HEURISTICS: Quick value indicator */}
                       {reward.amount === heuristicMetrics.bestValueAmount && (
                         <span className="bg-green-500/20 text-green-400 px-2 py-0.5 rounded text-xs font-semibold">
-                          Лучшее соотношение
+                          {t('bestValue')}
                         </span>
                       )}
                     </div>
                     {isLimited && (
                       <span className="text-orange-400 text-xs font-semibold">
-                        Осталось: {10 - reward.backers}
+                        {t('left')} {10 - reward.backers}
                       </span>
                     )}
                   </div>
@@ -843,10 +847,10 @@ export default function MusicCrowdfundingLanding() {
                     <div className="mb-3 p-2 bg-yellow-500/10 border border-yellow-500/30 rounded text-xs text-yellow-200">
                       <div className="flex items-center gap-1 font-semibold mb-1">
                         <Target className="w-3 h-3" />
-                        Рекомендуемый выбор
+                        {t('recommended')}
                       </div>
                       <div className="text-yellow-300/80">
-                        Самый популярный вариант среди спонсоров
+                        {t('mostPopularOption')}
                       </div>
                     </div>
                   )}
@@ -869,14 +873,14 @@ export default function MusicCrowdfundingLanding() {
                     <span className="flex items-center justify-center gap-2">
                       {isPopular && <Star className="w-5 h-5 fill-current animate-pulse-subtle" />}
                       <ShoppingCart className="w-5 h-5" />
-                      Поддержать за €{reward.amount.toLocaleString()}
+                      {t('supportFor')}{reward.amount.toLocaleString()}
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </span>
                   </Button>
                   {/* SELF-CONCEPT: Identity reinforcement */}
                   {selectedReward === index && (
                     <div className="mt-2 text-center text-xs text-green-400 font-semibold animate-fadeIn">
-                      ✓ Вы выбрали стать спонсором проекта!
+                      {t('youChose')}
                     </div>
                   )}
                 </div>
@@ -915,7 +919,7 @@ export default function MusicCrowdfundingLanding() {
               shape="flat"
               className="mx-auto"
             >
-              Выбрать свою сумму
+              {t('chooseAmount')}
             </Button> */}
           {/* </div> */}
         </div>
@@ -974,22 +978,22 @@ export default function MusicCrowdfundingLanding() {
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-600/30 to-blue-600/30 px-6 py-3 rounded-full border border-cyan-500/50 mb-4">
               <Trophy className="w-6 h-6 text-yellow-400" />
-              <span className="text-lg font-bold">Сообщество спонсоров</span>
+              <span className="text-lg font-bold">{t('sponsorCommunity')}</span>
             </div>
             <h2 className="text-3xl font-bold mb-3">
-              Присоединяйтесь к людям, которые верят в музыку
+              {t('joinBelievers')}
             </h2>
             <p className="text-gray-400">
-              Станьте частью сообщества, которое создает особенную музыку вместе с талантливыми эстонскими артистами
+              {t('becomePart')}
             </p>
           </div>
           
           {/* INTUITIVE RESPONSES: Familiar testimonial pattern */}
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             {[
-              { name: 'Анна К.', text: 'Рада быть частью этого проекта! Жду релиза 🎵', rating: 5, role: 'Спонсор с первого дня' },
-              { name: 'Дмитрий М.', text: 'Отличная идея, поддерживаю на все 100%!', rating: 5, role: 'Активный спонсор' },
-              { name: 'Елена С.', text: 'Прекрасная музыка, уверена получится круто!', rating: 5, role: 'Спонсор проекта' }
+              { name: 'Анна К.', text: language === 'et' ? 'Rõõmus, et saan osa sellest projektist! Ootan väljalaset 🎵' : 'Рада быть частью этого проекта! Жду релиза 🎵', rating: 5, role: t('sponsorFromDay1') },
+              { name: 'Дмитрий М.', text: language === 'et' ? 'Suurepärane idee, toetan 100%!' : 'Отличная идея, поддерживаю на все 100%!', rating: 5, role: t('activeSponsor') },
+              { name: 'Елена С.', text: language === 'et' ? 'Ilus muusika, olen kindel, et see saab suurepärane!' : 'Прекрасная музыка, уверена получится круто!', rating: 5, role: t('projectSponsor') }
             ].map((testimonial, idx) => (
               <div key={idx} className="bg-gray-800/30 rounded-xl p-6 border border-cyan-500/20 hover:border-cyan-400/50 transition-all">
                 <div className="flex gap-1 mb-3">
@@ -1014,12 +1018,12 @@ export default function MusicCrowdfundingLanding() {
           
           {/* SELF-CONCEPT: Identity badges */}
           <div className="bg-gradient-to-r from-cyan-900/40 to-blue-900/40 rounded-xl p-6 border border-cyan-500/30 text-center">
-            <p className="text-lg font-semibold mb-4">Каждый спонсор получает:</p>
+            <p className="text-lg font-semibold mb-4">{t('eachSponsorGets')}</p>
             <div className="flex flex-wrap justify-center gap-4">
               {[
-                { icon: Trophy, text: 'Статус спонсора', desc: 'Особое признание' },
-                { icon: Star, text: 'Эксклюзивные бонусы', desc: 'Только для вас' },
-                { icon: Users, text: 'Доступ к сообществу', desc: 'Присоединяйтесь к нам' }
+                { icon: Trophy, text: t('sponsorStatus'), desc: t('sponsorStatusDesc') },
+                { icon: Star, text: t('exclusiveBonuses'), desc: t('exclusiveBonusesDesc') },
+                { icon: Users, text: t('communityAccess'), desc: t('communityAccessDesc') }
               ].map((badge, idx) => {
                 const Icon = badge.icon;
                 return (
@@ -1038,13 +1042,13 @@ export default function MusicCrowdfundingLanding() {
         <div className="max-w-4xl mx-auto mt-16 mb-8">
           <div className="flex items-center justify-center gap-4 mb-8">
             <BookOpen className="w-6 h-6 text-cyan-400" />
-            <h2 className="text-3xl font-bold text-center">Детальная информация</h2>
+            <h2 className="text-3xl font-bold text-center">{t('detailedInfo')}</h2>
             <button
               onClick={() => setShowDetails(!showDetails)}
               className="text-sm text-cyan-400 hover:text-cyan-300 flex items-center gap-1"
             >
               {showDetails ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-              {showDetails ? 'Скрыть' : 'Показать все'}
+              {showDetails ? t('hide') : t('showAll')}
             </button>
           </div>
           
@@ -1057,7 +1061,7 @@ export default function MusicCrowdfundingLanding() {
               >
                 <div className="flex items-center gap-2">
                   <BarChart3 className="w-5 h-5 text-cyan-400" />
-                  <h3 className="text-xl font-bold">Сравнение уровней поддержки</h3>
+                  <h3 className="text-xl font-bold">{t('compareLevels')}</h3>
                 </div>
                 <ArrowRight className={`w-5 h-5 transition-transform ${showComparison ? 'rotate-90' : ''}`} />
               </button>
@@ -1068,10 +1072,10 @@ export default function MusicCrowdfundingLanding() {
                     <table className="w-full text-sm">
                       <thead>
                         <tr className="border-b border-cyan-500/30">
-                          <th className="text-left py-2 text-gray-400">Сумма</th>
-                          <th className="text-center py-2 text-gray-400">Спонсоров</th>
-                          <th className="text-center py-2 text-gray-400">Популярность</th>
-                          <th className="text-center py-2 text-gray-400">Ценность</th>
+                          <th className="text-left py-2 text-gray-400">{t('amount')}</th>
+                          <th className="text-center py-2 text-gray-400">{t('sponsors')}</th>
+                          <th className="text-center py-2 text-gray-400">{t('popularity')}</th>
+                          <th className="text-center py-2 text-gray-400">{t('value')}</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -1081,7 +1085,7 @@ export default function MusicCrowdfundingLanding() {
                             <td className="text-center py-3">{reward.backers}</td>
                             <td className="text-center py-3">
                               {reward.amount === heuristicMetrics.mostPopularAmount ? (
-                                <span className="bg-yellow-500/20 text-yellow-400 px-2 py-1 rounded text-xs font-semibold">Самый популярный</span>
+                                <span className="bg-yellow-500/20 text-yellow-400 px-2 py-1 rounded text-xs font-semibold">{t('mostPopularLabel')}</span>
                               ) : (
                                 <span className="text-gray-500">—</span>
                               )}
@@ -1108,7 +1112,7 @@ export default function MusicCrowdfundingLanding() {
               >
                 <div className="flex items-center gap-2">
                   <HelpCircle className="w-5 h-5 text-cyan-400" />
-                  <h3 className="text-xl font-bold">Часто задаваемые вопросы</h3>
+                  <h3 className="text-xl font-bold">{t('faq')}</h3>
                 </div>
                 <ArrowRight className={`w-5 h-5 transition-transform ${showFAQ ? 'rotate-90' : ''}`} />
               </button>
@@ -1116,13 +1120,13 @@ export default function MusicCrowdfundingLanding() {
               {showFAQ && (
                 <div className="mt-6 space-y-4 animate-fadeIn">
             {[
-              { q: 'Как я получу подарки?', a: 'Все подарки будут отправлены вам в течение 30 дней после завершения проекта. Цифровые материалы (трек в высоком качестве, бэкинг-трек) придут на вашу электронную почту. Физические подарки (CD с автографом) будут отправлены почтой.' },
-              { q: 'Что если проект не соберет нужную сумму?', a: 'Ваши средства будут возвращены в полном объеме. Мы гарантируем 100% возврат, если цель не будет достигнута. Никаких скрытых комиссий.' },
-              { q: 'Когда будет готов трек и клип?', a: 'Мы планируем завершить запись и сведение через 1-2 месяца после достижения цели. Съемка и монтаж клипа займут еще 1 месяц. Вы будете получать еженедельные обновления о прогрессе работы в студиях.' },
-              { q: 'Могу ли я изменить сумму поддержки?', a: 'Да, вы можете добавить к своей поддержке в любое время до окончания кампании. Это позволит вам получить подарки более высокого уровня.' },
-              { q: 'Как отслеживать прогресс проекта?', a: 'Мы будем публиковать еженедельные отчеты с фотографиями из студий Funkifactori и Room667, видео со съемок клипа от Kofuku Studio, а также аудио демо-версии процесса записи.' },
-              { q: 'На каком языке песня?', a: 'Песня "Tiiva All" написана на эстонском языке. Это атмосферная композиция о доме, реке и вечной любви. Мы планируем создать версию с субтитрами для международной аудитории.' },
-              { q: 'Кто участвует в проекте?', a: 'В проекте участвуют профессиональные эстонские музыканты: композитор Альберт Петенберг, поэтесса Ребекка Контус, аранжировщик Роланд Антон Ранд, гитарист Отта Маннинен, а также звукорежиссеры из студий Funkifactori и Room667, и режиссер клипа из Kofuku Studio.' }
+              { q: t('faq1Q'), a: t('faq1A') },
+              { q: t('faq2Q'), a: t('faq2A') },
+              { q: t('faq3Q'), a: t('faq3A') },
+              { q: t('faq4Q'), a: t('faq4A') },
+              { q: t('faq5Q'), a: t('faq5A') },
+              { q: t('faq6Q'), a: t('faq6A') },
+              { q: t('faq7Q'), a: t('faq7A') }
             ].map((faq, idx) => (
                     <div key={idx} className="border-l-2 border-cyan-500/50 pl-4">
                       <div className="font-semibold text-cyan-300 mb-1">{faq.q}</div>
@@ -1137,13 +1141,13 @@ export default function MusicCrowdfundingLanding() {
             <div className="bg-orange-900/20 rounded-xl p-6 border border-orange-500/30">
               <div className="flex items-center gap-2 mb-4">
                 <AlertCircle className="w-5 h-5 text-orange-400" />
-                <h3 className="text-xl font-bold">Важная информация о рисках</h3>
+                <h3 className="text-xl font-bold">{t('riskInfo')}</h3>
               </div>
               <div className="text-sm text-orange-200 space-y-2">
-                <p>• Проект может быть отложен из-за непредвиденных обстоятельств</p>
-                <p>• Если цель не достигнута, средства будут возвращены автоматически</p>
-                <p>• Все расходы публикуются в открытом доступе для полной прозрачности</p>
-                <p>• Ваша поддержка идет непосредственно на производство - никаких посредников</p>
+                <p>• {t('risk1')}</p>
+                <p>• {t('risk2')}</p>
+                <p>• {t('risk3')}</p>
+                <p>• {t('risk4')}</p>
               </div>
             </div>
             
@@ -1151,25 +1155,25 @@ export default function MusicCrowdfundingLanding() {
             <div className="bg-gray-800/30 rounded-xl p-6 border border-cyan-500/20">
               <div className="flex items-center gap-2 mb-4">
                 <Shield className="w-5 h-5 text-green-400" />
-                <h3 className="text-xl font-bold">Финансовая прозрачность</h3>
+                <h3 className="text-xl font-bold">{t('financialTransparency')}</h3>
               </div>
               <div className="grid md:grid-cols-2 gap-4 text-sm">
                 <div>
-                  <div className="font-semibold text-cyan-400 mb-2">Гарантии:</div>
+                  <div className="font-semibold text-cyan-400 mb-2">{t('guarantees')}</div>
                   <ul className="space-y-1 text-gray-300">
-                    <li>✓ 100% средств идет на производство</li>
-                    <li>✓ Ежемесячные финансовые отчеты</li>
-                    <li>✓ Возврат средств при невыполнении цели</li>
-                    <li>✓ Публичный доступ к бюджету</li>
+                    <li>{t('guarantee1')}</li>
+                    <li>{t('guarantee2')}</li>
+                    <li>{t('guarantee3')}</li>
+                    <li>{t('guarantee4')}</li>
                   </ul>
                 </div>
                 <div>
-                  <div className="font-semibold text-cyan-400 mb-2">Сроки выплат:</div>
+                  <div className="font-semibold text-cyan-400 mb-2">{t('paymentTerms')}</div>
                   <ul className="space-y-1 text-gray-300">
-                    <li>• Студия: при достижении 30%</li>
-                    <li>• Съемка: при достижении 60%</li>
-                    <li>• Постпродакшн: при достижении 90%</li>
-                    <li>• Эффекты: при достижении 100%</li>
+                    <li>{t('payment1')}</li>
+                    <li>{t('payment2')}</li>
+                    <li>{t('payment3')}</li>
+                    <li>{t('payment4')}</li>
                   </ul>
                 </div>
               </div>
@@ -1201,7 +1205,7 @@ export default function MusicCrowdfundingLanding() {
         </div> */}
 
       {/* Footer - ABILITY: Trust & security indicators */}
-      <Footer totalBackers={totalBackers} />
+      <Footer totalBackers={totalBackers} language={language} />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Clock, Users, TrendingUp, Menu, X } from "lucide-react";
+import { Clock, Users, TrendingUp, Menu, X, Globe } from "lucide-react";
 import "./header.css";
+import { Language, getTranslation } from "../locales";
 
 interface HeaderProps {
   links: { label: string; href: string }[];
@@ -10,6 +11,8 @@ interface HeaderProps {
   daysLeft?: number;
   totalBackers?: number;
   progressPercent?: number;
+  currentLanguage?: Language;
+  onLanguageChange?: (lang: Language) => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({ 
@@ -18,14 +21,18 @@ export const Header: React.FC<HeaderProps> = ({
   githubUrl,
   daysLeft,
   totalBackers,
-  progressPercent
+  progressPercent,
+  currentLanguage = 'ru',
+  onLanguageChange
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showLanguageMenu, setShowLanguageMenu] = useState(false);
+  const t = (key: keyof typeof import('../locales').translations.ru) => getTranslation(currentLanguage, key);
 
   return (
     <header className="sci-header">
       <div className="sh-left">
-        <div className="sh-title">{title}</div>
+      <div className="sh-title">{title}</div>
         
         {/* MOTIVATION: Social proof and urgency indicators in header - hidden on mobile */}
         {(daysLeft !== undefined || totalBackers !== undefined) && (
@@ -34,14 +41,14 @@ export const Header: React.FC<HeaderProps> = ({
               <div className="sh-stat-item">
                 <Clock className="sh-stat-icon" />
                 <span className="sh-stat-value">{daysLeft}</span>
-                <span className="sh-stat-label">дней</span>
+                <span className="sh-stat-label">{t('daysFull')}</span>
               </div>
             )}
             {totalBackers !== undefined && (
               <div className="sh-stat-item">
                 <Users className="sh-stat-icon" />
                 <span className="sh-stat-value">{totalBackers}</span>
-                <span className="sh-stat-label">спонсоров</span>
+                <span className="sh-stat-label">{t('sponsors')}</span>
               </div>
             )}
             {progressPercent !== undefined && (
@@ -71,13 +78,49 @@ export const Header: React.FC<HeaderProps> = ({
               );
             }
             return (
-              <a key={l.label} href={l.href} className="sh-link">
-                {l.label}
-              </a>
+          <a key={l.label} href={l.href} className="sh-link">
+            {l.label}
+          </a>
             );
           })}
         </nav>
         
+        {/* Language Switcher */}
+        {onLanguageChange && (
+          <div className="sh-language-switcher hidden md:flex relative">
+            <button
+              onClick={() => setShowLanguageMenu(!showLanguageMenu)}
+              className="sh-language-btn"
+              aria-label="Change language"
+            >
+              <Globe className="w-5 h-5" />
+              <span className="sh-language-code">{currentLanguage.toUpperCase()}</span>
+            </button>
+            {showLanguageMenu && (
+              <div className="sh-language-menu">
+                <button
+                  onClick={() => {
+                    onLanguageChange('ru');
+                    setShowLanguageMenu(false);
+                  }}
+                  className={`sh-language-option ${currentLanguage === 'ru' ? 'active' : ''}`}
+                >
+                  🇷🇺 Русский
+                </button>
+                <button
+                  onClick={() => {
+                    onLanguageChange('et');
+                    setShowLanguageMenu(false);
+                  }}
+                  className={`sh-language-option ${currentLanguage === 'et' ? 'active' : ''}`}
+                >
+                  🇪🇪 Eesti
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+
         {githubUrl && (
           <a href={githubUrl} target="_blank" rel="noopener noreferrer" className="sh-github-btn hidden md:flex">
             <svg className="sh-github-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -136,6 +179,33 @@ export const Header: React.FC<HeaderProps> = ({
                 </a>
               );
             })}
+            {/* Mobile Language Switcher */}
+            {onLanguageChange && (
+              <div className="sh-mobile-language-switcher">
+                <div className="sh-mobile-language-label">Keel / Язык:</div>
+                <div className="sh-mobile-language-buttons">
+                  <button
+                    onClick={() => {
+                      onLanguageChange('ru');
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className={`sh-mobile-language-btn ${currentLanguage === 'ru' ? 'active' : ''}`}
+                  >
+                    🇷🇺 Русский
+                  </button>
+                  <button
+                    onClick={() => {
+                      onLanguageChange('et');
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className={`sh-mobile-language-btn ${currentLanguage === 'et' ? 'active' : ''}`}
+                  >
+                    🇪🇪 Eesti
+                  </button>
+                </div>
+              </div>
+            )}
+
             {githubUrl && (
               <a 
                 href={githubUrl} 
@@ -176,7 +246,7 @@ export const Header: React.FC<HeaderProps> = ({
                 )}
               </div>
             )}
-          </nav>
+      </nav>
         </div>
       )}
     </header>
