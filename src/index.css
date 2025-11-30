@@ -2,6 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global font family - Orbitron */
+@layer base {
+  * {
+    font-family: "Orbitron", sans-serif;
+  }
+  
+  body {
+    font-family: "Orbitron", sans-serif;
+  }
+  
+  /* Sci-Fi glowing text effect for all headings */
+  h1, h2, h3, h4, h5, h6 {
+    color: white !important;
+    text-shadow: 
+      0 0 5px rgba(0, 255, 255, 0.5),
+      0 0 10px rgba(0, 255, 255, 0.4),
+      0 0 15px rgba(0, 255, 255, 0.3),
+      0 0 20px rgba(0, 255, 255, 0.2),
+      0 2px 0 rgba(0, 255, 255, 0.1);
+    animation: textGlow 3s ease-in-out infinite;
+  }
+}
+
 /* CREATE Action Funnel - Custom Animations for CUE, REACTION, TIMING, EXECUTION */
 
 @keyframes fadeIn {
@@ -74,6 +97,25 @@
   }
 }
 
+@keyframes textGlow {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px rgba(0, 255, 255, 0.5),
+      0 0 10px rgba(0, 255, 255, 0.4),
+      0 0 15px rgba(0, 255, 255, 0.3),
+      0 0 20px rgba(0, 255, 255, 0.2),
+      0 2px 0 rgba(0, 255, 255, 0.1);
+  }
+  50% {
+    text-shadow: 
+      0 0 8px rgba(0, 255, 255, 0.8),
+      0 0 15px rgba(0, 255, 255, 0.6),
+      0 0 25px rgba(0, 255, 255, 0.4),
+      0 0 35px rgba(0, 255, 255, 0.3),
+      0 2px 0 rgba(0, 255, 255, 0.2);
+  }
+}
+
 .animate-fadeIn {
   animation: fadeIn 0.6s ease-out forwards;
 }
@@ -140,5 +182,71 @@
 .delay-800 {
   animation-delay: 0.8s;
   opacity: 0;
+}
+
+/* Grid pattern background - combines gradient and grid */
+.bg-grid-pattern {
+  background: 
+    /* Grid pattern */
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.05) 0,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px,
+      transparent 35rem
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.05) 0,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px,
+      transparent 35rem
+    ),
+    /* Base gradient */
+    linear-gradient(to bottom right, rgb(18, 5, 69), rgb(4, 15, 44), rgb(0, 0, 0));
+  
+  /* Modern browsers with color-mix support */
+  @supports (color-mix(in oklab, white, transparent)) {
+    background: 
+      repeating-linear-gradient(
+        0deg,
+        color-mix(in oklab, white 5%, transparent) 0,
+        color-mix(in oklab, white 5%, transparent) 1px,
+        transparent 1px,
+        transparent 35rem
+      ),
+      repeating-linear-gradient(
+        90deg,
+        color-mix(in oklab, white 5%, transparent) 0,
+        color-mix(in oklab, white 5%, transparent) 1px,
+        transparent 1px,
+        transparent 35rem
+      ),
+      linear-gradient(to bottom right, rgb(88, 28, 135), rgb(30, 58, 138), rgb(0, 0, 0));
+  }
+}
+
+/* Sci-Fi text glow effect - can be applied to any text */
+.text-glow-cyan {
+  color: white;
+  text-shadow: 
+    0 0 5px rgba(0, 255, 255, 0.8),
+    0 0 10px rgba(0, 255, 255, 0.6),
+    0 0 15px rgba(0, 255, 255, 0.4),
+    0 0 20px rgba(0, 255, 255, 0.3),
+    0 0 30px rgba(0, 255, 255, 0.2),
+    0 2px 0 rgba(0, 255, 255, 0.1);
+}
+
+/* Stronger glow for main headings */
+.text-glow-cyan-strong {
+  color: white;
+  text-shadow: 
+    0 0 8px rgba(0, 255, 255, 1),
+    0 0 15px rgba(0, 255, 255, 0.8),
+    0 0 25px rgba(0, 255, 255, 0.6),
+    0 0 35px rgba(0, 255, 255, 0.4),
+    0 0 50px rgba(0, 255, 255, 0.2),
+    0 3px 0 rgba(0, 255, 255, 0.2);
 }
 

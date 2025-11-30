@@ -1,9 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Music, Heart, Video, Headphones, Award, Users, Clock, Shield, CheckCircle, TrendingUp, Zap, Star, Sparkles, ArrowRight, Info, ShoppingCart, Percent, Target, BarChart3, HelpCircle, AlertCircle, ThumbsUp, Trophy, BookOpen, Eye, EyeOff, X, RotateCcw, AlertTriangle, CheckCircle2 } from 'lucide-react';
+import { SciFiButton } from "./components/SciFiButton";
+import { SciFiDialog } from "./components/SciFiDialog";
+import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
+import { TextBlock } from "./components/TextBlock";
+import { ProductCard } from "./components/ProductCard";
 
 export default function MusicCrowdfundingLanding() {
-  const [progress] = useState(3250);
-  const goal = 50000;
+  const [progress] = useState(33);
+  const goal = 500;
   const progressPercent = (progress / goal) * 100;
   const [timeLeft, setTimeLeft] = useState({ days: 23, hours: 14, minutes: 32 });
   const totalBackers = 28;
@@ -53,37 +59,37 @@ export default function MusicCrowdfundingLanding() {
 
   const rewards = [
     {
-      amount: 500,
-      title: "Благодарность",
-      description: "Ваше имя в описании видео и благодарность в соцсетях",
+      amount: 8,
+      title: "Благодарность и цифровой буклет",
+      description: "Красивая открытка с рукописными словами благодарности + цифровой буклет с текстами и переводом + обои для телефона с кадрами из клипа + личное спасибо в соцсетях",
       icon: Heart,
       backers: 12
     },
     {
-      amount: 1500,
+      amount: 25,
       title: "Цифровой релиз",
-      description: "Трек в высоком качестве + бэкинг-трек + имя в титрах",
+      description: "Трек в студийном качестве FLAC/WAV + акустическая версия песни (только голос и инструмент) + видео 'как создавалась песня' + ноты/аккорды для тех, кто играет + имя в титрах",
       icon: Headphones,
       backers: 8
     },
     {
-      amount: 3000,
-      title: "Эксклюзивный контент",
-      description: "Все предыдущее + закулисное видео со студии + демо версии",
+      amount: 50,
+      title: "Премиум пакет",
+      description: "Все предыдущее + печатный сборник текстов с красивым оформлением + рукописный лист с текстом песни + именное упоминание в благодарностях",
       icon: Video,
       backers: 5
     },
     {
-      amount: 5000,
+      amount: 100,
       title: "Особая благодарность",
-      description: "Все предыдущее + физический CD с автографом + видеосообщение",
+      description: "Все предыдущее + винил или CD в подарочной упаковке с автографом + персональное видеообращение от исполнителя + приглашение на живой концерт/запись",
       icon: Award,
       backers: 2
     },
     {
-      amount: 10000,
+      amount: 150,
       title: "VIP поддержка",
-      description: "Все предыдущее + приглашение на съемку клипа + ужин с артистом",
+      description: "Все предыдущее + частный мини-концерт онлайн + личная встреча с артистом + ваше имя вдохновило песню (соавторство)",
       icon: Users,
       backers: 1
     }
@@ -96,11 +102,11 @@ export default function MusicCrowdfundingLanding() {
     if (!numAmount || isNaN(numAmount)) {
       return { valid: false, error: 'Пожалуйста, введите сумму' };
     }
-    if (numAmount < 100) {
-      return { valid: false, error: 'Минимальная сумма: ₽100' };
+    if (numAmount < 5) {
+      return { valid: false, error: 'Минимальная сумма: €5' };
     }
-    if (numAmount > 100000) {
-      return { valid: false, error: 'Максимальная сумма: ₽100,000' };
+    if (numAmount > 1000) {
+      return { valid: false, error: 'Максимальная сумма: €1,000' };
     }
     return { valid: true };
   };
@@ -185,9 +191,9 @@ export default function MusicCrowdfundingLanding() {
   
   // HEURISTICS: Calculate comparison metrics
   const heuristicMetrics = {
-    mostPopularAmount: 1500,
-    bestValueAmount: 1500, // Most backers per ruble
-    recommendedAmount: 1500,
+    mostPopularAmount: 25,
+    bestValueAmount: 25, // Most backers per euro
+    recommendedAmount: 25,
     averageAmount: valueMetrics.averageContribution,
     completionRate: progressPercent,
     daysPerPercent: (timeLeft.days / (100 - progressPercent)) * 100,
@@ -195,9 +201,9 @@ export default function MusicCrowdfundingLanding() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-black text-white">
+    <div className="min-h-screen text-white bg-grid-pattern">
       {/* CUE: Top notification bar - Attention-grabbing cue */}
-      <div className="fixed top-0 left-0 right-0 bg-gradient-to-r from-orange-600 to-red-600 text-white text-center py-2 z-50 shadow-lg animate-pulse">
+      <div className="fixed top-0 left-0 right-0 text-center py-2 z-50 shadow-lg animate-pulse">
         <div className="container mx-auto flex items-center justify-center gap-2 text-sm font-semibold">
           <Sparkles className="w-4 h-4 animate-spin" />
           <span>⚡ Осталось {timeLeft.days} дней! Присоединяйтесь к {totalBackers} спонсорам</span>
@@ -205,12 +211,17 @@ export default function MusicCrowdfundingLanding() {
         </div>
       </div>
 
+      {/* Header - Navigation */}
+      <div className="pt-10">
+        <Header links={[{ label: 'Главная', href: '/' }, { label: 'О проекте', href: '/about' }, { label: 'Контакты', href: '/contact' }]} title="Tiiva All" />
+      </div>
+
       {/* SYSTEM 2: Undo notification - Error prevention */}
       {showUndo && lastAction && (
         <div className="fixed top-20 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white px-6 py-4 rounded-lg shadow-2xl z-[55] flex items-center gap-4 animate-fadeIn border-2 border-blue-400">
           <CheckCircle2 className="w-5 h-5" />
           <div>
-            <div className="font-semibold">Поддержка на ₽{lastAction.amount.toLocaleString()} принята</div>
+            <div className="font-semibold">Поддержка на €{lastAction.amount.toLocaleString()} принята</div>
             <div className="text-sm text-blue-100">Вы можете отменить в течение 10 секунд</div>
           </div>
           <button
@@ -239,7 +250,7 @@ export default function MusicCrowdfundingLanding() {
               {lastSupportedAmount && (
                 <div className="space-y-2 mb-4">
                   <p className="text-lg text-green-100">
-                    Ваш вклад: <span className="font-bold text-white">₽{lastSupportedAmount.toLocaleString()}</span>
+                    Ваш вклад: <span className="font-bold text-white">€{lastSupportedAmount.toLocaleString()}</span>
                   </p>
                   {/* SYSTEM 2: Detailed impact calculation */}
                   <div className="bg-green-700/30 rounded-lg p-3 text-sm text-green-100">
@@ -285,7 +296,7 @@ export default function MusicCrowdfundingLanding() {
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-4">
             <div className="text-sm">
-              <div className="font-bold text-lg animate-pulse-once">₽{progress.toLocaleString()} собрано</div>
+              <div className="font-bold text-lg animate-pulse-once">€{progress.toLocaleString()} собрано</div>
               <div className="text-purple-200 text-xs">{progressPercent.toFixed(1)}% от цели</div>
             </div>
             <div className="hidden md:flex items-center gap-2 text-sm text-purple-100">
@@ -327,6 +338,18 @@ export default function MusicCrowdfundingLanding() {
           <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent animate-fadeIn delay-300">
             Tiiva All — Новая песня эстонских музыкантов
           </h1>
+
+          <SciFiButton onClick={() => alert("Engage engines!")}>
+            ENGAGE
+          </SciFiButton>
+
+          <SciFiDialog />
+
+          <TextBlock title="Tiiva All" svgPath="M10 10 H390 L380 150 H20 Z">
+            <p>Атмосферная композиция о доме, реке и вечной любви. Профессиональная запись с участием талантливых эстонских музыкантов и создание визуального клипа мирового уровня.</p>
+          </TextBlock>
+          <ProductCard title="Tiiva All" price="100" image="https://via.placeholder.com/150" onBuy={() => alert("Buy now!")} />
+          <Footer text="© 2025 Tiiva All" />
           
           {/* REACTION: Personalized emotional storytelling */}
           <div className="mb-6 max-w-2xl mx-auto">
@@ -345,7 +368,7 @@ export default function MusicCrowdfundingLanding() {
                 </div>
                 <div className="h-8 w-px bg-purple-500/30"></div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-pink-400">₽{valueMetrics.averageContribution}</div>
+                  <div className="text-2xl font-bold text-pink-400">€{valueMetrics.averageContribution}</div>
                   <div className="text-gray-400">средний взнос</div>
                 </div>
                 <div className="h-8 w-px bg-purple-500/30"></div>
@@ -365,7 +388,7 @@ export default function MusicCrowdfundingLanding() {
               ⚡ Быстрая поддержка одним кликом:
             </span>
             <div className="flex flex-wrap items-center justify-center gap-3">
-              {[500, 1500, 3000, 5000].map((amount) => {
+              {[8, 25, 50, 100].map((amount) => {
                 const isRecommended = amount === heuristicMetrics.recommendedAmount;
                 const isBestValue = amount === heuristicMetrics.bestValueAmount;
                 return (
@@ -380,7 +403,7 @@ export default function MusicCrowdfundingLanding() {
                   >
                     {/* SYSTEM 1: Visual color coding */}
                     <span className="flex items-center gap-2">
-                      <span className="text-lg font-bold">₽{amount.toLocaleString()}</span>
+                      <span className="text-lg font-bold">€{amount.toLocaleString()}</span>
                       {isRecommended && <Star className="w-4 h-4 text-yellow-900 fill-yellow-900" />}
                       {isBestValue && (
                         <span className="text-xs bg-green-500/90 px-1.5 py-0.5 rounded text-white font-bold">
@@ -419,10 +442,10 @@ export default function MusicCrowdfundingLanding() {
                         setCustomAmount(e.target.value);
                         setErrors(errors.filter(e => e.field !== 'amount'));
                       }}
-                      placeholder="От ₽100"
+                      placeholder="От €5"
                       className="w-full bg-gray-900 border border-purple-500/50 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-purple-400"
-                      min={100}
-                      max={100000}
+      min={5}
+      max={1000}
                     />
                     {errors.find(e => e.field === 'amount') && (
                       <div className="mt-2 text-xs text-red-400 flex items-center gap-1">
@@ -493,11 +516,11 @@ export default function MusicCrowdfundingLanding() {
                   <span className="text-sm text-gray-300 font-semibold">Активный проект</span>
                 </div>
                 <div className="text-right">
-                  <div className="text-3xl font-bold text-purple-400 animate-pulse-once">₽{progress.toLocaleString()}</div>
-                  <div className="text-sm text-gray-400">из ₽{goal.toLocaleString()}</div>
+                  <div className="text-3xl font-bold text-purple-400 animate-pulse-once">€{progress.toLocaleString()}</div>
+                  <div className="text-sm text-gray-400">из €{goal.toLocaleString()}</div>
                   {/* EVALUATION: Show what's left */}
                   <div className="text-xs text-orange-400 mt-1">
-                    Осталось собрать: ₽{(goal - progress).toLocaleString()}
+                    Осталось собрать: €{(goal - progress).toLocaleString()}
                   </div>
                 </div>
               </div>
@@ -575,14 +598,14 @@ export default function MusicCrowdfundingLanding() {
                       <ThumbsUp className="w-4 h-4 text-green-400 flex-shrink-0" />
                       <div>
                         <div className="text-purple-300 font-semibold">Рекомендуем</div>
-                        <div className="text-yellow-400 font-bold">₽{heuristicMetrics.recommendedAmount.toLocaleString()}</div>
+                        <div className="text-yellow-400 font-bold">€{heuristicMetrics.recommendedAmount.toLocaleString()}</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-2 bg-purple-800/30 p-2 rounded border border-purple-500/30">
                       <TrendingUp className="w-4 h-4 text-blue-400 flex-shrink-0" />
                       <div>
                         <div className="text-purple-300 font-semibold">Средний</div>
-                        <div className="text-pink-400 font-bold">₽{heuristicMetrics.averageAmount.toLocaleString()}</div>
+                        <div className="text-pink-400 font-bold">€{heuristicMetrics.averageAmount.toLocaleString()}</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-2 bg-purple-800/30 p-2 rounded border border-purple-500/30">
@@ -737,7 +760,7 @@ export default function MusicCrowdfundingLanding() {
             <h3 className="text-2xl font-bold text-center">На что пойдут средства</h3>
           </div>
           <p className="text-center text-gray-400 mb-2 text-sm">
-            Полная прозрачность: каждый рубль идет на создание музыки и клипа
+            Полная прозрачность: каждый евро идет на создание музыки и клипа
           </p>
           {/* EVALUATION: Show ROI/impact */}
           <p className="text-center text-green-400 mb-6 text-xs font-semibold">
@@ -745,10 +768,10 @@ export default function MusicCrowdfundingLanding() {
           </p>
           <div className="grid md:grid-cols-2 gap-4">
             {[
-              { item: "Студия звукозаписи (Funkifactori)", cost: "₽15,000", percent: 30 },
-              { item: "Съемка видеоклипа (Kofuku Studio)", cost: "₽20,000", percent: 40 },
-              { item: "Сведение и мастеринг (Room667)", cost: "₽8,000", percent: 16 },
-              { item: "Визуальные эффекты и постпродакшн", cost: "₽7,000", percent: 14 }
+              { item: "Студия звукозаписи (Funkifactori)", cost: "€150", percent: 30 },
+              { item: "Съемка видеоклипа (Kofuku Studio)", cost: "€200", percent: 40 },
+              { item: "Сведение и мастеринг (Room667)", cost: "€80", percent: 16 },
+              { item: "Визуальные эффекты и постпродакшн", cost: "€70", percent: 14 }
             ].map((item, i) => (
               <div key={i} className="bg-gray-700/30 rounded-lg p-4 border border-purple-500/10 hover:border-purple-500/30 transition-all">
                 <div className="flex justify-between items-start mb-2">
@@ -792,7 +815,7 @@ export default function MusicCrowdfundingLanding() {
           <div className="text-center mb-8">
             <span className="inline-flex items-center gap-2 bg-yellow-600/30 text-yellow-200 px-4 py-2 rounded-full border-2 border-yellow-500/50 text-sm font-semibold shadow-lg animate-pulse">
               <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-              Самый популярный: ₽1,500 - Цифровой релиз
+              Самый популярный: €25 - Цифровой релиз
               <span className="text-xs ml-2">• Осталось мало мест!</span>
             </span>
           </div>
@@ -830,7 +853,7 @@ export default function MusicCrowdfundingLanding() {
                     <div className="text-right">
                       <div className="text-sm text-gray-400">от</div>
                       <div className={`text-2xl font-bold ${isPopular ? 'text-yellow-400' : 'text-purple-400'}`}>
-                        ₽{reward.amount.toLocaleString()}
+                        €{reward.amount.toLocaleString()}
                       </div>
                     </div>
                   </div>
@@ -887,7 +910,7 @@ export default function MusicCrowdfundingLanding() {
                     {isPopular && <Star className="w-5 h-5 fill-current animate-pulse-subtle" />}
                     {/* HABITS: Shopping cart icon for familiarity */}
                     <ShoppingCart className="w-5 h-5 relative z-10" />
-                    <span className="relative z-10">Поддержать за ₽{reward.amount.toLocaleString()}</span>
+                    <span className="relative z-10">Поддержать за €{reward.amount.toLocaleString()}</span>
                     <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
                   </button>
                   {/* SELF-CONCEPT: Identity reinforcement */}
@@ -909,19 +932,19 @@ export default function MusicCrowdfundingLanding() {
             </div>
             <p className="text-gray-300 mb-2">Любая поддержка важна для нас!</p>
             <p className="text-sm text-gray-400 mb-6">
-              От ₽100 до любой суммы - каждый рубль приближает нас к цели
+              От €5 до любой суммы - каждый евро приближает нас к цели
             </p>
             
             {/* ABILITY: Quick amount selection */}
             <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
               <span className="text-sm text-gray-400 w-full">Популярные суммы:</span>
-              {[200, 1000, 2500, 7500, 15000].map((amount) => (
+              {[10, 30, 75, 120, 200].map((amount) => (
                 <button
                   key={amount}
                   onClick={() => handleSupport(amount)}
                   className="bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold py-2 px-4 rounded-lg transition-all transform hover:scale-105 text-sm"
                 >
-                  ₽{amount.toLocaleString()}
+                  €{amount.toLocaleString()}
                 </button>
               ))}
             </div>
@@ -1092,7 +1115,7 @@ export default function MusicCrowdfundingLanding() {
                       <tbody>
                         {rewards.map((reward, idx) => (
                           <tr key={idx} className="border-b border-purple-500/10 hover:bg-purple-900/20 transition-colors">
-                            <td className="py-3 font-semibold">₽{reward.amount.toLocaleString()}</td>
+                            <td className="py-3 font-semibold">€{reward.amount.toLocaleString()}</td>
                             <td className="text-center py-3">{reward.backers}</td>
                             <td className="text-center py-3">
                               {reward.amount === heuristicMetrics.mostPopularAmount ? (
@@ -1103,7 +1126,7 @@ export default function MusicCrowdfundingLanding() {
                             </td>
                             <td className="text-center py-3">
                               <span className="text-purple-400">
-                                {Math.round(reward.backers / reward.amount * 1000)} / 1000₽
+                                {Math.round(reward.backers / reward.amount * 1000)} / 1000€
                               </span>
                             </td>
                           </tr>

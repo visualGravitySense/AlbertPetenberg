@@ -1,0 +1,35 @@
+.sci-header {
+    width: 100%;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: 
+      repeating-linear-gradient(0deg, #ffffff0d 0, #ffffff0d 1px, #0000 1px, #0000 35rem), 
+      repeating-linear-gradient(90deg, #ffffff0d 0, #ffffff0d 1px, #0000 1px, #0000 35rem),
+      rgba(0, 255, 255, 0.06);
+    border-bottom: 2px solid cyan;
+    font-family: "Orbitron", sans-serif;
+    color: cyan;
+  }
+  
+  .sh-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .sh-nav {
+    display: flex;
+    gap: 30px;
+  }
+  
+  .sh-link {
+    color: cyan;
+    text-decoration: none;
+    transition: 0.2s;
+  }
+  
+  .sh-link:hover {
+    text-shadow: 0 0 6px cyan;
+  }
+  
