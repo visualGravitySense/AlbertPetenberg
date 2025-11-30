@@ -3,10 +3,15 @@ import { Music, Heart, Video, Headphones, Award, Users, Clock, Shield, CheckCirc
 import { SciFiButton } from "./components/SciFiButton";
 import { SciFiDialog } from "./components/SciFiDialog";
 import { SciFiBadge } from "./components/SciFiBadge";
+import { QuickSupportButton } from "./components/QuickSupportButton";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { TextBlock } from "./components/TextBlock";
 import { ProductCard } from "./components/ProductCard";
+
+
+import { Frame } from "./components/Frame";
+              
 
 export default function MusicCrowdfundingLanding() {
   const [progress] = useState(33);
@@ -329,8 +334,11 @@ export default function MusicCrowdfundingLanding() {
       </div>
 
       {/* Hero Section */}
-      <div className="container mx-auto px-4 py-12 pb-32 pt-10">
-        <div className="text-center mb-12">
+      <div className="container mx-auto px-4 py-12 pb-32 pt-10 relative hero-bg">
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-blue-900/80 to-black/80 pointer-events-none"></div>
+        <div className="relative z-10">
+          <div className="text-center mb-12">
           {/* CUE: Animated badges - Visual attention grabbers */}
           <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
             <SciFiBadge 
@@ -358,48 +366,21 @@ export default function MusicCrowdfundingLanding() {
             Tiiva All — Новая песня эстонских музыкантов
           </h1>
 
-          <SciFiButton onClick={() => alert("Engage engines!")}>
-            ENGAGE
-          </SciFiButton>
-
-          <SciFiDialog />
-
-          <TextBlock title="Tiiva All" svgPath="M10 10 H390 L380 150 H20 Z">
-            <p>Атмосферная композиция о доме, реке и вечной любви. Профессиональная запись с участием талантливых эстонских музыкантов и создание визуального клипа мирового уровня.</p>
-          </TextBlock>
-          <ProductCard title="Tiiva All" price="100" image="https://via.placeholder.com/150" onBuy={() => alert("Buy now!")} />
-          <Footer text="© 2025 Tiiva All" />
           
-          {/* REACTION: Personalized emotional storytelling */}
-          <div className="mb-6 max-w-2xl mx-auto">
-            <p className="text-xl text-gray-300 mb-4 animate-fadeIn delay-400">
-              Атмосферная композиция о доме, реке и вечной любви. Профессиональная запись с участием талантливых эстонских музыкантов и создание визуального клипа мирового уровня.
-            </p>
-            <p className="text-lg text-purple-300 mb-4 font-medium animate-fadeIn delay-500">
-              Присоединяйтесь к <span className="text-pink-400 font-bold">{totalBackers} людям</span>, которые уже помогают создать эту особенную музыку ✨
-            </p>
-            {/* EVALUATION: Value proposition upfront */}
-            <div className="bg-purple-900/30 rounded-lg p-4 border border-purple-500/30 mb-4 animate-fadeIn delay-600">
-              <div className="flex items-center justify-center gap-6 text-sm">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-purple-400">{totalBackers}</div>
-                  <div className="text-gray-400">уже поддержали</div>
-                </div>
-                <div className="h-8 w-px bg-purple-500/30"></div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-pink-400">€{valueMetrics.averageContribution}</div>
-                  <div className="text-gray-400">средний взнос</div>
-                </div>
-                <div className="h-8 w-px bg-purple-500/30"></div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-green-400">{progressPercent.toFixed(0)}%</div>
-                  <div className="text-gray-400">цели достигнуто</div>
-                </div>
-              </div>
+                        
+
+          {/* REACTION: Personalized emotional storytelling with Frame */}
+          <div className="mb-6 mx-auto relative animate-fadeIn delay-400" style={{ minHeight: '300px', padding: '30px' }}>
+            <div className="relative z-10">
+              <p className="text-xl text-gray-300 mb-4">
+                Атмосферная композиция о доме, реке и вечной любви. Профессиональная запись с участием талантливых эстонских музыкантов и создание визуального клипа мирового уровня.
+              </p>
+              <p className="text-lg text-cyan-300 mb-6 font-medium">
+                Присоединяйтесь к <span className="text-pink-400 font-bold">{totalBackers} людям</span>, которые уже помогают создать эту особенную музыку ✨
+              </p>
             </div>
           </div>
 
-          {/* SYSTEM 1: Quick action buttons - Visual cues and intuitive design */}
           <div className="flex flex-wrap items-center justify-center gap-3 mb-8 animate-fadeIn delay-700">
             <span className="text-sm text-gray-400 w-full mb-2 flex items-center justify-center gap-2">
               <Zap className="w-4 h-4 text-yellow-400" />
@@ -411,47 +392,45 @@ export default function MusicCrowdfundingLanding() {
                 const isRecommended = amount === heuristicMetrics.recommendedAmount;
                 const isBestValue = amount === heuristicMetrics.bestValueAmount;
                 return (
-                  <button
-                    key={amount}
-                    onClick={() => handleSupport(amount)}
-                    className={`relative group font-semibold py-3 px-6 rounded-lg transition-all transform hover:scale-110 text-sm shadow-lg ${
-                      isRecommended 
-                        ? 'bg-gradient-to-r from-yellow-500 to-orange-500 text-black border-2 border-yellow-400 hover:shadow-yellow-500/50' 
-                        : 'bg-purple-600/30 hover:bg-purple-600/50 border-2 border-purple-500/50 text-white hover:border-purple-400 hover:shadow-purple-500/50'
-                    }`}
-                  >
-                    {/* SYSTEM 1: Visual color coding */}
-                    <span className="flex items-center gap-2">
-                      <span className="text-lg font-bold">€{amount.toLocaleString()}</span>
-                      {isRecommended && <Star className="w-4 h-4 text-yellow-900 fill-yellow-900" />}
-                      {isBestValue && (
-                        <span className="text-xs bg-green-500/90 px-1.5 py-0.5 rounded text-white font-bold">
-                          Лучшее
-                        </span>
-                      )}
-                    </span>
+                  <div key={amount} className="relative group">
+                    <QuickSupportButton
+                      amount={amount}
+                      isRecommended={isRecommended}
+                      isBestValue={isBestValue}
+                      onClick={() => handleSupport(amount)}
+                      className="transform hover:scale-110 transition-all"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span>€{amount.toLocaleString()}</span>
+                        {isRecommended && <Star className="w-4 h-4 fill-current" />}
+                        {isBestValue && (
+                          <span className="text-xs bg-green-500/90 px-1.5 py-0.5 rounded text-white font-bold">
+                            Лучшее
+                          </span>
+                        )}
+                      </span>
+                    </QuickSupportButton>
                     {/* SYSTEM 1: Visual feedback on hover */}
                     <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-ping"></div>
                     {isRecommended && (
-                      <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 text-xs bg-yellow-500 text-black px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity font-semibold shadow-lg">
+                      <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 text-xs bg-yellow-500 text-black px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity font-semibold shadow-lg z-20">
                         ⭐ Самый популярный
                       </div>
                     )}
-                  </button>
+                  </div>
                 );
               })}
               
               {/* SYSTEM 2: Custom amount input with error handling */}
               <div className="relative">
-                <button
+                <QuickSupportButton
+                  isCustom={true}
                   onClick={() => setShowCustomInput(!showCustomInput)}
-                  className={`bg-gray-700/50 hover:bg-gray-700/70 border-2 border-gray-600 text-white font-semibold py-3 px-6 rounded-lg transition-all transform hover:scale-110 text-sm shadow-lg flex items-center gap-2 ${
-                    showCustomInput ? 'border-purple-400 bg-purple-600/30' : ''
-                  }`}
+                  className="transform hover:scale-110 transition-all"
                 >
                   {showCustomInput ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                  Своя сумма
-                </button>
+                  <span>Своя сумма</span>
+                </QuickSupportButton>
                 {showCustomInput && (
                   <div className="absolute top-full mt-2 left-0 bg-gray-800 border-2 border-purple-500 rounded-lg p-4 shadow-2xl z-10 min-w-[200px] animate-fadeIn">
                     <input
@@ -657,10 +636,14 @@ export default function MusicCrowdfundingLanding() {
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
+          </div>
         </div>
 
-        {/* About the Song Section */}
-        <div className="max-w-4xl mx-auto mb-16 bg-gradient-to-br from-purple-900/40 to-blue-900/40 rounded-xl p-8 border-2 border-purple-500/30 hover:border-purple-400/50 transition-all">
+        
+      </div>
+
+      {/* About the Song Section */}
+      <div className="max-w-4xl mx-auto mb-16 bg-gradient-to-br from-purple-900/40 to-blue-900/40 rounded-xl p-8 border-2 border-purple-500/30 hover:border-purple-400/50 transition-all">
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 bg-purple-600/30 px-6 py-3 rounded-full border border-purple-500/50 mb-4">
               <Music className="w-6 h-6 text-purple-400" />
@@ -1234,33 +1217,30 @@ export default function MusicCrowdfundingLanding() {
           </div>
         </div>
 
-        {/* Footer - ABILITY: Trust & security indicators */}
-        <div className="mt-16 text-center">
-          <div className="flex flex-wrap items-center justify-center gap-6 mb-6">
-            <div className="flex items-center gap-2 text-gray-400">
-              <Shield className="w-5 h-5 text-green-400" />
-              <span className="text-sm">Безопасные платежи</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-400">
-              <CheckCircle className="w-5 h-5 text-green-400" />
-              <span className="text-sm">Гарантия возврата</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-400">
-              <Users className="w-5 h-5 text-purple-400" />
-              <span className="text-sm">{totalBackers} доверяют нам</span>
-            </div>
-          </div>
-          <p className="text-gray-400 text-sm mb-2">Спасибо за вашу поддержку! 💜</p>
-          <p className="text-gray-500 text-xs mb-4">Все средства идут напрямую на производство музыки "Tiiva All" и создание профессионального видеоклипа</p>
-          <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-gray-500">
-            <span>Музыка: Альберт Петенберг</span>
-            <span>•</span>
-            <span>Текст: Ребекка Контус</span>
-            <span>•</span>
-            <span>Аранжировка: Роланд Антон Ранд</span>
-          </div>
+
+        <SciFiButton onClick={() => alert("Engage engines!")}>
+          ENGAGE
+        </SciFiButton>
+
+        <SciFiDialog />
+
+        <TextBlock title="Tiiva All" svgPath="M10 10 H390 L380 150 H20 Z">
+          <p>Атмосферная композиция о доме, реке и вечной любви. Профессиональная запись с участием талантливых эстонских музыкантов и создание визуального клипа мирового уровня.</p>
+        </TextBlock>
+        <ProductCard title="Tiiva All" price="100" image="https://via.placeholder.com/150" onBuy={() => alert("Buy now!")} />
+        
+        {/* Frame wrapper with proper positioning */}
+        <div className="relative w-full max-w-4xl mx-auto my-8" style={{ minHeight: '400px' }}>
+          <Frame
+            className="drop-shadow-2xl"
+            paths={JSON.parse(
+              '[{"show":true,"style":{"strokeWidth":"2","stroke":"var(--color-frame-1-stroke)","fill":"var(--color-frame-1-fill)"},"path":[["M","37","12"],["L","0% + 59","12"],["L","0% + 85","0% + 33"],["L","79","0% + 12"],["L","50% - 3","12"],["L","50% + 16","30"],["L","100% - 35","30"],["L","100% - 16","47"],["L","100% - 16","100% - 47.05882352941177%"],["L","100% - 8","100% - 44.85294117647059%"],["L","100% - 9","100% - 16.666666666666668%"],["L","100% - 17","100% - 14.705882352941176%"],["L","100% - 17","100% - 30"],["L","100% - 34","100% - 12"],["L","50% + 13","100% - 12"],["L","50% + 15","100% - 26"],["L","50% - 11","100% - 12"],["L","37","100% - 12"],["L","19","100% - 30"],["L","19","0% + 50.490196078431374%"],["L","10","0% + 48.529411764705884%"],["L","10","0% + 20.098039215686274%"],["L","0% + 19.000000000000004","0% + 18.38235294117647%"],["L","19","29"],["L","37","12"]]},{"show":true,"style":{"strokeWidth":"2","stroke":"var(--color-frame-2-stroke)","fill":"var(--color-frame-2-fill)"},"path":[["M","50% + 10","15"],["L","50% + 19","15"],["L","50% + 24","0% + 20"],["L","50% + 16","0% + 20"],["L","50% + 10","15"]]},{"show":true,"style":{"strokeWidth":"2","stroke":"var(--color-frame-3-stroke)","fill":"var(--color-frame-3-fill)"},"path":[["M","50% + 25","15"],["L","50% + 34","15"],["L","50% + 40","0% + 21"],["L","50% + 31","0% + 21"],["L","50% + 25","15"]]},{"show":true,"style":{"strokeWidth":"2","stroke":"var(--color-frame-4-stroke)","fill":"var(--color-frame-4-fill)"},"path":[["M","50% + 40","15"],["L","50% + 52","15"],["L","50% + 61","0% + 23"],["L","50% + 49","0% + 23"],["L","50% + 40","15"]]},{"show":true,"style":{"strokeWidth":"2","stroke":"var(--color-frame-5-stroke)","fill":"var(--color-frame-5-fill)"},"path":[["M","36","3"],["L","0% + 58","0"],["L","0% + 84","0% + 40"],["L","81","0% + 0"],["L","50% - 1","4"],["L","50% + 5","6"],["L","50% + 54","7"],["L","50% + 74","23"],["L","100% - 32","21"],["L","100% - 8","42"],["L","100% - 9","100% - 52.450980392156865%"],["L","100% + 0","100% - 50.245098039215684%"],["L","100% + 0","100% - 15.196078431372548%"],["L","100% - 7","100% - 13.480392156862745%"],["L","100% - 7","100% - 27"],["L","100% - 29","100% - 3"],["L","50% + 14","100% + 0"],["L","50% + 21","100% - 31"],["L","50% - 13","100% + 0"],["L","37","100% - 4"],["L","11","100% - 28"],["L","10","0% + 55.3921568627451%"],["L","0","0% + 52.94117647058823%"],["L","1","0% + 18.627450980392158%"],["L","11","0% + 16.666666666666668%"],["L","11","25"],["L","36","3"]]}]'
+            )}
+          />
         </div>
-      </div>
+
+      {/* Footer - ABILITY: Trust & security indicators */}
+      <Footer totalBackers={totalBackers} />
     </div>
   );
 }

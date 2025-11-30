@@ -2,6 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Hero Section Background */
+.hero-bg {
+  background-image: url('./cyber-wings-4.png');
+  background-size: auto;
+  background-position: top;
+  background-repeat: no-repeat;
+}
+
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* background: linear-gradient(to bottom right, rgba(88, 28, 135, 0.8), rgba(30, 58, 138, 0.8), rgba(0, 0, 0, 0.8)); */
+  pointer-events: none;
+}
+
+/* CSS Variables for Frame colors */
+:root {
+  --color-frame-1-stroke: cyan;
+  --color-frame-1-fill: rgba(0, 255, 255, 0.1);
+  --color-frame-2-stroke: cyan;
+  --color-frame-2-fill: rgba(0, 255, 255, 0.1);
+  --color-frame-3-stroke: cyan;
+  --color-frame-3-fill: rgba(0, 255, 255, 0.1);
+  --color-frame-4-stroke: cyan;
+  --color-frame-4-fill: rgba(0, 255, 255, 0.1);
+  --color-frame-5-stroke: cyan;
+  --color-frame-5-fill: rgba(0, 255, 255, 0.1);
+}
+
 /* Global font family - Orbitron */
 @layer base {
   * {
