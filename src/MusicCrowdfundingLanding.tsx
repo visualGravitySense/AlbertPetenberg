@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Music, Heart, Video, Headphones, Award, Users, Clock, Shield, CheckCircle, TrendingUp, Zap, Star, Sparkles, ArrowRight, Info, ShoppingCart, Percent, Target, BarChart3, HelpCircle, AlertCircle, ThumbsUp, Trophy, BookOpen, Eye, EyeOff, X, RotateCcw, AlertTriangle, CheckCircle2 } from 'lucide-react';
 import { SciFiButton } from "./components/SciFiButton";
 import { SciFiDialog } from "./components/SciFiDialog";
+import { SciFiBadge } from "./components/SciFiBadge";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { TextBlock } from "./components/TextBlock";
@@ -203,17 +204,24 @@ export default function MusicCrowdfundingLanding() {
   return (
     <div className="min-h-screen text-white bg-grid-pattern">
       {/* CUE: Top notification bar - Attention-grabbing cue */}
-      <div className="fixed top-0 left-0 right-0 text-center py-2 z-50 shadow-lg animate-pulse">
+      {/* <div className="top-0 left-0 right-0 text-center py-2 z-50 shadow-lg animate-pulse">
         <div className="container mx-auto flex items-center justify-center gap-2 text-sm font-semibold">
           <Sparkles className="w-4 h-4 animate-spin" />
           <span>⚡ Осталось {timeLeft.days} дней! Присоединяйтесь к {totalBackers} спонсорам</span>
           <Sparkles className="w-4 h-4 animate-spin" />
         </div>
-      </div>
+      </div> */}
 
       {/* Header - Navigation */}
-      <div className="pt-10">
-        <Header links={[{ label: 'Главная', href: '/' }, { label: 'О проекте', href: '/about' }, { label: 'Контакты', href: '/contact' }]} title="Tiiva All" />
+      <div className="pt-0">
+        <Header 
+          links={[{ label: 'Main', href: '/' }, { label: 'About', href: '/about' }, { label: 'Support Us', href: '/contact' }]} 
+          title="Tiiva All"
+          githubUrl="https://github.com/visualGravitySense/AlbertPetenberg"
+          daysLeft={timeLeft.days}
+          totalBackers={totalBackers}
+          progressPercent={progressPercent}
+        />
       </div>
 
       {/* SYSTEM 2: Undo notification - Error prevention */}
@@ -292,46 +300,57 @@ export default function MusicCrowdfundingLanding() {
       )}
 
       {/* Sticky CTA Bar - CUE: Always visible prompt, ABILITY: Easy access */}
-      <div className={`fixed bottom-0 left-0 right-0 bg-gradient-to-r from-purple-700 to-pink-700 p-4 shadow-2xl z-50 border-t border-purple-500/50 transition-all duration-300 ${isScrolled ? 'shadow-2xl' : ''}`}>
+      <div className={`fixed bottom-0 left-0 right-0 sci-cta-bar p-4 shadow-2xl z-50 transition-all duration-300 ${isScrolled ? 'shadow-2xl' : ''}`}>
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-4">
             <div className="text-sm">
-              <div className="font-bold text-lg animate-pulse-once">€{progress.toLocaleString()} собрано</div>
-              <div className="text-purple-200 text-xs">{progressPercent.toFixed(1)}% от цели</div>
+              <div className="sci-cta-progress-value animate-pulse-once">€{progress.toLocaleString()} собрано</div>
+              <div className="sci-cta-progress-label">{progressPercent.toFixed(1)}% от цели</div>
             </div>
-            <div className="hidden md:flex items-center gap-2 text-sm text-purple-100">
+            <div className="hidden md:flex items-center gap-2 text-sm sci-cta-timer">
               <Clock className="w-4 h-4 animate-pulse" />
               <span>Осталось: <span className="font-bold">{timeLeft.days}д {timeLeft.hours}ч</span></span>
             </div>
           </div>
           <button 
             onClick={() => handleSupport()}
-            className="bg-white text-purple-900 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-all transform hover:scale-110 shadow-lg flex items-center gap-2 w-full md:w-auto justify-center animate-pulse-subtle hover:animate-none"
+            className="sci-cta-button-main"
           >
-            <Zap className="w-5 h-5" />
-            Поддержать проект
-            <ArrowRight className="w-4 h-4" />
+            <svg className="sci-cta-button-frame" viewBox="0 0 200 50" preserveAspectRatio="none">
+              <path d="M10 10 L190 10 L200 25 L190 40 L10 40 L0 25 Z" className="sci-cta-button-path" />
+            </svg>
+            <span className="sci-cta-button-label">
+              <Zap className="w-5 h-5" />
+              Поддержать проект
+              <ArrowRight className="w-4 h-4" />
+            </span>
           </button>
         </div>
       </div>
 
       {/* Hero Section */}
-      <div className="container mx-auto px-4 py-12 pb-32 pt-20">
+      <div className="container mx-auto px-4 py-12 pb-32 pt-10">
         <div className="text-center mb-12">
           {/* CUE: Animated badges - Visual attention grabbers */}
           <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
-            <div className="inline-flex items-center gap-2 bg-purple-600/30 px-4 py-2 rounded-full border border-purple-500/50 animate-fadeIn">
-              <Music className="w-5 h-5 animate-bounce-subtle" />
-              <span className="text-sm font-semibold">Краудфандинг</span>
-            </div>
-            <div className="inline-flex items-center gap-2 bg-green-600/30 px-4 py-2 rounded-full border border-green-500/50 animate-fadeIn delay-100">
-              <TrendingUp className="w-5 h-5 text-green-400" />
-              <span className="text-sm font-semibold">{totalBackers} спонсоров</span>
-            </div>
-            <div className="inline-flex items-center gap-2 bg-orange-600/30 px-4 py-2 rounded-full border border-orange-500/50 animate-fadeIn delay-200 animate-pulse">
-              <Clock className="w-5 h-5 text-orange-400" />
-              <span className="text-sm font-semibold">{timeLeft.days} дней до конца</span>
-            </div>
+            <SciFiBadge 
+              icon={<Music className="w-5 h-5 animate-bounce-subtle" />}
+              className="animate-fadeIn"
+            >
+              Краудфандинг
+            </SciFiBadge>
+            <SciFiBadge 
+              icon={<TrendingUp className="w-5 h-5" />}
+              className="animate-fadeIn delay-100"
+            >
+              {totalBackers} спонсоров
+            </SciFiBadge>
+            <SciFiBadge 
+              icon={<Clock className="w-5 h-5 animate-pulse" />}
+              className="animate-fadeIn delay-200"
+            >
+              {timeLeft.days} дней до конца
+            </SciFiBadge>
           </div>
           
           {/* REACTION: Emotional hook with visual appeal */}
