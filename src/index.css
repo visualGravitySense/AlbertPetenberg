@@ -2,6 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
+/* CSS Variables for Button component */
+:root {
+  --color-primary: cyan;
+  --color-accent: #eab308;
+  --color-destructive: #ef4444;
+  --color-secondary: #6b7280;
+  --color-success: #10b981;
+  --color-primary-foreground: cyan;
+  --color-accent-foreground: #000;
+  --color-destructive-foreground: #fff;
+  --color-secondary-foreground: #fff;
+  --color-success-foreground: #fff;
+}
+
+/* Hero Section Background */
+.hero-bg {
+  
+  background-image: url('./cyber-wings-4.png');
+  background-size: auto;
+  background-position: top;
+  background-repeat: no-repeat;
+}
+
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  
+  /* background: linear-gradient(to bottom right, rgba(88, 28, 135, 0.8), rgba(30, 58, 138, 0.8), rgba(0, 0, 0, 0.8)); */
+  pointer-events: none;
+}
+
+/* CSS Variables for Frame colors */
+:root {
+  --color-frame-1-stroke: cyan;
+  --color-frame-1-fill: rgba(0, 255, 255, 0.1);
+  --color-frame-2-stroke: cyan;
+  --color-frame-2-fill: rgba(0, 255, 255, 0.1);
+  --color-frame-3-stroke: cyan;
+  --color-frame-3-fill: rgba(0, 255, 255, 0.1);
+  --color-frame-4-stroke: cyan;
+  --color-frame-4-fill: rgba(0, 255, 255, 0.1);
+  --color-frame-5-stroke: cyan;
+  --color-frame-5-fill: rgba(0, 255, 255, 0.1);
+  
+  /* CSS Variables for Button component */
+  --color-primary: cyan;
+  --color-accent: #eab308;
+  --color-destructive: #ef4444;
+  --color-secondary: #6b7280;
+  --color-success: #10b981;
+  --color-primary-foreground: cyan;
+  --color-accent-foreground: #000;
+  --color-destructive-foreground: #fff;
+  --color-secondary-foreground: #fff;
+  --color-success-foreground: #fff;
+}
+
 /* Global font family - Orbitron */
 @layer base {
   * {
@@ -353,5 +411,48 @@
     0 0 35px rgba(0, 255, 255, 0.4),
     0 0 50px rgba(0, 255, 255, 0.2),
     0 3px 0 rgba(0, 255, 255, 0.2);
+}
+
+/* Video Preview CYAN Cyber Style */
+.sci-video-container {
+  position: relative;
+  overflow: visible;
+  transition: transform 0.3s;
+}
+
+.sci-video-container:hover {
+  transform: scale(1.02);
+}
+
+.sci-video-container svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* height: 100%; */
+  overflow: visible;
+  z-index: 1;
+}
+
+/* Team Card CYAN Cyber Style */
+.sci-team-card {
+  position: relative;
+  overflow: visible;
+  transition: transform 0.3s;
+  min-height: 200px;
+}
+
+.sci-team-card:hover {
+  transform: scale(1.05);
+}
+
+.sci-team-card svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  z-index: 1;
 }
 
