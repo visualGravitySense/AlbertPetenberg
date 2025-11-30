@@ -347,6 +347,121 @@
     border-top: 1px solid rgba(0, 255, 255, 0.3);
   }
 
+  /* Language Switcher */
+  .sh-language-switcher {
+    position: relative;
+  }
+
+  .sh-language-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 4px;
+    color: cyan;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.875rem;
+    font-weight: bold;
+  }
+
+  .sh-language-btn:hover {
+    background: rgba(0, 255, 255, 0.2);
+    border-color: cyan;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  }
+
+  .sh-language-code {
+    font-family: "Orbitron", sans-serif;
+  }
+
+  .sh-language-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: 
+      repeating-linear-gradient(0deg, #ffffff0d 0, #ffffff0d 1px, #0000 1px, #0000 35rem), 
+      repeating-linear-gradient(90deg, #ffffff0d 0, #ffffff0d 1px, #0000 1px, #0000 35rem),
+      linear-gradient(135deg, rgba(17, 24, 39, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 4px;
+    padding: 4px;
+    min-width: 150px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+  }
+
+  .sh-language-option {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    text-align: left;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    font-size: 0.875rem;
+  }
+
+  .sh-language-option:hover {
+    background: rgba(0, 255, 255, 0.1);
+    color: cyan;
+  }
+
+  .sh-language-option.active {
+    background: rgba(0, 255, 255, 0.2);
+    color: cyan;
+    font-weight: bold;
+  }
+
+  /* Mobile Language Switcher */
+  .sh-mobile-language-switcher {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 255, 255, 0.3);
+  }
+
+  .sh-mobile-language-label {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.875rem;
+    margin-bottom: 10px;
+  }
+
+  .sh-mobile-language-buttons {
+    display: flex;
+    gap: 8px;
+  }
+
+  .sh-mobile-language-btn {
+    flex: 1;
+    padding: 10px 12px;
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 4px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.875rem;
+  }
+
+  .sh-mobile-language-btn:hover {
+    background: rgba(0, 255, 255, 0.2);
+    border-color: cyan;
+  }
+
+  .sh-mobile-language-btn.active {
+    background: rgba(0, 255, 255, 0.3);
+    border-color: cyan;
+    color: cyan;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  }
+
   /* Responsive adjustments */
   @media (max-width: 768px) {
     .sci-header {

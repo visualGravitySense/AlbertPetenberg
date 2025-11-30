@@ -1,12 +1,15 @@
 import React from "react";
 import { Shield, CheckCircle, Users } from "lucide-react";
 import "./footer.css";
+import { Language, getTranslation } from "../locales";
 
 interface FooterProps {
   totalBackers?: number;
+  language?: Language;
 }
 
-export const Footer: React.FC<FooterProps> = ({ totalBackers = 28 }) => {
+export const Footer: React.FC<FooterProps> = ({ totalBackers = 28, language = 'et' }) => {
+  const t = (key: keyof typeof import('../locales').translations.ru) => getTranslation(language, key);
   return (
     <footer className="sci-footer">
       
@@ -15,15 +18,15 @@ export const Footer: React.FC<FooterProps> = ({ totalBackers = 28 }) => {
       <div className="sf-trust-badges">
         <div className="sf-trust-item">
           <Shield className="sf-trust-icon sf-icon-green" />
-          <span className="sf-trust-text">Безопасные платежи</span>
+          <span className="sf-trust-text">{t('safePayments')}</span>
         </div>
         <div className="sf-trust-item">
           <CheckCircle className="sf-trust-icon sf-icon-blue" />
-          <span className="sf-trust-text">Гарантия возврата</span>
+          <span className="sf-trust-text">{t('refundGuarantee')}</span>
         </div>
         <div className="sf-trust-item">
           <Users className="sf-trust-icon sf-icon-purple" />
-          <span className="sf-trust-text">{totalBackers} доверяют нам</span>
+          <span className="sf-trust-text">{totalBackers} {t('trustUs')}</span>
         </div>
       </div>
 
@@ -31,19 +34,19 @@ export const Footer: React.FC<FooterProps> = ({ totalBackers = 28 }) => {
 
       {/* Thank you message */}
       <div className="sf-thanks">
-        <p className="sf-thanks-text">Спасибо за вашу поддержку! 💜</p>
-        <p className="sf-thanks-desc">Все средства идут напрямую на производство музыки "Tiiva All" и создание профессионального видеоклипа</p>
+        <p className="sf-thanks-text">{t('thanksForSupport')}</p>
+        <p className="sf-thanks-desc">{t('fundsDescription')}</p>
       </div>
 
       
 
       {/* Credits */}
       <div className="sf-credits">
-        <span>Музыка: Альберт Петенберг</span>
+        <span>{t('music')} Альберт Петенберг</span>
         <span>•</span>
-        <span>Текст: Ребекка Контус</span>
+        <span>{t('lyrics')} Ребекка Контус</span>
         <span>•</span>
-        <span>Арт-директор: Дмитрий Горнаков</span>
+        <span>{t('artDirector')} Дмитрий Горнаков</span>
       </div>
 
       <div className="sf-line"></div>
