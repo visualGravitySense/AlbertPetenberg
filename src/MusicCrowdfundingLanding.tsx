@@ -1,16 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Music, Heart, Video, Headphones, Award, Users, Clock, Shield, CheckCircle, TrendingUp, Zap, Star, Sparkles, ArrowRight, Info, ShoppingCart, Percent, Target, BarChart3, HelpCircle, AlertCircle, ThumbsUp, Trophy, BookOpen, Eye, EyeOff, X, RotateCcw, AlertTriangle, CheckCircle2 } from 'lucide-react';
-import { SciFiButton } from "./components/SciFiButton";
-import { SciFiDialog } from "./components/SciFiDialog";
+import { Music, Heart, Video, Headphones, Award, Users, Clock, Shield, CheckCircle, TrendingUp, Zap, Star, ArrowRight, ShoppingCart, Target, BarChart3, HelpCircle, AlertCircle, Trophy, BookOpen, Eye, EyeOff, X, RotateCcw, AlertTriangle, CheckCircle2 } from 'lucide-react';
 import { SciFiBadge } from "./components/SciFiBadge";
 import { QuickSupportButton } from "./components/QuickSupportButton";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
-import { TextBlock } from "./components/TextBlock";
-import { ProductCard } from "./components/ProductCard";
-
-
-import { Frame } from "./components/Frame";
 import { Button } from "./components/SciFiButton2";
 import { Language, getTranslation } from "./locales";
               
@@ -68,6 +61,15 @@ export default function MusicCrowdfundingLanding() {
     }, 60000);
     return () => clearInterval(interval);
   }, []);
+
+  // Payment links mapping
+  const paymentLinks: Record<number, string> = {
+    8: 'https://buy.stripe.com/test_cNiaEXd7l3cV5UR6iNaR200',
+    25: 'https://buy.stripe.com/test_5kQ8wPc3h00Jbfb5eJaR201',
+    50: 'https://buy.stripe.com/test_fZu5kDgjx5l32IF6iNaR202',
+    100: 'https://buy.stripe.com/test_dRmbJ15ETbJr9738qVaR203',
+    150: 'https://buy.stripe.com/test_28EfZh3wLcNv82Z9uZaR204'
+  };
 
   const rewards = [
     {
@@ -162,7 +164,14 @@ export default function MusicCrowdfundingLanding() {
     setShowConfirmation(true);
     setErrors([]);
     
-    // In real app, this would open payment modal with smooth transition
+    // Redirect to payment link if available
+    if (amount && paymentLinks[amount]) {
+      // Small delay to show confirmation, then redirect
+      setTimeout(() => {
+        window.open(paymentLinks[amount], '_blank');
+      }, 1000);
+    }
+    
     console.log('Support clicked', amount);
     
     // Auto-hide confirmation after 5 seconds
@@ -601,14 +610,14 @@ export default function MusicCrowdfundingLanding() {
           <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {[
               { 
-                name: "Альберт Петенберг", 
+                name: "Albert Pettenberg", 
                 role: t('composer'), 
                 desc: t('composerDesc'),
                 icon: Music,
                 color: "cyan"
               },
               { 
-                name: "Ребекка Контус", 
+                name: "Rebecca Kontus", 
                 role: t('lyricist'), 
                 desc: t('lyricistDesc'),
                 icon: BookOpen,
@@ -643,7 +652,7 @@ export default function MusicCrowdfundingLanding() {
               //   color: "yellow"
               // },
               { 
-                name: "Дмитрий Горнаков", 
+                name: "Dmitri Gornakov", 
                 role: t('videoDirector'), 
                 desc: t('videoDirectorDesc'),
                 icon: Video,
