@@ -610,7 +610,7 @@ export default function MusicCrowdfundingLanding() {
           <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {[
               { 
-                name: "Albert Pettenberg", 
+                name: "Albert Petenberg", 
                 role: t('composer'), 
                 desc: t('composerDesc'),
                 icon: Music,
@@ -1000,9 +1000,9 @@ export default function MusicCrowdfundingLanding() {
           {/* INTUITIVE RESPONSES: Familiar testimonial pattern */}
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             {[
-              { name: 'Анна К.', text: language === 'et' ? 'Rõõmus, et saan osa sellest projektist! Ootan väljalaset 🎵' : 'Рада быть частью этого проекта! Жду релиза 🎵', rating: 5, role: t('sponsorFromDay1') },
-              { name: 'Дмитрий М.', text: language === 'et' ? 'Suurepärane idee, toetan 100%!' : 'Отличная идея, поддерживаю на все 100%!', rating: 5, role: t('activeSponsor') },
-              { name: 'Елена С.', text: language === 'et' ? 'Ilus muusika, olen kindel, et see saab suurepärane!' : 'Прекрасная музыка, уверена получится круто!', rating: 5, role: t('projectSponsor') }
+              { name: 'Anna K.', text: language === 'et' ? 'Rõõmus, et saan osa sellest projektist! Ootan väljalaset 🎵' : 'Рада быть частью этого проекта! Жду релиза 🎵', rating: 5, role: t('sponsorFromDay1') },
+              { name: 'Dmitri M.', text: language === 'et' ? 'Suurepärane idee, toetan 100%!' : 'Отличная идея, поддерживаю на все 100%!', rating: 5, role: t('activeSponsor') },
+              { name: 'Elena C.', text: language === 'et' ? 'Ilus muusika, olen kindel, et see saab suurepärane!' : 'Прекрасная музыка, уверена получится круто!', rating: 5, role: t('projectSponsor') }
             ].map((testimonial, idx) => (
               <div key={idx} className="bg-gray-800/30 rounded-xl p-6 border border-cyan-500/20 hover:border-cyan-400/50 transition-all">
                 <div className="flex gap-1 mb-3">

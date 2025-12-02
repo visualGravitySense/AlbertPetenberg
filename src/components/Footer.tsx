@@ -42,11 +42,11 @@ export const Footer: React.FC<FooterProps> = ({ totalBackers = 28, language = 'e
 
       {/* Credits */}
       <div className="sf-credits">
-        <span>{t('music')} Альберт Петенберг</span>
+        <span>{t('music')} Albert Petenberg</span>
         <span>•</span>
-        <span>{t('lyrics')} Ребекка Контус</span>
+        <span>{t('lyrics')} Rebecca Kontus</span>
         <span>•</span>
-        <span>{t('artDirector')} Дмитрий Горнаков</span>
+        <span>{t('artDirector')} Dmitri Gornakov</span>
       </div>
 
       <div className="sf-line"></div>
