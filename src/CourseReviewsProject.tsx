@@ -15,11 +15,11 @@ export default function CourseReviewsProject() {
   const t = (key: keyof typeof import('./locales').translations.ru) => getTranslation(language, key);
   
   // Project-specific data - CHANGE THESE VALUES
-  const [progress] = useState(12600);
+  const [progress] = useState(0);
   const goal = 30000;
   const progressPercent = (progress / goal) * 100;
   const [timeLeft, setTimeLeft] = useState({ days: 22, hours: 10, minutes: 45 });
-  const totalBackers = 156;
+  const totalBackers = 0;
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [lastSupportedAmount, setLastSupportedAmount] = useState<number | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
