@@ -235,7 +235,7 @@ export default function MusicCrowdfundingLanding() {
       {/* Header - Navigation */}
       <div className="pt-0">
         <Header 
-          links={[{ label: t('main'), href: '/' }, { label: t('about'), href: '/about' }, { label: t('supportUs'), href: '/contact' }]} 
+          links={[{ label: t('allProjects'), href: '/' }, { label: t('about'), href: '/about' }, { label: t('supportUs'), href: '/contact' }]} 
           title="Tiiva All"
           githubUrl="https://github.com/visualGravitySense/AlbertPetenberg"
           daysLeft={timeLeft.days}

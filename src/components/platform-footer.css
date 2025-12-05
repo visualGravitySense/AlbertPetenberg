@@ -1,0 +1,252 @@
+/* 
+ * Platform Footer Styles
+ * Modern, clean design for main crowdfunding page
+ */
+
+.platform-footer {
+  margin-top: 80px;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.5) 0%, rgba(15, 23, 42, 0.95) 100%);
+  border-top: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.platform-footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 24px 30px;
+}
+
+/* Grid Layout */
+.platform-footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+@media (min-width: 640px) {
+  .platform-footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .platform-footer-grid {
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 60px;
+  }
+}
+
+/* Brand Section */
+.platform-footer-brand {
+  max-width: 280px;
+}
+
+.platform-footer-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  margin-bottom: 16px;
+}
+
+.platform-footer-logo-icon {
+  width: 28px;
+  height: 28px;
+  color: #6366f1;
+}
+
+.platform-footer-logo span {
+  font-size: 1.25rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.platform-footer-tagline {
+  color: #64748b;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* Social Links */
+.platform-footer-social {
+  display: flex;
+  gap: 12px;
+}
+
+.platform-footer-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 10px;
+  color: #94a3b8;
+  font-size: 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.platform-footer-social-link:hover {
+  background: rgba(99, 102, 241, 0.1);
+  border-color: rgba(99, 102, 241, 0.3);
+  color: #a5b4fc;
+  transform: translateY(-2px);
+}
+
+/* Links Section */
+.platform-footer-links-title {
+  color: #e2e8f0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.platform-footer-links-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.platform-footer-links-list li a {
+  color: #64748b;
+  text-decoration: none;
+  font-size: 0.9375rem;
+  transition: color 0.2s ease;
+}
+
+.platform-footer-links-list li a:hover {
+  color: #a5b4fc;
+}
+
+/* Contact Section */
+.platform-footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.platform-footer-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.9375rem;
+  transition: color 0.2s ease;
+}
+
+.platform-footer-email:hover {
+  color: #a5b4fc;
+}
+
+.platform-footer-email svg {
+  font-size: 1.125rem;
+  color: #6366f1;
+}
+
+/* Trust Badges */
+.platform-footer-trust {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.platform-footer-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #64748b;
+  font-size: 0.875rem;
+}
+
+.platform-footer-trust-icon {
+  font-size: 1rem;
+  color: #10b981;
+}
+
+/* Bottom Bar */
+.platform-footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+@media (min-width: 640px) {
+  .platform-footer-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.platform-footer-copyright {
+  color: #475569;
+  font-size: 0.875rem;
+}
+
+.platform-footer-made {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #475569;
+  font-size: 0.875rem;
+}
+
+.platform-footer-heart {
+  color: #ef4444;
+  font-size: 0.875rem;
+  animation: heartbeat 1.5s ease infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .platform-footer-container {
+    padding: 40px 20px 24px;
+  }
+  
+  .platform-footer-grid {
+    gap: 32px;
+  }
+  
+  .platform-footer-brand {
+    max-width: 100%;
+    text-align: center;
+  }
+  
+  .platform-footer-social {
+    justify-content: center;
+  }
+  
+  .platform-footer-links,
+  .platform-footer-contact {
+    text-align: center;
+  }
+  
+  .platform-footer-links-list {
+    align-items: center;
+  }
+  
+  .platform-footer-trust {
+    align-items: center;
+  }
+  
+  .platform-footer-email {
+    justify-content: center;
+  }
+}

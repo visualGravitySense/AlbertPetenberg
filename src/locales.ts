@@ -4,6 +4,7 @@ export const translations = {
   ru: {
     // Header
     main: 'Главная',
+    allProjects: 'Все проекты',
     about: 'О проекте',
     supportUs: 'Поддержать',
     github: 'GitHub',
@@ -180,6 +181,7 @@ export const translations = {
   et: {
     // Header
     main: 'Pealeht',
+    allProjects: 'Kõik projektid',
     about: 'Projektist',
     supportUs: 'Toeta',
     github: 'GitHub',
