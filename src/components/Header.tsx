@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Clock, Users, TrendingUp, Menu, X, Globe } from "lucide-react";
 import "./header.css";
 import { Language, getTranslation } from "../locales";
@@ -66,21 +67,39 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Desktop Navigation */}
         <nav className="sh-nav hidden md:flex">
           {links.map((l) => {
+            const isExternal = l.href.startsWith('http');
             // Special styling for "Support Us" button
-            if (l.label === "Support Us" || l.label === "Поддержать") {
+            if (l.label === "Support Us" || l.label === "Поддержать" || l.label === "Toeta") {
+              if (isExternal) {
+                return (
+                  <a key={l.label} href={l.href} className="sh-cta-button">
+                    <svg className="sh-cta-frame" viewBox="0 0 150 40" preserveAspectRatio="none">
+                      <path d="M5 5 L145 5 L150 20 L145 35 L5 35 L0 20 Z" className="sh-cta-path" />
+                    </svg>
+                    <span className="sh-cta-label">{l.label}</span>
+                  </a>
+                );
+              }
               return (
-                <a key={l.label} href={l.href} className="sh-cta-button">
+                <Link key={l.label} to={l.href} className="sh-cta-button">
                   <svg className="sh-cta-frame" viewBox="0 0 150 40" preserveAspectRatio="none">
                     <path d="M5 5 L145 5 L150 20 L145 35 L5 35 L0 20 Z" className="sh-cta-path" />
                   </svg>
                   <span className="sh-cta-label">{l.label}</span>
+                </Link>
+              );
+            }
+            if (isExternal) {
+              return (
+                <a key={l.label} href={l.href} className="sh-link">
+                  {l.label}
                 </a>
               );
             }
             return (
-          <a key={l.label} href={l.href} className="sh-link">
-            {l.label}
-          </a>
+              <Link key={l.label} to={l.href} className="sh-link">
+                {l.label}
+              </Link>
             );
           })}
         </nav>
@@ -153,11 +172,27 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
             
             {links.map((l) => {
-              if (l.label === "Support Us" || l.label === "Поддержать") {
+              const isExternal = l.href.startsWith('http');
+              if (l.label === "Support Us" || l.label === "Поддержать" || l.label === "Toeta") {
+                if (isExternal) {
+                  return (
+                    <a 
+                      key={l.label} 
+                      href={l.href} 
+                      className="sh-mobile-cta-button"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <svg className="sh-cta-frame" viewBox="0 0 150 40" preserveAspectRatio="none">
+                        <path d="M5 5 L145 5 L150 20 L145 35 L5 35 L0 20 Z" className="sh-cta-path" />
+                      </svg>
+                      <span className="sh-cta-label">{l.label}</span>
+                    </a>
+                  );
+                }
                 return (
-                  <a 
+                  <Link 
                     key={l.label} 
-                    href={l.href} 
+                    to={l.href} 
                     className="sh-mobile-cta-button"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
@@ -165,18 +200,30 @@ export const Header: React.FC<HeaderProps> = ({
                       <path d="M5 5 L145 5 L150 20 L145 35 L5 35 L0 20 Z" className="sh-cta-path" />
                     </svg>
                     <span className="sh-cta-label">{l.label}</span>
+                  </Link>
+                );
+              }
+              if (isExternal) {
+                return (
+                  <a 
+                    key={l.label} 
+                    href={l.href} 
+                    className="sh-mobile-link"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {l.label}
                   </a>
                 );
               }
               return (
-                <a 
+                <Link 
                   key={l.label} 
-                  href={l.href} 
+                  to={l.href} 
                   className="sh-mobile-link"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {l.label}
-                </a>
+                </Link>
               );
             })}
             {/* Mobile Language Switcher */}
