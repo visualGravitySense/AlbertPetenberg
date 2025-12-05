@@ -18,11 +18,11 @@ export default function ColorPaletteProProject() {
   const t = (key: keyof typeof import('./locales').translations.ru) => getTranslation(language, key);
   
   // Project-specific data
-  const [progress] = useState(87500);
+  const [progress] = useState(0);
   const goal = 150000;
   const progressPercent = (progress / goal) * 100;
   const [timeLeft, setTimeLeft] = useState({ days: 28, hours: 14, minutes: 22 });
-  const totalBackers = 534;
+  const totalBackers = 0;
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [lastSupportedAmount, setLastSupportedAmount] = useState<number | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);

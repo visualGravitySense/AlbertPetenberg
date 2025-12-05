@@ -15,11 +15,11 @@ export default function CreativeBusProject() {
   const t = (key: keyof typeof import('./locales').translations.ru) => getTranslation(language, key);
   
   // Project-specific data
-  const [progress] = useState(32500);
+  const [progress] = useState(0);
   const goal = 65000;
   const progressPercent = (progress / goal) * 100;
   const [timeLeft, setTimeLeft] = useState({ days: 35, hours: 8, minutes: 15 });
-  const totalBackers = 128;
+  const totalBackers = 0;
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [lastSupportedAmount, setLastSupportedAmount] = useState<number | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
