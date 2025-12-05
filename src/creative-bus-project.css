@@ -1,0 +1,334 @@
+/* 
+ * Creative Bus Project - Custom Styles
+ * Mobile Design Studio theme
+ * Purple/Violet palette for creative agency feel
+ */
+
+/* Theme Variables */
+.creative-bus-theme {
+  --project-primary: #8b5cf6;      /* Violet */
+  --project-secondary: #a855f7;    /* Purple */
+  --project-accent: #eab308;       /* Yellow for highlights */
+  --project-success: #22c55e;      /* Green */
+  --project-tertiary: #c084fc;     /* Light Purple */
+}
+
+/* Override heading glow for this project - purple tint */
+.creative-bus-theme h1,
+.creative-bus-theme h2,
+.creative-bus-theme h3 {
+  text-shadow: 
+    0 0 5px rgba(139, 92, 246, 0.5),
+    0 0 10px rgba(139, 92, 246, 0.4),
+    0 0 15px rgba(139, 92, 246, 0.3),
+    0 0 20px rgba(168, 85, 247, 0.2);
+}
+
+/* Custom badge colors for creative theme */
+.creative-bus-theme .sci-badge {
+  border-color: rgba(139, 92, 246, 0.5);
+  background: rgba(139, 92, 246, 0.1);
+}
+
+/* Progress bar with violet gradient */
+.creative-bus-theme .progress-bar {
+  background: linear-gradient(90deg, var(--project-primary) 0%, var(--project-secondary) 100%);
+}
+
+/* Card hover effects */
+.creative-bus-theme .reward-card:hover {
+  border-color: var(--project-primary);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+/* Custom CTA bar styling */
+.bus-cta-bar {
+  background: 
+    repeating-linear-gradient(0deg, #ffffff0d 0, #ffffff0d 1px, #0000 1px, #0000 35rem), 
+    repeating-linear-gradient(90deg, #ffffff0d 0, #ffffff0d 1px, #0000 1px, #0000 35rem),
+    rgba(139, 92, 246, 0.08);
+  border-top: 2px solid var(--project-primary);
+  backdrop-filter: blur(10px);
+}
+
+.bus-cta-progress-value {
+  color: var(--project-primary);
+  text-shadow: 0 0 6px var(--project-primary);
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.bus-cta-progress-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+}
+
+.bus-cta-timer {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.bus-cta-button-main {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.bus-cta-button-main:hover {
+  transform: scale(1.05);
+}
+
+.bus-cta-button-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.bus-cta-button-path {
+  fill: rgba(139, 92, 246, 0.15);
+  stroke: var(--project-primary);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 8px var(--project-primary));
+  transition: all 0.3s ease;
+}
+
+.bus-cta-button-main:hover .bus-cta-button-path {
+  fill: rgba(139, 92, 246, 0.25);
+  filter: drop-shadow(0 0 12px var(--project-primary));
+}
+
+.bus-cta-button-label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--project-primary);
+  text-shadow: 0 0 6px var(--project-primary);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Stats styling */
+.creative-bus-theme .stat-icon {
+  color: var(--project-primary);
+  filter: drop-shadow(0 0 4px var(--project-primary));
+}
+
+.creative-bus-theme .stat-value {
+  color: var(--project-primary);
+}
+
+/* Trust badges */
+.creative-bus-theme .trust-badge {
+  border-color: rgba(139, 92, 246, 0.3);
+  background: rgba(139, 92, 246, 0.1);
+}
+
+/* FAQ and info sections */
+.creative-bus-theme .info-section {
+  border-color: rgba(139, 92, 246, 0.2);
+}
+
+.creative-bus-theme .info-section:hover {
+  border-color: rgba(139, 92, 246, 0.4);
+}
+
+/* Feature cards */
+.creative-bus-theme .feature-card {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  transition: all 0.3s ease;
+}
+
+.creative-bus-theme .feature-card:hover {
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+}
+
+/* Animation overrides */
+@keyframes bus-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(139, 92, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.8), 0 0 30px rgba(168, 85, 247, 0.6);
+  }
+}
+
+.creative-bus-theme .glow-effect {
+  animation: bus-glow 2s ease-in-out infinite;
+}
+
+/* Creative-specific icons styling */
+.creative-bus-theme .creative-icon {
+  color: var(--project-primary);
+  filter: drop-shadow(0 0 4px var(--project-primary));
+}
+
+/* Hero section gradient */
+.creative-bus-theme .hero-gradient {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+}
+
+/* Button styles */
+.creative-bus-theme .btn-primary {
+  background: linear-gradient(135deg, var(--project-primary) 0%, var(--project-secondary) 100%);
+}
+
+.creative-bus-theme .btn-primary:hover {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+}
+
+/* Reward card specific styling */
+.creative-bus-theme .reward-card {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(17, 24, 39, 0.8) 100%);
+}
+
+/* Location cards */
+.creative-bus-theme .location-card {
+  transition: all 0.3s ease;
+}
+
+.creative-bus-theme .location-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+}
+
+/* Service cards */
+.creative-bus-theme .service-card {
+  background: rgba(139, 92, 246, 0.05);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  transition: all 0.3s ease;
+}
+
+.creative-bus-theme .service-card:hover {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.4);
+}
+
+/* Bus illustration area */
+.creative-bus-theme .bus-illustration {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(168, 85, 247, 0.1) 100%);
+  border: 2px solid rgba(139, 92, 246, 0.3);
+}
+
+/* Timeline styling */
+.creative-bus-theme .timeline-step {
+  position: relative;
+}
+
+.creative-bus-theme .timeline-step::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: calc(100% - 40px);
+  height: 2px;
+  background: linear-gradient(90deg, var(--project-primary) 0%, transparent 100%);
+}
+
+.creative-bus-theme .timeline-step:last-child::after {
+  display: none;
+}
+
+/* Budget breakdown */
+.creative-bus-theme .budget-item {
+  background: rgba(139, 92, 246, 0.05);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+/* Animate pulse for important elements */
+@keyframes violet-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-pulse-once {
+  animation: violet-pulse 2s ease-in-out;
+}
+
+/* Scale in animation for modals */
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.3s ease-out;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Subtle bounce animation for badges */
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+/* Equipment list styling */
+.creative-bus-theme .equipment-list li {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.creative-bus-theme .equipment-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--project-primary);
+}
+
+/* Concept section */
+.creative-bus-theme .concept-section {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%);
+}
+
+/* Partner logos area (future) */
+.creative-bus-theme .partner-logo {
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.creative-bus-theme .partner-logo:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}

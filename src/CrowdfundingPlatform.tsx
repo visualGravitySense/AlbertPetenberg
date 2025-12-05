@@ -11,8 +11,8 @@ import {
   PiArrowRightBold, 
   PiRocketLaunchFill 
 } from 'react-icons/pi';
-import { Header } from "./components/Header";
-import { Footer } from "./components/Footer";
+import { PlatformHeader } from "./components/PlatformHeader";
+import { PlatformFooter } from "./components/PlatformFooter";
 import { Language, getTranslation, translations } from "./locales";
 
 // Platform-specific styles (different from Albert sci-fi theme)
@@ -69,6 +69,36 @@ export default function CrowdfundingPlatform() {
     },
     {
       id: '3',
+      slug: 'color-palette-pro',
+      icon: '🎨',
+      title: 'ColorPalette Pro',
+      description: language === 'et'
+        ? 'Maailma esimene kaasaskantav, professionaalse kvaliteediga värvipaleti generaator IoT seade disaineritele ja kunstnikele.'
+        : 'Первый в мире портативный генератор цветовых палитр профессионального уровня. IoT устройство для дизайнеров и художников.',
+      collected: 87500,
+      goal: 150000,
+      daysLeft: 28,
+      backers: 534,
+      gradient: 'from-orange-500 to-amber-600',
+      category: language === 'et' ? 'IoT Disain' : 'IoT Дизайн'
+    },
+    {
+      id: '4',
+      slug: 'creative-bus',
+      icon: '🚐',
+      title: 'Creative Bus',
+      description: language === 'et'
+        ? 'Mobiilne disainistuudio premium-klassis. Ümberehitatud buss veebilehtede, foto- ja videosisu loomiseks inspireerivates kohtades.'
+        : 'Мобильная дизайн-студия премиум-класса. Переоборудованный автобус для создания сайтов и контента на вдохновляющих локациях.',
+      collected: 32500,
+      goal: 65000,
+      daysLeft: 35,
+      backers: 128,
+      gradient: 'from-violet-500 to-purple-600',
+      category: language === 'et' ? 'Disain' : 'Дизайн'
+    },
+    {
+      id: '5',
       slug: 'yoga-bot',
       icon: '🧘',
       title: 'Yoga Bot',
@@ -88,18 +118,14 @@ export default function CrowdfundingPlatform() {
 
   return (
     <div className="platform-theme platform-bg min-h-screen text-white">
-      {/* Header */}
-      <Header 
+      {/* Platform Header - Modern clean design */}
+      <PlatformHeader 
         links={[
           { label: t('main'), href: '/' }, 
           { label: t('about'), href: '/about' }, 
           { label: t('supportUs'), href: '/contact' }
         ]} 
-        title="Crowdfunding Platform"
-        githubUrl="https://github.com/visualGravitySense/AlbertPetenberg"
-        daysLeft={0}
-        totalBackers={totalBackers}
-        progressPercent={0}
+        title="Crowdfunding"
         currentLanguage={language}
         onLanguageChange={setLanguage}
       />
@@ -129,7 +155,7 @@ export default function CrowdfundingPlatform() {
             <div className="platform-stat">
               <div className="flex items-center justify-center gap-2">
                 <PiTrendUpBold className="w-5 h-5 platform-icon-primary" />
-                <span className="platform-stat-value">3</span>
+                <span className="platform-stat-value">5</span>
               </div>
               <div className="platform-stat-label">
                 {language === 'et' ? 'Aktiivsed projektid' : 'Активных проектов'}
@@ -160,7 +186,7 @@ export default function CrowdfundingPlatform() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto">
           {projects.map((project) => {
             const progressPercent = (project.collected / project.goal) * 100;
-            const isActive = project.slug === 'tiiva-all';
+            const isActive = project.slug === 'tiiva-all' || project.slug === 'course-reviews' || project.slug === 'color-palette-pro' || project.slug === 'creative-bus';
             
             return (
               <div 
@@ -303,8 +329,8 @@ export default function CrowdfundingPlatform() {
         </div>
       </div>
 
-      {/* Footer */}
-      <Footer totalBackers={totalBackers} language={language} />
+      {/* Platform Footer - Modern clean design */}
+      <PlatformFooter language={language} />
     </div>
   );
 }
