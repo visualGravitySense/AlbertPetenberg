@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Star, Users, Clock, Shield, CheckCircle, TrendingUp, Zap, ArrowRight, ShoppingCart, Bus, BarChart3, HelpCircle, AlertCircle, Trophy, Camera, Eye, EyeOff, X, RotateCcw, AlertTriangle, CheckCircle2, Palette, Monitor, Smartphone, MapPin, Wifi, Video, Laptop, Sun, Sparkles } from 'lucide-react';
-import { SciFiBadge } from "./components/SciFiBadge";
+import { Star, Users, Clock, CheckCircle, TrendingUp, Zap, ArrowRight, ShoppingCart, Bus, HelpCircle, Trophy, Camera, Eye, EyeOff, X, RotateCcw, AlertTriangle, CheckCircle2, Palette, Monitor, Smartphone, MapPin, Wifi, Video, Laptop, Sun, Sparkles } from 'lucide-react';
 import { CreativeBusBadge } from "./components/CreativeBusBadge";
 import { QuickSupportButton } from "./components/QuickSupportButton";
 import { Header } from "./components/Header";

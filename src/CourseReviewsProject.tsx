@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Star, Users, Clock, Shield, CheckCircle, TrendingUp, Zap, ArrowRight, ShoppingCart, Target, BarChart3, HelpCircle, AlertCircle, Trophy, BookOpen, Eye, EyeOff, X, RotateCcw, AlertTriangle, CheckCircle2, GraduationCap, MessageSquare, ThumbsUp } from 'lucide-react';
+import { Star, Users, Clock, CheckCircle, TrendingUp, Zap, ArrowRight, ShoppingCart, HelpCircle, Trophy, BookOpen, Eye, EyeOff, X, RotateCcw, AlertTriangle, CheckCircle2, GraduationCap, MessageSquare, ThumbsUp } from 'lucide-react';
 import { SciFiBadge } from "./components/SciFiBadge";
 import { QuickSupportButton } from "./components/QuickSupportButton";
 import { Header } from "./components/Header";
@@ -25,8 +25,6 @@ export default function CourseReviewsProject() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [selectedReward, setSelectedReward] = useState<number | null>(null);
   const [showFAQ, setShowFAQ] = useState(false);
-  const [showComparison, setShowComparison] = useState(false);
-  const [showDetails, setShowDetails] = useState(false);
   const [lastAction, setLastAction] = useState<{type: 'support', amount: number} | null>(null);
   const [showUndo, setShowUndo] = useState(false);
   const [customAmount, setCustomAmount] = useState('');
