@@ -1,0 +1,87 @@
+.reward-btn {
+  width: 100%;
+  height: 48px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  border: 2px solid #00d4ff;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: white;
+  box-shadow: 
+    0 0 8px rgba(0, 212, 255, 0.5),
+    0 0 16px rgba(0, 212, 255, 0.2);
+}
+
+.reward-btn:hover {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: #00d4ff;
+  box-shadow: 
+    0 0 12px rgba(0, 212, 255, 0.8),
+    0 0 24px rgba(0, 212, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.reward-btn:active {
+  transform: translateY(0);
+}
+
+.reward-btn-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: white;
+}
+
+.reward-btn-text {
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+
+.reward-btn-arrow {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: white;
+}
+
+.reward-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Selected state */
+.reward-btn-selected {
+  background: rgba(0, 212, 255, 0.15) !important;
+  box-shadow: 
+    0 0 16px rgba(0, 212, 255, 1),
+    0 0 32px rgba(0, 212, 255, 0.6),
+    inset 0 0 20px rgba(0, 212, 255, 0.1);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .reward-btn {
+    height: 44px;
+    font-size: 14px;
+    padding: 0 20px;
+  }
+  
+  .reward-btn-icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .reward-btn-arrow {
+    width: 14px;
+    height: 14px;
+  }
+}

@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Star, Users, Clock, Shield, CheckCircle, TrendingUp, Zap, ArrowRight, ShoppingCart, Palette, BarChart3, HelpCircle, AlertCircle, Trophy, Cpu, Eye, EyeOff, X, RotateCcw, AlertTriangle, CheckCircle2, Paintbrush, Smartphone, Wifi, Battery, Cloud, Sparkles } from 'lucide-react';
+import { Star, Users, Clock, Shield, CheckCircle, TrendingUp, Zap, ArrowRight, ShoppingCart, Palette, BarChart3, HelpCircle, AlertCircle, Trophy, Cpu, Eye, EyeOff, X, RotateCcw, AlertTriangle, CheckCircle2, Paintbrush, Smartphone, Wifi, Battery, Cloud, Sparkles, Lock } from 'lucide-react';
 import { SciFiBadge } from "./components/SciFiBadge";
 import { QuickSupportButton } from "./components/QuickSupportButton";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
-import { Button } from "./components/SciFiButton2";
+import { RewardButton } from "./components/RewardButton";
 import { Language, getTranslation } from "./locales";
 import { 
   DesignFilledIcon, 
@@ -210,9 +210,9 @@ export default function ColorPaletteProProject() {
       {/* Header */}
       <div className="pt-0">
         <Header 
-          links={[{ label: t('allProjects'), href: '/' }, { label: t('about'), href: '/about' }, { label: t('supportUs'), href: '/contact' }]} 
+          links={[{ label: t('allProjects'), href: '/' }]} 
           title={projectTitle}
-          githubUrl="https://github.com/colorpalette/colorpalette-pro"
+          customIcon={<Palette className="w-6 h-6" />}
           daysLeft={timeLeft.days}
           totalBackers={totalBackers}
           progressPercent={progressPercent}
@@ -223,16 +223,19 @@ export default function ColorPaletteProProject() {
 
       {/* Undo notification */}
       {showUndo && lastAction && (
-        <div className="fixed top-20 left-1/2 transform -translate-x-1/2 bg-orange-600 text-white px-6 py-4 rounded-lg shadow-2xl z-[55] flex items-center gap-4 animate-fadeIn border-2 border-orange-400">
+        <div className="fixed top-20 left-1/2 transform -translate-x-1/2 text-white px-6 py-4 rounded-lg shadow-2xl z-[55] flex items-center gap-4 animate-fadeIn" style={{
+          background: 'linear-gradient(135deg, #00d4ff 0%, #7b2cbf 100%)',
+          border: '2px solid rgba(255, 255, 255, 0.3)'
+        }}>
           <CheckCircle2 className="w-5 h-5" />
           <div>
             <div className="font-semibold">Поддержка €{lastAction.amount} принята!</div>
-            <div className="text-sm text-orange-100">Можно отменить в течение 10 секунд</div>
+            <div className="text-sm text-white/80">Можно отменить в течение 10 секунд</div>
           </div>
           <button onClick={handleUndo} className="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg font-semibold transition-all flex items-center gap-2">
             <RotateCcw className="w-4 h-4" /> Отменить
           </button>
-          <button onClick={() => setShowUndo(false)} className="text-orange-100 hover:text-white">
+          <button onClick={() => setShowUndo(false)} className="text-white/80 hover:text-white">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -241,16 +244,23 @@ export default function ColorPaletteProProject() {
       {/* Success confirmation modal */}
       {showConfirmation && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-[60] animate-fadeIn">
-          <div className="bg-gradient-to-br from-orange-600 to-amber-700 rounded-2xl p-8 max-w-md mx-4 shadow-2xl border-2 border-orange-400 animate-scaleIn">
+          <div className="rounded-2xl p-8 max-w-md mx-4 shadow-2xl animate-scaleIn" style={{
+            background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%)',
+            border: '2px solid rgba(0, 212, 255, 0.5)'
+          }}>
             <div className="text-center">
-              <CheckCircle className="w-16 h-16 text-white mx-auto mb-4 animate-bounce" />
-              <h3 className="text-2xl font-bold mb-2">Спасибо за поддержку!</h3>
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{
+                background: 'linear-gradient(135deg, #00d4ff 0%, #7b2cbf 100%)'
+              }}>
+                <CheckCircle className="w-10 h-10 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold mb-2 cpp-logo-gradient">Спасибо за поддержку!</h3>
               {lastSupportedAmount && (
-                <p className="text-lg text-orange-100 mb-4">
-                  Ваш вклад: <span className="font-bold text-white">€{lastSupportedAmount}</span>
+                <p className="text-lg text-gray-300 mb-4">
+                  Ваш вклад: <span className="font-bold" style={{ color: '#ffba08' }}>€{lastSupportedAmount}</span>
                 </p>
               )}
-              <button onClick={() => setShowConfirmation(false)} className="bg-white text-orange-700 font-bold py-2 px-6 rounded-lg hover:bg-gray-100 transition-all">
+              <button onClick={() => setShowConfirmation(false)} className="cpp-btn-primary">
                 Закрыть
               </button>
             </div>
@@ -285,8 +295,8 @@ export default function ColorPaletteProProject() {
       </div>
 
       {/* Hero Section */}
-      <div className="container mx-auto px-4 py-12 pt-10">
-        <div className="grid md:grid-cols-2 gap-8 items-center">
+      <div className="container mx-auto px-4 py-12 pt-10 cpp-bg-gradient-mesh rounded-2xl my-8 overflow-hidden">
+        <div className="grid md:grid-cols-2 gap-8 items-center cpp-content-above relative z-10">
           <div className="relative z-10">
             <div className="mb-8">
               <div className="flex flex-wrap items-center justify-start gap-3 mb-6">
@@ -301,7 +311,7 @@ export default function ColorPaletteProProject() {
                 </SciFiBadge>
               </div>
               
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent animate-fadeIn delay-300 text-left">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 cpp-logo-gradient animate-fadeIn delay-300 text-left">
                 {projectTitle}
               </h1>
 
@@ -309,7 +319,7 @@ export default function ColorPaletteProProject() {
                 <p className="text-lg md:text-xl text-gray-300 mb-4 text-left">
                   {projectDescription}
                 </p>
-                <p className="text-base md:text-lg text-orange-300 mb-6 font-medium text-left">
+                <p className="text-base md:text-lg mb-6 font-medium text-left" style={{ color: '#00d4ff' }}>
                   {totalBackers > 0 
                     ? (language === 'et' 
                         ? `Liitu ${totalBackers} toetajaga, kes on juba projekti toetanud!` 
@@ -322,9 +332,14 @@ export default function ColorPaletteProProject() {
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8 animate-fadeIn delay-500">
                 {features.map((feature, idx) => {
                   const Icon = feature.icon;
+                  const colors = ['#00d4ff', '#7b2cbf', '#ffba08', '#14b8a6', '#ec4899', '#f97316'];
+                  const color = colors[idx % colors.length];
                   return (
-                    <div key={idx} className="flex items-center gap-2 bg-orange-900/20 rounded-lg px-3 py-2 border border-orange-500/20">
-                      <Icon className="w-4 h-4 text-orange-400" />
+                    <div key={idx} className="flex items-center gap-2 rounded-lg px-3 py-2" style={{ 
+                      background: `linear-gradient(135deg, ${color}15 0%, ${color}08 100%)`,
+                      border: `1px solid ${color}30`
+                    }}>
+                      <Icon className="w-4 h-4" style={{ color }} />
                       <span className="text-sm text-gray-300">{feature.label}</span>
                     </div>
                   );
@@ -397,21 +412,21 @@ export default function ColorPaletteProProject() {
 
           {/* Right Side: Product Image */}
           <div className="relative">
-            <div className="relative w-full h-full min-h-[300px] md:min-h-[500px] rounded-xl overflow-hidden bg-gradient-to-br from-orange-600/20 to-amber-600/20 border border-orange-500/30">
+            <div className="cpp-product-card relative w-full h-full min-h-[300px] md:min-h-[500px]">
               <img 
                 src={productImage} 
                 alt="ColorPalette Pro" 
                 className="w-full h-full object-cover"
               />
-              <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-sm rounded-lg p-4">
+              <div className="cpp-product-overlay">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-sm text-orange-300">{language === 'et' ? 'Jaemüügihind' : 'Розничная цена'}</div>
-                    <div className="text-lg line-through text-gray-400">€179</div>
+                    <div className="text-sm" style={{ color: '#7b2cbf' }}>{language === 'et' ? 'Jaemüügihind' : 'Розничная цена'}</div>
+                    <div className="cpp-price-original">€179</div>
                   </div>
                   <div className="text-right">
-                    <div className="text-sm text-green-400">{language === 'et' ? 'Early Bird hind' : 'Early Bird цена'}</div>
-                    <div className="text-2xl font-bold text-white">€99</div>
+                    <div className="text-sm" style={{ color: '#14b8a6' }}>{language === 'et' ? 'Early Bird hind' : 'Early Bird цена'}</div>
+                    <div className="cpp-price-current">€99</div>
                   </div>
                 </div>
               </div>
@@ -421,49 +436,51 @@ export default function ColorPaletteProProject() {
       </div>
 
       {/* How It Works Section */}
-      <div className="max-w-6xl mx-auto mt-8 md:mt-16 mb-8 md:mb-16 px-4">
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 bg-orange-600/30 px-6 py-3 rounded-full border border-orange-500/50 mb-4">
-            <Sparkles className="w-6 h-6 text-orange-400" />
-            <span className="text-lg font-bold text-orange-400">
-              {language === 'et' ? 'Kuidas see töötab' : 'Как это работает'}
-            </span>
-          </div>
-        </div>
-        
-        <div className="grid md:grid-cols-4 gap-6">
-          {[
-            { step: 1, title: language === 'et' ? 'Suuna & Skaneeri' : 'Наведи и Сканируй', desc: language === 'et' ? 'Suuna seade mis tahes pinnale' : 'Наведите устройство на любую поверхность' },
-            { step: 2, title: language === 'et' ? 'Genereeri' : 'Генерируй', desc: language === 'et' ? 'Loo koheselt harmoonilisi palette' : 'Создайте гармоничные палитры мгновенно' },
-            { step: 3, title: language === 'et' ? 'Kohanda' : 'Настрой', desc: language === 'et' ? 'Peenhäälestatavus enkoodritega' : 'Тонкая настройка с помощью энкодеров' },
-            { step: 4, title: language === 'et' ? 'Salvesta & Jaga' : 'Сохрани и Поделись', desc: language === 'et' ? 'Ekspordi Figmasse, Adobesse, CSS-i' : 'Экспорт в Figma, Adobe, CSS' },
-          ].map((item) => (
-            <div key={item.step} className="text-center bg-gradient-to-br from-orange-900/30 to-amber-900/20 rounded-xl p-6 border border-orange-500/20">
-              <div className="w-12 h-12 rounded-full bg-orange-600 text-white font-bold text-xl flex items-center justify-center mx-auto mb-4">
-                {item.step}
-              </div>
-              <h3 className="text-lg font-bold text-orange-300 mb-2">{item.title}</h3>
-              <p className="text-sm text-gray-400">{item.desc}</p>
+      <div className="max-w-6xl mx-auto mt-8 md:mt-16 mb-8 md:mb-16 px-4 relative z-10">
+        <div className="cpp-how-it-works-wrapper">
+          {/* Section Title */}
+          <div className="text-center mb-8 cpp-content-above">
+            <div className="cpp-section-header-btn">
+              <Sparkles className="w-6 h-6" />
+              <span className="cpp-section-header-text">
+                {language === 'et' ? 'Kuidas see töötab' : 'Как это работает'}
+              </span>
             </div>
-          ))}
+          </div>
+          
+          {/* Steps Grid */}
+          <div className="grid md:grid-cols-4 gap-6 cpp-content-above">
+            {[
+              { step: 1, title: language === 'et' ? 'Suuna & Skaneeri' : 'Наведи и Сканируй', desc: language === 'et' ? 'Suuna seade mis tahes pinnale' : 'Наведите устройство на любую поверхность' },
+              { step: 2, title: language === 'et' ? 'Genereeri' : 'Генерируй', desc: language === 'et' ? 'Loo koheselt harmoonilisi palette' : 'Создайте гармоничные палитры мгновенно' },
+              { step: 3, title: language === 'et' ? 'Kohanda' : 'Настрой', desc: language === 'et' ? 'Peenhäälestatavus enkoodritega' : 'Тонкая настройка с помощью энкодеров' },
+              { step: 4, title: language === 'et' ? 'Salvesta & Jaga' : 'Сохрани и Поделись', desc: language === 'et' ? 'Ekspordi Figmasse, Adobesse, CSS-i' : 'Экспорт в Figma, Adobe, CSS' },
+            ].map((item) => (
+              <div key={item.step} className="cpp-step-card">
+                <div className="cpp-step-number">{item.step}</div>
+                <h3 className="cpp-step-title">{item.title}</h3>
+                <p className="cpp-step-desc">{item.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Perfect For Section */}
-      <div className="max-w-4xl mx-auto mb-8 md:mb-16 bg-gradient-to-br from-orange-900/40 to-amber-900/30 rounded-xl p-4 md:p-8 border border-orange-500/30">
+      <div className="max-w-4xl mx-auto mb-8 md:mb-16 cpp-perfect-section px-4 cpp-bg-diagonal-lines">
         <div className="text-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-orange-300">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">
             {language === 'et' ? 'Ideaalne kellele?' : 'Идеально для кого?'}
           </h2>
         </div>
         <div className="grid md:grid-cols-3 gap-4">
           {/* Graphic Designers */}
-          <div className="flex items-start gap-3 bg-black/20 rounded-lg p-4 group hover:bg-black/30 transition-all">
+          <div className="cpp-audience-card group">
             <div className="perfect-for-icon perfect-for-icon--design">
               <DesignFilledIcon size="large" />
             </div>
             <div>
-              <div className="font-semibold text-orange-300">
+              <div className="font-semibold" style={{ color: '#00d4ff' }}>
                 {language === 'et' ? 'Graafilised disainerid' : 'Графические дизайнеры'}
               </div>
               <div className="text-sm text-gray-400">
@@ -473,12 +490,12 @@ export default function ColorPaletteProProject() {
           </div>
 
           {/* Interior Architects */}
-          <div className="flex items-start gap-3 bg-black/20 rounded-lg p-4 group hover:bg-black/30 transition-all">
+          <div className="cpp-audience-card group">
             <div className="perfect-for-icon perfect-for-icon--interior">
               <HomeWorkFilledIcon size="large" />
             </div>
             <div>
-              <div className="font-semibold text-orange-300">
+              <div className="font-semibold" style={{ color: '#7b2cbf' }}>
                 {language === 'et' ? 'Sisearhitektid' : 'Интерьерные дизайнеры'}
               </div>
               <div className="text-sm text-gray-400">
@@ -488,12 +505,12 @@ export default function ColorPaletteProProject() {
           </div>
 
           {/* Fashion Designers */}
-          <div className="flex items-start gap-3 bg-black/20 rounded-lg p-4 group hover:bg-black/30 transition-all">
+          <div className="cpp-audience-card group">
             <div className="perfect-for-icon perfect-for-icon--fashion">
               <DressFilledIcon size="large" />
             </div>
             <div>
-              <div className="font-semibold text-orange-300">
+              <div className="font-semibold" style={{ color: '#ec4899' }}>
                 {language === 'et' ? 'Moedisainerid' : 'Модные дизайнеры'}
               </div>
               <div className="text-sm text-gray-400">
@@ -503,12 +520,12 @@ export default function ColorPaletteProProject() {
           </div>
 
           {/* UI/UX Designers */}
-          <div className="flex items-start gap-3 bg-black/20 rounded-lg p-4 group hover:bg-black/30 transition-all">
+          <div className="cpp-audience-card group">
             <div className="perfect-for-icon perfect-for-icon--uiux">
               <LaptopFilledIcon size="large" />
             </div>
             <div>
-              <div className="font-semibold text-orange-300">
+              <div className="font-semibold" style={{ color: '#14b8a6' }}>
                 {language === 'et' ? 'UI/UX disainerid' : 'UI/UX дизайнеры'}
               </div>
               <div className="text-sm text-gray-400">
@@ -518,12 +535,12 @@ export default function ColorPaletteProProject() {
           </div>
 
           {/* Students */}
-          <div className="flex items-start gap-3 bg-black/20 rounded-lg p-4 group hover:bg-black/30 transition-all">
+          <div className="cpp-audience-card group">
             <div className="perfect-for-icon perfect-for-icon--student">
               <SchoolFilledIcon size="large" />
             </div>
             <div>
-              <div className="font-semibold text-orange-300">
+              <div className="font-semibold" style={{ color: '#ffba08' }}>
                 {language === 'et' ? 'Üliõpilased' : 'Студенты'}
               </div>
               <div className="text-sm text-gray-400">
@@ -533,12 +550,12 @@ export default function ColorPaletteProProject() {
           </div>
 
           {/* Artists */}
-          <div className="flex items-start gap-3 bg-black/20 rounded-lg p-4 group hover:bg-black/30 transition-all">
+          <div className="cpp-audience-card group">
             <div className="perfect-for-icon perfect-for-icon--artist">
               <BrushAltFilledIcon size="large" />
             </div>
             <div>
-              <div className="font-semibold text-orange-300">
+              <div className="font-semibold" style={{ color: '#f97316' }}>
                 {language === 'et' ? 'Kunstnikud' : 'Художники'}
               </div>
               <div className="text-sm text-gray-400">
@@ -550,43 +567,43 @@ export default function ColorPaletteProProject() {
       </div>
 
       {/* Technical Specs Toggle */}
-      <div className="max-w-4xl mx-auto mb-8 px-4">
-        <div className="bg-gray-800/30 rounded-xl p-6 border border-orange-500/20">
+      <div className="max-w-4xl mx-auto mb-8 px-4 relative z-10">
+        <div className="cpp-specs-container cpp-content-above">
           <button
             onClick={() => setShowSpecs(!showSpecs)}
-            className="flex items-center justify-between w-full text-left"
+            className="cpp-specs-toggle-btn w-full"
           >
-            <div className="flex items-center gap-2">
-              <Cpu className="w-5 h-5 text-orange-400" />
-              <h3 className="text-xl font-bold">{language === 'et' ? 'Tehnilised andmed' : 'Технические характеристики'}</h3>
+            <div className="flex items-center gap-3">
+              <Cpu className="cpp-specs-icon" />
+              <h3 className="cpp-specs-title">{language === 'et' ? 'Tehnilised andmed' : 'Технические характеристики'}</h3>
             </div>
-            <ArrowRight className={`w-5 h-5 transition-transform ${showSpecs ? 'rotate-90' : ''}`} />
+            <ArrowRight className={`cpp-specs-arrow transition-transform ${showSpecs ? 'rotate-90' : ''}`} />
           </button>
           
           {showSpecs && (
-            <div className="mt-6 grid md:grid-cols-2 gap-6 animate-fadeIn">
+            <div className="cpp-specs-section mt-6 grid md:grid-cols-2 gap-6 animate-fadeIn">
               <div>
-                <h4 className="font-semibold text-orange-300 mb-3">{language === 'et' ? 'Riistvara' : 'Аппаратное обеспечение'}</h4>
+                <h4 className="cpp-spec-category">{language === 'et' ? 'Riistvara' : 'Аппаратное обеспечение'}</h4>
                 <ul className="space-y-2 text-sm text-gray-400">
-                  <li>• <span className="text-gray-300">Sensor:</span> AS7341 11-Channel Spectral</li>
-                  <li>• <span className="text-gray-300">Display:</span> 3.5" IPS Touchscreen (480x320)</li>
-                  <li>• <span className="text-gray-300">Processor:</span> ESP32-S3 (WiFi 6, BT 5.0)</li>
-                  <li>• <span className="text-gray-300">Battery:</span> 3000mAh LiPo (10+ hours)</li>
-                  <li>• <span className="text-gray-300">Storage:</span> 32GB microSD + Cloud</li>
-                  <li>• <span className="text-gray-300">Size:</span> 120 x 75 x 25mm</li>
-                  <li>• <span className="text-gray-300">Weight:</span> 185g</li>
+                  <li className="cpp-spec-item">• <span>Sensor:</span> AS7341 11-Channel Spectral</li>
+                  <li className="cpp-spec-item">• <span>Display:</span> 3.5" IPS Touchscreen (480x320)</li>
+                  <li className="cpp-spec-item">• <span>Processor:</span> ESP32-S3 (WiFi 6, BT 5.0)</li>
+                  <li className="cpp-spec-item">• <span>Battery:</span> 3000mAh LiPo (10+ hours)</li>
+                  <li className="cpp-spec-item">• <span>Storage:</span> 32GB microSD + Cloud</li>
+                  <li className="cpp-spec-item">• <span>Size:</span> 120 x 75 x 25mm</li>
+                  <li className="cpp-spec-item">• <span>Weight:</span> 185g</li>
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold text-orange-300 mb-3">{language === 'et' ? 'Tarkvara' : 'Программное обеспечение'}</h4>
+                <h4 className="cpp-spec-category">{language === 'et' ? 'Tarkvara' : 'Программное обеспечение'}</h4>
                 <ul className="space-y-2 text-sm text-gray-400">
-                  <li>• {language === 'et' ? 'Reaalajas skaneerimine (60fps)' : 'Сканирование в реальном времени (60fps)'}</li>
-                  <li>• {language === 'et' ? '7+ paleti algoritmi' : '7+ алгоритмов палитр'}</li>
-                  <li>• {language === 'et' ? 'Värvipimeduse simulatsioon' : 'Симуляция дальтонизма'}</li>
-                  <li>• {language === 'et' ? 'WCAG kontrasti kontroll' : 'Проверка контраста WCAG'}</li>
-                  <li>• {language === 'et' ? '1000+ eelskaneeritud värvi' : '1000+ предсканированных цветов'}</li>
-                  <li>• Export: ASE, ACO, SCSS, JSON, PNG</li>
-                  <li>• API {language === 'et' ? 'kohandatud integratsioonideks' : 'для кастомных интеграций'}</li>
+                  <li className="cpp-spec-item">• {language === 'et' ? 'Reaalajas skaneerimine (60fps)' : 'Сканирование в реальном времени (60fps)'}</li>
+                  <li className="cpp-spec-item">• {language === 'et' ? '7+ paleti algoritmi' : '7+ алгоритмов палитр'}</li>
+                  <li className="cpp-spec-item">• {language === 'et' ? 'Värvipimeduse simulatsioon' : 'Симуляция дальтонизма'}</li>
+                  <li className="cpp-spec-item">• {language === 'et' ? 'WCAG kontrasti kontroll' : 'Проверка контраста WCAG'}</li>
+                  <li className="cpp-spec-item">• {language === 'et' ? '1000+ eelskaneeritud värvi' : '1000+ предсканированных цветов'}</li>
+                  <li className="cpp-spec-item">• Export: ASE, ACO, SCSS, JSON, PNG</li>
+                  <li className="cpp-spec-item">• API {language === 'et' ? 'kohandatud integratsioonideks' : 'для кастомных интеграций'}</li>
                 </ul>
               </div>
             </div>
@@ -595,9 +612,9 @@ export default function ColorPaletteProProject() {
       </div>
 
       {/* Rewards Section */}
-      <div className="max-w-6xl mx-auto px-4 mb-16">
+      <div className="max-w-6xl mx-auto px-4 mb-16 relative z-10">
         <div className="text-center mb-4">
-          <h2 className="text-2xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
+          <h2 className="text-2xl md:text-4xl font-bold mb-3">
             {language === 'et' ? 'Vali oma tase' : 'Выберите уровень поддержки'}
           </h2>
           <p className="text-gray-400 text-base md:text-lg mb-2">
@@ -605,7 +622,7 @@ export default function ColorPaletteProProject() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 cpp-content-above">
           {rewards.map((reward, index) => {
             const Icon = reward.icon;
             const isPopular = reward.popular;
@@ -613,36 +630,42 @@ export default function ColorPaletteProProject() {
             return (
               <div 
                 key={index}
-                className={`bg-gradient-to-br rounded-xl p-4 md:p-6 border-2 transition-all hover:scale-105 relative ${
-                  isPopular 
-                    ? 'border-yellow-500/50 hover:border-yellow-500 shadow-xl shadow-yellow-500/20' 
-                    : 'border-orange-500/20 hover:border-orange-500/50'
+                className={`cpp-card rounded-xl p-4 md:p-6 transition-all hover:scale-105 relative ${
+                  isPopular ? 'popular' : ''
                 }`}
+                style={isPopular ? {
+                  borderColor: 'rgba(255, 186, 8, 0.5)',
+                  boxShadow: '0 0 20px rgba(255, 186, 8, 0.2)'
+                } : {}}
               >
                 {isPopular && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-yellow-500 text-black text-xs font-bold px-3 py-1 rounded-full">
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 text-black text-xs font-bold px-3 py-1 rounded-full" style={{ background: '#ffba08' }}>
                     {language === 'et' ? 'Populaarseim' : 'Популярный выбор'}
                   </div>
                 )}
                 {isLimited && (
-                  <div className="absolute -top-3 right-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                  <div className="absolute -top-3 right-4 text-white text-xs font-bold px-3 py-1 rounded-full" style={{ background: '#ec4899' }}>
                     {language === 'et' ? `Piiratud: ${reward.limitCount}` : `Лимит: ${reward.limitCount}`}
                   </div>
                 )}
                 
                 <div className="flex items-start justify-between mb-4">
-                  <div className={`p-3 rounded-lg ${isPopular ? 'bg-yellow-600/30' : 'bg-orange-600/30'}`}>
-                    <Icon className={`w-6 h-6 ${isPopular ? 'text-yellow-400' : 'text-orange-400'}`} />
+                  <div className="p-3 rounded-lg" style={{ 
+                    background: isPopular 
+                      ? 'linear-gradient(135deg, rgba(255, 186, 8, 0.2) 0%, rgba(255, 186, 8, 0.1) 100%)' 
+                      : 'linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(123, 44, 191, 0.2) 100%)'
+                  }}>
+                    <Icon className="w-6 h-6" style={{ color: isPopular ? '#ffba08' : '#00d4ff' }} />
                   </div>
                   <div className="text-right">
-                    <div className="text-sm text-green-400">{language === 'et' ? 'Säästa' : 'Экономия'} {reward.savings}</div>
-                    <div className={`text-2xl font-bold ${isPopular ? 'text-yellow-400' : 'text-orange-400'}`}>
+                    <div className="text-sm" style={{ color: '#14b8a6' }}>{language === 'et' ? 'Säästa' : 'Экономия'} {reward.savings}</div>
+                    <div className="text-2xl font-bold cpp-logo-gradient">
                       €{reward.amount}
                     </div>
                   </div>
                 </div>
                 
-                <h3 className="text-lg md:text-xl font-bold mb-3">{reward.title}</h3>
+                <h3 className="text-lg md:text-xl font-bold mb-3" style={{ color: '#fff' }}>{reward.title}</h3>
                 <p className="text-sm md:text-base text-gray-400 mb-4 md:mb-6 min-h-[80px]">{reward.description}</p>
                 
                 <div className="mb-4 flex items-center justify-between text-sm">
@@ -655,19 +678,12 @@ export default function ColorPaletteProProject() {
                   </div>
                 </div>
                 
-                <Button 
+                <RewardButton 
+                  amount={reward.amount}
+                  language={language}
                   onClick={() => handleSupport(reward.amount, index)}
-                  variant={isPopular ? "accent" : "default"}
-                  shape="flat"
-                  className={`w-full ${selectedReward === index ? 'ring-4 ring-green-400 ring-offset-2 ring-offset-gray-900' : ''}`}
-                  style={{ '--color-primary': '#f97316', '--color-accent': '#eab308' } as React.CSSProperties}
-                >
-                  <span className="flex items-center justify-center gap-2">
-                    <ShoppingCart className="w-5 h-5" />
-                    {language === 'et' ? 'Toeta €' : 'Поддержать €'}{reward.amount}
-                    <ArrowRight className="w-4 h-4" />
-                  </span>
-                </Button>
+                  className={selectedReward === index ? 'reward-btn-selected' : ''}
+                />
               </div>
             );
           })}
@@ -675,29 +691,32 @@ export default function ColorPaletteProProject() {
       </div>
 
       {/* Stretch Goals */}
-      <div className="max-w-4xl mx-auto mb-16 px-4">
-        <div className="bg-gradient-to-br from-orange-900/30 to-amber-900/20 rounded-xl p-6 border border-orange-500/30">
-          <h3 className="text-xl font-bold text-orange-300 mb-6 text-center">
+      <div className="max-w-4xl mx-auto mb-16 px-4 relative z-10">
+        <div className="cpp-stretch-goals-container cpp-content-above">
+          <h3 className="cpp-stretch-goals-title">
             {language === 'et' ? 'Venitamise eesmärgid' : 'Stretch Goals'}
           </h3>
-          <div className="space-y-4">
+          <div className="cpp-stretch-goals-list">
             {[
               { goal: 50000, unlocked: true, items: [language === 'et' ? 'Tasuta ekraanikaitsekile' : 'Бесплатная защитная пленка', language === 'et' ? 'Procreate & Affinity eksport' : 'Экспорт в Procreate & Affinity'] },
               { goal: 100000, unlocked: false, items: [language === 'et' ? 'Ambient light režiim' : 'Режим окружающего света', language === 'et' ? 'Hääljuhtimine' : 'Голосовое управление', language === 'et' ? 'AI värvinimetused' : 'AI названия цветов'] },
               { goal: 250000, unlocked: false, items: [language === 'et' ? 'Täiendatud sensor' : 'Улучшенный сенсор', language === 'et' ? 'Juhtmeta laadimine' : 'Беспроводная зарядка', language === 'et' ? 'Desktop rakendused' : 'Десктоп приложения'] },
             ].map((item, idx) => (
-              <div key={idx} className={`flex items-center gap-4 p-4 rounded-lg ${item.unlocked ? 'bg-green-900/30 border border-green-500/30' : 'bg-gray-800/30 border border-gray-600/30'}`}>
-                <div className={`text-lg font-bold ${item.unlocked ? 'text-green-400' : 'text-gray-500'}`}>
+              <div key={idx} className={`cpp-stretch-goal ${item.unlocked ? 'cpp-stretch-goal--unlocked' : 'cpp-stretch-goal--locked'}`}>
+                <div className="cpp-stretch-goal-amount">
                   €{item.goal.toLocaleString()}
                 </div>
-                <div className="flex-1">
-                  <div className="flex flex-wrap gap-2">
-                    {item.items.map((text, i) => (
-                      <span key={i} className={`text-sm px-2 py-1 rounded ${item.unlocked ? 'bg-green-600/30 text-green-300' : 'bg-gray-700/30 text-gray-400'}`}>
-                        {item.unlocked ? '✅' : '🔓'} {text}
-                      </span>
-                    ))}
-                  </div>
+                <div className="cpp-stretch-goal-items">
+                  {item.items.map((text, i) => (
+                    <span key={i} className={`cpp-stretch-goal-chip ${item.unlocked ? 'cpp-stretch-goal-chip--unlocked' : 'cpp-stretch-goal-chip--locked'}`}>
+                      {item.unlocked ? (
+                        <CheckCircle className="w-4 h-4" />
+                      ) : (
+                        <Lock className="w-4 h-4" />
+                      )}
+                      <span>{text}</span>
+                    </span>
+                  ))}
                 </div>
               </div>
             ))}
@@ -706,17 +725,17 @@ export default function ColorPaletteProProject() {
       </div>
 
       {/* FAQ Section */}
-      <div className="max-w-4xl mx-auto mt-16 mb-8 px-4">
-        <div className="bg-gray-800/30 rounded-xl p-6 border border-orange-500/20">
+      <div className="max-w-4xl mx-auto mt-16 mb-8 px-4 relative z-10">
+        <div className="cpp-specs-section">
           <button
             onClick={() => setShowFAQ(!showFAQ)}
             className="flex items-center justify-between w-full text-left"
           >
             <div className="flex items-center gap-2">
-              <HelpCircle className="w-5 h-5 text-orange-400" />
-              <h3 className="text-xl font-bold">{language === 'et' ? 'Korduma kippuvad küsimused' : 'Часто задаваемые вопросы'}</h3>
+              <HelpCircle className="w-5 h-5" style={{ color: '#7b2cbf' }} />
+              <h3 className="text-xl font-bold" style={{ color: '#fff' }}>{language === 'et' ? 'Korduma kippuvad küsimused' : 'Часто задаваемые вопросы'}</h3>
             </div>
-            <ArrowRight className={`w-5 h-5 transition-transform ${showFAQ ? 'rotate-90' : ''}`} />
+            <ArrowRight className={`w-5 h-5 transition-transform ${showFAQ ? 'rotate-90' : ''}`} style={{ color: '#00d4ff' }} />
           </button>
           
           {showFAQ && (
@@ -739,9 +758,9 @@ export default function ColorPaletteProProject() {
                   a: language === 'et' ? 'Ei! Ühekordne ost sisaldab eluaegset juurdepääsu põhifunktsioonidele.' : 'Нет! Единоразовая покупка включает пожизненный доступ к основным функциям.' 
                 }
               ].map((faq, idx) => (
-                <div key={idx} className="border-l-2 border-orange-500/50 pl-4">
-                  <div className="font-semibold text-orange-300 mb-1">{faq.q}</div>
-                  <div className="text-sm text-gray-400">{faq.a}</div>
+                <div key={idx} className="cpp-faq-item">
+                  <div className="cpp-faq-question">{faq.q}</div>
+                  <div className="cpp-faq-answer">{faq.a}</div>
                 </div>
               ))}
             </div>
@@ -750,20 +769,22 @@ export default function ColorPaletteProProject() {
       </div>
 
       {/* Press Section */}
-      <div className="max-w-4xl mx-auto mb-16 px-4">
-        <div className="text-center">
-          <h3 className="text-lg font-semibold text-gray-400 mb-6">
+      <div className="max-w-5xl mx-auto mb-16 px-4 relative z-10">
+        <div className="cpp-press-container cpp-content-above">
+          <h3 className="cpp-press-title">
             {language === 'et' ? 'Mida ajakirjandus ütleb' : 'Что пишет пресса'}
           </h3>
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="cpp-press-grid">
             {[
-              { quote: language === 'et' ? '"Võib revolutsioneerida, kuidas disainerid värviga töötavad"' : '"Может революционизировать работу дизайнеров с цветом"', source: 'TechCrunch' },
-              { quote: language === 'et' ? '"Lõpuks professionaalne värvitööriist tarbijahinnaga"' : '"Наконец профессиональный инструмент по потребительской цене"', source: 'The Verge' },
-              { quote: language === 'et' ? '"Seade, mida olen oodanud"' : '"Устройство, которое я ждал"', source: 'Adobe Create' },
+              { quote: language === 'et' ? '"Võib revolutsioneerida, kuidas disainerid värviga töötavad"' : '"Может революционизировать работу дизайнеров с цветом"', source: 'TechCrunch', gradientClass: 'cpp-press-card-gradient-1', attributionColor: 'var(--cpp-cyan)' },
+              { quote: language === 'et' ? '"Lõpuks professionaalne värvitööriist tarbijahinnaga"' : '"Наконец профессиональный инструмент по потребительской цене"', source: 'The Verge', gradientClass: 'cpp-press-card-gradient-2', attributionColor: 'var(--cpp-purple)' },
+              { quote: language === 'et' ? '"Seade, mida olen oodanud"' : '"Устройство, которое я ждал"', source: 'Adobe Create', gradientClass: 'cpp-press-card-gradient-3', attributionColor: 'var(--cpp-orange)' },
             ].map((item, idx) => (
-              <div key={idx} className="bg-gray-800/30 rounded-lg p-4 border border-orange-500/10">
-                <p className="text-sm text-gray-300 italic mb-2">{item.quote}</p>
-                <p className="text-xs text-orange-400 font-semibold">— {item.source}</p>
+              <div key={idx} className={`cpp-press-card ${item.gradientClass}`}>
+                <div className="cpp-press-card-inner">
+                  <p className="cpp-press-quote-text">{item.quote}</p>
+                  <p className="cpp-press-attribution" style={{ color: item.attributionColor }}>— {item.source}</p>
+                </div>
               </div>
             ))}
           </div>

@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ColorPalette Pro - Brand Design System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            border-radius: 24px;
+            margin-bottom: 80px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo-container {
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 64px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00d4ff 0%, #7b2cbf 50%, #ffba08 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -2px;
+        }
+
+        .tagline {
+            font-size: 24px;
+            color: #888;
+            font-weight: 300;
+            margin-top: 16px;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 6px;
+            height: 40px;
+            background: linear-gradient(180deg, #00d4ff, #7b2cbf);
+            border-radius: 3px;
+        }
+
+        .grid {
+            display: grid;
+            gap: 24px;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+
+        .card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-4px);
+        }
+
+        .color-box {
+            height: 120px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .color-name {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .color-values {
+            font-size: 13px;
+            color: #888;
+            font-family: 'Courier New', monospace;
+        }
+
+        .color-values div {
+            margin: 4px 0;
+        }
+
+        /* Primary Colors */
+        .cyan-primary { background: linear-gradient(135deg, #00d4ff 0%, #00b8e6 100%); }
+        .purple-primary { background: linear-gradient(135deg, #7b2cbf 0%, #5a189a 100%); }
+        .yellow-primary { background: linear-gradient(135deg, #ffba08 0%, #faa307 100%); }
+
+        /* Secondary Colors */
+        .teal { background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%); }
+        .pink { background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); }
+        .orange { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); }
+
+        /* Neutrals */
+        .black { background: #0a0a0a; color: #fff; }
+        .dark-gray { background: #1a1a1a; color: #fff; }
+        .medium-gray { background: #404040; color: #fff; }
+        .light-gray { background: #808080; color: #fff; }
+        .off-white { background: #f5f5f5; color: #000; }
+        .white { background: #ffffff; color: #000; border: 1px solid #e0e0e0; }
+
+        .typography-sample {
+            padding: 24px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .font-display {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .font-heading {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .font-subheading {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .font-body {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .font-caption {
+            font-size: 13px;
+            font-weight: 500;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo-variations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+        }
+
+        .logo-variant {
+            padding: 40px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 160px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo-dark { background: #0a0a0a; }
+        .logo-light { background: #ffffff; }
+        .logo-gradient { background: linear-gradient(135deg, #00d4ff 0%, #7b2cbf 50%, #ffba08 100%); }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .logo-text-light { color: #ffffff; }
+        .logo-text-dark { color: #0a0a0a; }
+        .logo-text-gradient {
+            background: linear-gradient(135deg, #00d4ff 0%, #7b2cbf 50%, #ffba08 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 16px;
+        }
+
+        .icon-box {
+            aspect-ratio: 1;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .icon-box:hover {
+            background: rgba(255,255,255,0.08);
+            transform: scale(1.1);
+        }
+
+        .spacing-example {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .spacing-box {
+            background: linear-gradient(135deg, #00d4ff 0%, #7b2cbf 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .pattern-showcase {
+            height: 200px;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gradient-mesh {
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 212, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(123, 44, 191, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 186, 8, 0.2) 0%, transparent 50%),
+                #0a0a0a;
+        }
+
+        .dot-pattern {
+            background-image: radial-gradient(circle, rgba(0, 212, 255, 0.2) 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-color: #0a0a0a;
+        }
+
+        .line-pattern {
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(0, 212, 255, 0.1) 10px,
+                rgba(0, 212, 255, 0.1) 11px
+            );
+            background-color: #0a0a0a;
+        }
+
+        .button-showcase {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00d4ff 0%, #7b2cbf 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #00d4ff;
+            border: 2px solid #00d4ff;
+        }
+
+        .btn-outline:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .usage-do {
+            background: rgba(20, 184, 166, 0.1);
+            border: 2px solid #14b8a6;
+            padding: 24px;
+            border-radius: 12px;
+        }
+
+        .usage-dont {
+            background: rgba(239, 68, 68, 0.1);
+            border: 2px solid #ef4444;
+            padding: 24px;
+            border-radius: 12px;
+        }
+
+        .usage-title {
+            font-weight: 700;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .usage-do .usage-title { color: #14b8a6; }
+        .usage-dont .usage-title { color: #ef4444; }
+
+        .download-section {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(123, 44, 191, 0.1) 100%);
+            border-radius: 24px;
+            padding: 48px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .download-btn {
+            background: white;
+            color: #0a0a0a;
+            padding: 18px 48px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            margin-top: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 32px rgba(255,255,255,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 32px 20px; }
+            .logo { font-size: 48px; }
+            .tagline { font-size: 18px; }
+            .section-title { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="logo-container">
+                <div class="logo">COLORPALETTE PRO</div>
+                <div class="tagline">Your Pocket Color Lab</div>
+            </div>
+        </div>
+
+        <!-- Brand Colors -->
+        <div class="section">
+            <h2 class="section-title">Primary Brand Colors</h2>
+            <div class="grid grid-3">
+                <div class="card">
+                    <div class="color-box cyan-primary"></div>
+                    <div class="color-name">Cyan Electric</div>
+                    <div class="color-values">
+                        <div>HEX: #00D4FF</div>
+                        <div>RGB: 0, 212, 255</div>
+                        <div>OKLCH: 80% 0.15 220</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="color-box purple-primary"></div>
+                    <div class="color-name">Purple Passion</div>
+                    <div class="color-values">
+                        <div>HEX: #7B2CBF</div>
+                        <div>RGB: 123, 44, 191</div>
+                        <div>OKLCH: 45% 0.22 310</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="color-box yellow-primary"></div>
+                    <div class="color-name">Golden Spark</div>
+                    <div class="color-values">
+                        <div>HEX: #FFBA08</div>
+                        <div>RGB: 255, 186, 8</div>
+                        <div>OKLCH: 82% 0.18 85</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Secondary Colors -->
+        <div class="section">
+            <h2 class="section-title">Secondary Colors</h2>
+            <div class="grid grid-3">
+                <div class="card">
+                    <div class="color-box teal"></div>
+                    <div class="color-name">Teal Accent</div>
+                    <div class="color-values">
+                        <div>HEX: #14B8A6</div>
+                        <div>RGB: 20, 184, 166</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="color-box pink"></div>
+                    <div class="color-name">Pink Flash</div>
+                    <div class="color-values">
+                        <div>HEX: #EC4899</div>
+                        <div>RGB: 236, 72, 153</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="color-box orange"></div>
+                    <div class="color-name">Orange Burst</div>
+                    <div class="color-values">
+                        <div>HEX: #F97316</div>
+                        <div>RGB: 249, 115, 22</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Neutral Colors -->
+        <div class="section">
+            <h2 class="section-title">Neutral Palette</h2>
+            <div class="grid grid-4">
+                <div class="card">
+                    <div class="color-box black"></div>
+                    <div class="color-name">Pure Black</div>
+                    <div class="color-values">
+                        <div>HEX: #0A0A0A</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="color-box dark-gray"></div>
+                    <div class="color-name">Dark Gray</div>
+                    <div class="color-values">
+                        <div>HEX: #1A1A1A</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="color-box medium-gray"></div>
+                    <div class="color-name">Medium Gray</div>
+                    <div class="color-values">
+                        <div>HEX: #404040</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="color-box light-gray"></div>
+                    <div class="color-name">Light Gray</div>
+                    <div class="color-values">
+                        <div>HEX: #808080</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="color-box off-white"></div>
+                    <div class="color-name">Off White</div>
+                    <div class="color-values">
+                        <div>HEX: #F5F5F5</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="color-box white"></div>
+                    <div class="color-name">Pure White</div>
+                    <div class="color-values">
+                        <div>HEX: #FFFFFF</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Typography -->
+        <div class="section">
+            <h2 class="section-title">Typography System</h2>
+            <div class="card">
+                <div class="typography-sample">
+                    <div class="font-caption">DISPLAY / 900 WEIGHT</div>
+                    <div class="font-display">ColorPalette Pro</div>
+                </div>
+                <div class="typography-sample">
+                    <div class="font-caption">HEADING 1 / 700 WEIGHT</div>
+                    <div class="font-heading">Your Pocket Color Lab</div>
+                </div>
+                <div class="typography-sample">
+                    <div class="font-caption">HEADING 2 / 600 WEIGHT</div>
+                    <div class="font-subheading">Professional Color Accuracy</div>
+                </div>
+                <div class="typography-sample">
+                    <div class="font-caption">BODY TEXT / 400 WEIGHT</div>
+                    <div class="font-body">ColorPalette Pro is the world's first portable, professional-grade color palette generator that fits in your pocket. Scan any surface, generate harmonious color palettes instantly, and sync them across all your devices.</div>
+                </div>
+                <div class="typography-sample">
+                    <div class="font-caption">CAPTION / 500 WEIGHT / UPPERCASE</div>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 24px;">
+                <h3 style="margin-bottom: 16px; font-size: 20px;">Font Family</h3>
+                <p style="color: #888; margin-bottom: 12px;"><strong>Primary:</strong> SF Pro Display / Inter / -apple-system</p>
+                <p style="color: #888; margin-bottom: 12px;"><strong>Monospace:</strong> SF Mono / Courier New (для кодов)</p>
+                <p style="color: #888;"><strong>Weights:</strong> 300 (Light), 400 (Regular), 500 (Medium), 600 (Semibold), 700 (Bold), 900 (Black)</p>
+            </div>
+        </div>
+
+        <!-- Logo Variations -->
+        <div class="section">
+            <h2 class="section-title">Logo Variations</h2>
+            <div class="logo-variations">
+                <div class="logo-variant logo-dark">
+                    <div class="logo-text logo-text-gradient">CPP</div>
+                </div>
+                <div class="logo-variant logo-light">
+                    <div class="logo-text logo-text-dark">CPP</div>
+                </div>
+                <div class="logo-variant logo-gradient">
+                    <div class="logo-text logo-text-light">CPP</div>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 24px;">
+                <h3 style="margin-bottom: 16px; font-size: 20px;">Logo Usage Guidelines</h3>
+                <p style="color: #888; margin-bottom: 12px;">• Minimum size: 24px height for digital, 15mm for print</p>
+                <p style="color: #888; margin-bottom: 12px;">• Clear space: Minimum 1x logo height on all sides</p>
+                <p style="color: #888; margin-bottom: 12px;">• Always use provided logo files, never recreate</p>
+                <p style="color: #888;">• Gradient version for hero sections, monochrome for small sizes</p>
+            </div>
+        </div>
+
+        <!-- Iconography -->
+        <div class="section">
+            <h2 class="section-title">Icon System</h2>
+            <div class="icon-grid">
+                <div class="icon-box">🎨</div>
+                <div class="icon-box">📱</div>
+                <div class="icon-box">☁️</div>
+                <div class="icon-box">⚡</div>
+                <div class="icon-box">🔍</div>
+                <div class="icon-box">💾</div>
+                <div class="icon-box">🎯</div>
+                <div class="icon-box">✨</div>
+            </div>
+            <div class="card" style="margin-top: 24px;">
+                <h3 style="margin-bottom: 16px; font-size: 20px;">Icon Style</h3>
+                <p style="color: #888; margin-bottom: 12px;">• Style: Rounded, 2px stroke weight</p>
+                <p style="color: #888; margin-bottom: 12px;">• Size: 24x24px base, scale to 16px, 32px, 48px</p>
+                <p style="color: #888;">• Color: Use gradient on hover, neutral in default state</p>
+            </div>
+        </div>
+
+        <!-- Spacing System -->
+        <div class="section">
+            <h2 class="section-title">Spacing & Layout</h2>
+            <div class="card">
+                <h3 style="margin-bottom: 24px; font-size: 20px;">8px Base Grid System</h3>
+                <div class="spacing-example">
+                    <div class="spacing-box" style="width: 8px; height: 40px;">8</div>
+                    <div class="spacing-box" style="width: 16px; height: 40px;">16</div>
+                    <div class="spacing-box" style="width: 24px; height: 40px;">24</div>
+                    <div class="spacing-box" style="width: 32px; height: 40px;">32</div>
+                    <div class="spacing-box" style="width: 48px; height: 40px;">48</div>
+                    <div class="spacing-box" style="width: 64px; height: 40px;">64</div>
+                    <div class="spacing-box" style="width: 80px; height: 40px;">80</div>
+                    <div class="spacing-box" style="width: 96px; height: 40px;">96</div>
+                </div>
+                <p style="color: #888; margin-top: 16px;">Use multiples of 8px for all spacing, padding, and margins. Exception: 4px for fine-tuning text spacing.</p>
+            </div>
+        </div>
+
+        <!-- Patterns & Backgrounds -->
+        <div class="section">
+            <h2 class="section-title">Background Patterns</h2>
+            <div class="grid grid-3">
+                <div class="card">
+                    <div class="pattern-showcase gradient-mesh"></div>
+                    <div class="color-name" style="margin-top: 16px;">Gradient Mesh</div>
+                    <p style="color: #888; font-size: 14px; margin-top: 8px;">For hero sections and highlights</p>
+                </div>
+                <div class="card">
+                    <div class="pattern-showcase dot-pattern"></div>
+                    <div class="color-name" style="margin-top: 16px;">Dot Grid</div>
+                    <p style="color: #888; font-size: 14px; margin-top: 8px;">For technical backgrounds</p>
+                </div>
+                <div class="card">
+                    <div class="pattern-showcase line-pattern"></div>
+                    <div class="color-name" style="margin-top: 16px;">Diagonal Lines</div>
+                    <p style="color: #888; font-size: 14px; margin-top: 8px;">For texture and depth</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Buttons & Components -->
+        <div class="section">
+            <h2 class="section-title">Button Components</h2>
+            <div class="card">
+                <div class="button-showcase">
+                    <button class="btn btn-primary">Primary Button</button>
+                    <button class="btn btn-secondary">Secondary Button</button>
+                    <button class="btn btn-outline">Outline Button</button>
+                </div>
+                <div style="margin-top: 32px;">
+                    <h3 style="margin-bottom: 16px; font-size: 20px;">Button Specifications</h3>
+                    <p style="color: #888; margin-bottom: 8px;">• Height: 48px (desktop), 44px (mobile)</p>
+                    <p style="color: #888; margin-bottom: 8px;">• Padding: 14px 32px</p>
+                    <p style="color: #888; margin-bottom: 8px;">• Border radius: 12px</p>
+                    <p style="color: #888; margin-bottom: 8px;">• Font weight: 600</p>
+                    <p style="color: #888;">• Hover: translateY(-2px) + glow effect</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Usage Guidelines -->
+        <div class="section">
+            <h2 class="section-title">Brand Usage Guidelines</h2>
+            <div class="grid grid-2">
+                <div class="usage-do">
+                    <div class="usage-title">✓ DO</div>
+                    <ul style="margin-left: 20px; color: #ccc;">
+                        <li>Use gradient on dark backgrounds</li>
+                        <li>Maintain proper spacing around logo</li>
+                        <li>Use approved color combinations</li>
+                        <li>Keep contrast ratios WCAG compliant</li>
+                        <li>Use system fonts for consistency</li>
+                    </ul>
+                </div>
+                <div class="usage-dont">
+                    <div class="usage-title">✗ DON'T</div>
+                    <ul style="margin-left: 20px; color: #ccc;">
+                        <li>Alter logo proportions or colors</li>
+                        <li>Use gradients on light backgrounds</li>
+                        <li>Create new color combinations</li>
+                        <li>Use low contrast text</li>
+                        <li>Mix different font families</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Photography Style -->
+        <div class="section">
+            <h2 class="section-title">Photography & Imagery Style</h2>
+            <div class="card">
+                <h3 style="margin-bottom: 16px; font-size: 20px;">Visual Direction</h3>
+                <div class="grid grid-2" style="margin-top: 24px;">
+                    <div>
+                        <h4 style="color: #00d4ff; margin-bottom: 12px;">Product Photography</h4>
+                        <p style="color: #888; font-size: 14px; line-height: 1.8;">
+                            • Clean, minimal backgrounds (white or dark)<br>
+                            • Dramatic lighting with subtle shadows<br>
+                            • Focus on premium materials<br>
+                            • 45° angle showing depth<br>
+                            • No distracting elements
+                        </p>
+                    </div>
+                    <div>
+                        <h4 style="color: #7b2cbf; margin-bottom: 12px;">Lifestyle Photography</h4>
+                        <p style="color: #888; font-size: 14px; line-height: 1.8;">
+                            • Designer workspace settings<br>
+                            • Natural window lighting<br>
+                            • Aspirational but relatable<br>
+                            • Focus on hands and device<br>
+                            • Color swatches as props
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Download Section -->
+        <div class="download-section">
+            <h2 style="font-size: 36px; margin-bottom: 16px;">Brand Assets Package</h2>
+            <p style="color: #888;
