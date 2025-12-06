@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { PiList, PiX, PiGlobe, PiRocketLaunchFill } from "react-icons/pi";
 import "./platform-header.css";
-import { Language, getTranslation } from "../locales";
+import { Language } from "../locales";
 
 interface PlatformHeaderProps {
   links: { label: string; href: string }[];

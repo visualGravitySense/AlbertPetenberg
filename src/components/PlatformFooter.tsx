@@ -18,8 +18,6 @@ interface PlatformFooterProps {
 }
 
 export const PlatformFooter: React.FC<PlatformFooterProps> = ({ language = 'et' }) => {
-  const t = (key: keyof typeof import('../locales').translations.ru) => getTranslation(language, key);
-  
   const currentYear = new Date().getFullYear();
 
   return (
