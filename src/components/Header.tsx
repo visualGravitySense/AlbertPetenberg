@@ -34,6 +34,15 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <header className="sci-header">
+      {/* SVG Gradient Definition for Creative Bus Theme */}
+      <svg width="0" height="0" style={{ position: 'absolute' }}>
+        <defs>
+          <linearGradient id="cb-gradient-stroke" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#8b5cf6" />
+            <stop offset="100%" stopColor="#a855f7" />
+          </linearGradient>
+        </defs>
+      </svg>
       <div className="sh-left">
       <div className="sh-title">{title}</div>
         

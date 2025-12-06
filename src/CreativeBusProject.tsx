@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Star, Users, Clock, Shield, CheckCircle, TrendingUp, Zap, ArrowRight, ShoppingCart, Bus, BarChart3, HelpCircle, AlertCircle, Trophy, Camera, Eye, EyeOff, X, RotateCcw, AlertTriangle, CheckCircle2, Palette, Monitor, Smartphone, MapPin, Wifi, Video, Laptop, Sun, Sparkles } from 'lucide-react';
 import { SciFiBadge } from "./components/SciFiBadge";
+import { CreativeBusBadge } from "./components/CreativeBusBadge";
 import { QuickSupportButton } from "./components/QuickSupportButton";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
-import { Button } from "./components/SciFiButton2";
+import { CreativeBusRewardButton } from "./components/CreativeBusRewardButton";
 import { Language, getTranslation } from "./locales";
 import { 
   ParkFilledIcon,
@@ -303,15 +304,27 @@ export default function CreativeBusProject() {
           <div className="relative z-10">
             <div className="mb-8">
               <div className="flex flex-wrap items-center justify-start gap-3 mb-6">
-                <SciFiBadge icon={<Bus className="w-5 h-5 animate-bounce-subtle" />} className="animate-fadeIn">
+                <CreativeBusBadge 
+                  icon={<Bus className="w-5 h-5 animate-bounce-subtle" />} 
+                  variant="left"
+                  className="animate-fadeIn"
+                >
                   {language === 'et' ? 'Mobiilne Stuudio' : 'Мобильная Студия'}
-                </SciFiBadge>
-                <SciFiBadge icon={<TrendingUp className="w-5 h-5" />} className="animate-fadeIn delay-100">
+                </CreativeBusBadge>
+                <CreativeBusBadge 
+                  icon={<TrendingUp className="w-5 h-5" />} 
+                  variant="center"
+                  className="animate-fadeIn delay-100"
+                >
                   {totalBackers} {t('sponsors')}
-                </SciFiBadge>
-                <SciFiBadge icon={<Clock className="w-5 h-5 animate-pulse" />} className="animate-fadeIn delay-200">
+                </CreativeBusBadge>
+                <CreativeBusBadge 
+                  icon={<Clock className="w-5 h-5 animate-pulse" />} 
+                  variant="right"
+                  className="animate-fadeIn delay-200 cb-badge-pulse"
+                >
                   {timeLeft.days} {t('daysLeft')}
-                </SciFiBadge>
+                </CreativeBusBadge>
               </div>
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent animate-fadeIn delay-300 text-left">
@@ -651,19 +664,14 @@ export default function CreativeBusProject() {
                   </div>
                 </div>
                 
-                <Button 
+                <CreativeBusRewardButton
+                  amount={reward.amount}
                   onClick={() => handleSupport(reward.amount, index)}
-                  variant={isPopular ? "accent" : "default"}
-                  shape="flat"
-                  className={`w-full ${selectedReward === index ? 'ring-4 ring-green-400 ring-offset-2 ring-offset-gray-900' : ''}`}
-                  style={{ '--color-primary': '#8b5cf6', '--color-accent': '#eab308' } as React.CSSProperties}
+                  isPopular={isPopular}
+                  isSelected={selectedReward === index}
                 >
-                  <span className="flex items-center justify-center gap-2">
-                    <ShoppingCart className="w-5 h-5" />
-                    {language === 'et' ? 'Toeta €' : 'Поддержать €'}{reward.amount}
-                    <ArrowRight className="w-4 h-4" />
-                  </span>
-                </Button>
+                  {language === 'et' ? `Toeta €${reward.amount}` : `Поддержать €${reward.amount}`}
+                </CreativeBusRewardButton>
               </div>
             );
           })}

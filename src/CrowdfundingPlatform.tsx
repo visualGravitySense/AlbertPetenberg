@@ -138,6 +138,21 @@ export default function CrowdfundingPlatform() {
       category: language === 'et' ? 'Disain' : 'Дизайн'
     },
     {
+      id: '6',
+      slug: 'course-reviews',
+      iconType: 'star',
+      title: 'TULEKUL',
+      description: language === 'et'
+        ? 'Aus platvorm kursuste ja haridusprogrammide arvustustega tõelistelt üliõpilastelt autentsuse kontrollimisega.'
+        : 'Честная платформа с отзывами о курсах и образовательных программах от реальных студентов с проверкой подлинности.',
+      collected: 0,
+      goal: 30000,
+      daysLeft: 22,
+      backers: 0,
+      gradient: 'from-cyan-500 to-blue-600',
+      category: language === 'et' ? 'Haridus' : 'Образование'
+    },
+    {
       id: '5',
       slug: 'yoga-bot',
       iconType: 'yoga',

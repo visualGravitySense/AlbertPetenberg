@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Bus - Brandbook</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+        }
+
+        .cover {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            text-align: center;
+            padding: 40px;
+        }
+
+        .logo-main {
+            font-size: 72px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .tagline {
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .version {
+            font-size: 14px;
+            opacity: 0.7;
+            margin-top: 60px;
+        }
+
+        .section {
+            margin-bottom: 100px;
+        }
+
+        .section-title {
+            font-size: 48px;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 24px;
+            margin-bottom: 30px;
+            margin-top: 40px;
+            color: #a0a0a0;
+        }
+
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .color-card {
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .color-sample {
+            width: 100%;
+            height: 200px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .color-info {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .color-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .color-code {
+            font-size: 14px;
+            opacity: 0.7;
+            font-family: 'Courier New', monospace;
+        }
+
+        .typography-demo {
+            background: #1a1a1a;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            border: 1px solid #333;
+        }
+
+        .font-showcase {
+            margin-bottom: 40px;
+        }
+
+        .font-name {
+            font-size: 18px;
+            color: #667eea;
+            margin-bottom: 20px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .font-sample-large {
+            font-size: 64px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .font-sample-medium {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .font-sample-small {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+
+        .alphabet {
+            font-size: 24px;
+            letter-spacing: 2px;
+            margin: 20px 0;
+            opacity: 0.7;
+        }
+
+        .logo-variations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .logo-box {
+            background: #1a1a1a;
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            border: 1px solid #333;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-box.light {
+            background: #ffffff;
+            color: #0a0a0a;
+        }
+
+        .logo-box.gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        }
+
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .logo-sub {
+            font-size: 14px;
+            letter-spacing: 3px;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+
+        .usage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .usage-card {
+            background: #1a1a1a;
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid #333;
+        }
+
+        .usage-card h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .usage-card p {
+            font-size: 14px;
+            line-height: 1.8;
+            opacity: 0.8;
+        }
+
+        .do-dont {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .do-card, .dont-card {
+            background: #1a1a1a;
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid;
+        }
+
+        .do-card {
+            border-color: #4ade80;
+        }
+
+        .dont-card {
+            border-color: #f87171;
+        }
+
+        .do-card h4 {
+            color: #4ade80;
+            margin-bottom: 15px;
+        }
+
+        .dont-card h4 {
+            color: #f87171;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        ul li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+
+        .mockup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .mockup-card {
+            background: #1a1a1a;
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid #333;
+            text-align: center;
+        }
+
+        .mockup-preview {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea20 0%, #764ba220 50%, #f093fb20 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .mockup-label {
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .logo-main {
+                font-size: 48px;
+            }
+            
+            .tagline {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 36px;
+            }
+            
+            .do-dont {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cover">
+        <div class="logo-main">CREATIVE BUS</div>
+        <div class="tagline">MOBILE DESIGN STUDIO</div>
+        <div class="version">Brand Guidelines v1.0 | 2025</div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2 class="section-title">01. Философия бренда</h2>
+            <p style="font-size: 18px; line-height: 1.8; opacity: 0.9;">
+                Creative Bus — это не просто мобильная студия, это новая философия работы дизайнера. 
+                Мы разрушаем границы между офисом и вдохновением, принося креативность туда, где рождаются идеи — 
+                в парки, музеи, арт-пространства. Наш бренд олицетворяет свободу, движение, инновации и премиальное качество.
+            </p>
+            
+            <div class="usage-grid" style="margin-top: 50px;">
+                <div class="usage-card">
+                    <h4>Миссия</h4>
+                    <p>Сделать процесс создания дизайна максимально вдохновляющим через погружение в атмосферу локации</p>
+                </div>
+                <div class="usage-card">
+                    <h4>Видение</h4>
+                    <p>Стать лидером в сегменте мобильных креативных сервисов премиум-класса в Европе</p>
+                </div>
+                <div class="usage-card">
+                    <h4>Ценности</h4>
+                    <p>Свобода творчества, инновации, качество, мобильность, экологичность, клиентоориентированность</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">02. Типографика</h2>
+            <p style="font-size: 16px; margin-bottom: 40px; opacity: 0.8;">
+                Выбор шрифтов отражает современность и технологичность бренда. Space Grotesk — основной шрифт для заголовков и логотипа, 
+                сочетающий геометричность с человечностью. Inter — для текста, обеспечивающий идеальную читаемость.
+            </p>
+
+            <div class="typography-demo">
+                <div class="font-showcase">
+                    <div class="font-name">PRIMARY FONT: Space Grotesk</div>
+                    <div class="font-sample-large" style="font-family: 'Space Grotesk', sans-serif;">
+                        CREATIVE BUS
+                    </div>
+                    <div class="font-sample-medium" style="font-family: 'Space Grotesk', sans-serif;">
+                        Mobile Design Studio
+                    </div>
+                    <div class="alphabet" style="font-family: 'Space Grotesk', sans-serif;">
+                        ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+                        abcdefghijklmnopqrstuvwxyz<br>
+                        0123456789
+                    </div>
+                    <div class="font-sample-small" style="font-family: 'Space Grotesk', sans-serif;">
+                        <strong>Использование:</strong> Логотип, заголовки, акценты, навигация, кнопки<br>
+                        <strong>Начертания:</strong> Light (300), Regular (400), Medium (500), Bold (700)
+                    </div>
+                </div>
+
+                <div class="font-showcase" style="margin-top: 60px;">
+                    <div class="font-name">SECONDARY FONT: Inter</div>
+                    <div class="font-sample-medium" style="font-family: 'Inter', sans-serif;">
+                        Мы создаём дизайн там, где рождается вдохновение
+                    </div>
+                    <div class="alphabet" style="font-family: 'Inter', sans-serif;">
+                        ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+                        abcdefghijklmnopqrstuvwxyz<br>
+                        0123456789
+                    </div>
+                    <div class="font-sample-small" style="font-family: 'Inter', sans-serif;">
+                        <strong>Использование:</strong> Основной текст, описания, подписи, мелкий текст<br>
+                        <strong>Начертания:</strong> Light (300), Regular (400), Medium (500), SemiBold (600)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">03. Цветовая палитра</h2>
+            <p style="font-size: 16px; margin-bottom: 40px; opacity: 0.8;">
+                Цвета бренда отражают креативность, энергию и инновации. Градиент от синего к фиолетовому и розовому 
+                символизирует переход от идеи к реализации.
+            </p>
+
+            <div class="color-palette">
+                <div class="color-card">
+                    <div class="color-sample" style="background: #667eea;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Electric Blue</div>
+                        <div class="color-code">
+                            HEX: #667eea<br>
+                            RGB: 102, 126, 234<br>
+                            CMYK: 56, 46, 0, 8
+                        </div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-sample" style="background: #764ba2;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Vivid Purple</div>
+                        <div class="color-code">
+                            HEX: #764ba2<br>
+                            RGB: 118, 75, 162<br>
+                            CMYK: 27, 54, 0, 36
+                        </div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-sample" style="background: #f093fb;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Coral Pink</div>
+                        <div class="color-code">
+                            HEX: #f093fb<br>
+                            RGB: 240, 147, 251<br>
+                            CMYK: 4, 41, 0, 2
+                        </div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-sample" style="background: #0a0a0a;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Deep Black</div>
+                        <div class="color-code">
+                            HEX: #0a0a0a<br>
+                            RGB: 10, 10, 10<br>
+                            CMYK: 0, 0, 0, 96
+                        </div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-sample" style="background: #ffffff; border: 1px solid #333;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Pure White</div>
+                        <div class="color-code">
+                            HEX: #ffffff<br>
+                            RGB: 255, 255, 255<br>
+                            CMYK: 0, 0, 0, 0
+                        </div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-sample" style="background: #1a1a1a;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Carbon Gray</div>
+                        <div class="color-code">
+                            HEX: #1a1a1a<br>
+                            RGB: 26, 26, 26<br>
+                            CMYK: 0, 0, 0, 90
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">Градиенты</h3>
+            <div class="color-palette">
+                <div class="color-card">
+                    <div class="color-sample" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);"></div>
+                    <div class="color-info">
+                        <div class="color-name">Primary Gradient</div>
+                        <div class="color-code" style="font-size: 12px;">
+                            135deg<br>
+                            #667eea → #764ba2 → #f093fb
+                        </div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-sample" style="background: linear-gradient(90deg, #667eea 0%, #f093fb 100%);"></div>
+                    <div class="color-info">
+                        <div class="color-name">Accent Gradient</div>
+                        <div class="color-code" style="font-size: 12px;">
+                            90deg<br>
+                            #667eea → #f093fb
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">04. Логотип</h2>
+            
+            <div class="logo-variations">
+                <div class="logo-box gradient">
+                    <div class="logo-text">CREATIVE<br>BUS</div>
+                    <div class="logo-sub">MOBILE DESIGN STUDIO</div>
+                </div>
+
+                <div class="logo-box">
+                    <div class="logo-text" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        CREATIVE<br>BUS
+                    </div>
+                    <div class="logo-sub">MOBILE DESIGN STUDIO</div>
+                </div>
+
+                <div class="logo-box light">
+                    <div class="logo-text">CREATIVE<br>BUS</div>
+                    <div class="logo-sub">MOBILE DESIGN STUDIO</div>
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">Правила использования</h3>
+            <div class="do-dont">
+                <div class="do-card">
+                    <h4>✓ МОЖНО</h4>
+                    <ul>
+                        <li>Использовать на белом, черном или градиентном фоне</li>
+                        <li>Масштабировать пропорционально</li>
+                        <li>Размещать с минимальными отступами 20px</li>
+                        <li>Использовать монохромную версию при необходимости</li>
+                    </ul>
+                </div>
+
+                <div class="dont-card">
+                    <h4>✗ НЕЛЬЗЯ</h4>
+                    <ul>
+                        <li>Изменять пропорции логотипа</li>
+                        <li>Менять цвета или шрифт</li>
+                        <li>Добавлять эффекты (тени, обводки)</li>
+                        <li>Размещать на пёстром фоне без подложки</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">05. Применение</h2>
+            
+            <div class="mockup-grid">
+                <div class="mockup-card">
+                    <div class="mockup-preview">Визитка</div>
+                    <div class="mockup-label">85×55 мм | Матовый ламинат</div>
+                </div>
+
+                <div class="mockup-card">
+                    <div class="mockup-preview">Брендинг<br>автобуса</div>
+                    <div class="mockup-label">Винил wrap | Градиент + лого</div>
+                </div>
+
+                <div class="mockup-card">
+                    <div class="mockup-preview">Сайт</div>
+                    <div class="mockup-label">Адаптивный дизайн</div>
+                </div>
+
+                <div class="mockup-card">
+                    <div class="mockup-preview">Instagram</div>
+                    <div class="mockup-label">1080×1080 px | Stories & Feed</div>
+                </div>
+
+                <div class="mockup-card">
+                    <div class="mockup-preview">Презентация</div>
+                    <div class="mockup-label">16:9 | PowerPoint/Keynote</div>
+                </div>
+
+                <div class="mockup-card">
+                    <div class="mockup-preview">Мерч</div>
+                    <div class="mockup-label">Футболки, стикеры, сумки</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">06. Tone of Voice</h2>
+            
+            <div class="usage-grid">
+                <div class="usage-card">
+                    <h4>Дружелюбный</h4>
+                    <p>Мы говорим с клиентами как с коллегами по креативному цеху</p>
+                </div>
+
+                <div class="usage-card">
+                    <h4>Профессиональный</h4>
+                    <p>Премиум-сервис требует экспертного подхода и внимания к деталям</p>
+                </div>
+
+                <div class="usage-card">
+                    <h4>Вдохновляющий</h4>
+                    <p>Мы мотивируем и показываем новые возможности для творчества</p>
+                </div>
+
+                <div class="usage-card">
+                    <h4>Современный</h4>
+                    <p>Используем актуальную терминологию и следим за трендами</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 50px; background: #1a1a1a; padding: 40px; border-radius: 20px; border: 1px solid #333;">
+                <h4 style="color: #667eea; margin-bottom: 20px;">Примеры коммуникации:</h4>
+                <p style="margin-bottom: 20px; opacity: 0.9;">
+                    ✓ "Создадим дизайн вашего сайта в парке у музея — вдохновение гарантируем!"<br>
+                    ✓ "Мобильная студия + профессиональное оборудование = ваш проект на новом уровне"<br>
+                    ✓ "Работаем там, где рождаются лучшие идеи"
+                </p>
+                <p style="opacity: 0.7;">
+                    ✗ "Мы самые лучшие в городе"<br>
+                    ✗ "Дёшево и быстро"<br>
+                    ✗ "Как все, только в автобусе"
+                </p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">07. Контакты</h2>
+            <div style="background: #1a1a1a; padding: 40px; border-radius: 20px; border: 1px solid #333;">
+                <p style="font-size: 18px; margin-bottom: 20px;">
+                    По всем вопросам использования бренда обращайтесь:
+                </p>
+                <p style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; color: #667eea;">
+                    brand@creativebus.studio<br>
+                    +372 XXX XXXX
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
