@@ -1,0 +1,167 @@
+/* Creative Bus Reward Button Styles */
+.cb-reward-button {
+  position: relative;
+  width: 100%;
+  padding: 14px 24px;
+  background: rgba(139, 92, 246, 0.1);
+  border: 2px solid rgba(139, 92, 246, 0.4);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+}
+
+.cb-reward-button:hover {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: #8b5cf6;
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.4), 0 4px 20px rgba(139, 92, 246, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Use theme variables when inside creative-bus-theme */
+.creative-bus-theme .cb-reward-button {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.4);
+}
+
+.creative-bus-theme .cb-reward-button:hover {
+  border-color: var(--project-primary);
+}
+
+.creative-bus-theme .cb-reward-button-icon,
+.creative-bus-theme .cb-reward-button-arrow {
+  color: var(--project-primary);
+}
+
+.creative-bus-theme .cb-reward-button--selected {
+  border-color: var(--project-primary);
+}
+
+.cb-reward-button:active {
+  transform: translateY(0);
+}
+
+/* Popular button style (golden) */
+.cb-reward-button--popular {
+  background: rgba(234, 179, 8, 0.15);
+  border-color: rgba(234, 179, 8, 0.5);
+  box-shadow: 0 0 20px rgba(234, 179, 8, 0.3);
+}
+
+.cb-reward-button--popular:hover {
+  background: rgba(234, 179, 8, 0.25);
+  border-color: #eab308;
+  box-shadow: 0 0 30px rgba(234, 179, 8, 0.5), 0 4px 25px rgba(234, 179, 8, 0.3);
+}
+
+.cb-reward-button--popular .cb-reward-button-content {
+  color: #fbbf24;
+}
+
+.cb-reward-button--popular .cb-reward-button-icon,
+.cb-reward-button--popular .cb-reward-button-arrow {
+  color: #fbbf24;
+  filter: drop-shadow(0 0 4px rgba(234, 179, 8, 0.6));
+}
+
+/* Selected state */
+.cb-reward-button--selected {
+  background: rgba(139, 92, 246, 0.25);
+  border-color: #8b5cf6;
+  box-shadow: 
+    0 0 30px rgba(139, 92, 246, 0.6),
+    0 0 0 4px rgba(139, 92, 246, 0.2);
+}
+
+.cb-reward-button--selected:hover {
+  background: rgba(139, 92, 246, 0.3);
+}
+
+/* Content layout */
+.cb-reward-button-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+
+.cb-reward-button-icon {
+  width: 18px;
+  height: 18px;
+  color: #8b5cf6;
+  filter: drop-shadow(0 0 4px rgba(139, 92, 246, 0.6));
+  transition: transform 0.3s ease;
+}
+
+.cb-reward-button:hover .cb-reward-button-icon {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.cb-reward-button-text {
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-shadow: 0 0 8px rgba(139, 92, 246, 0.4);
+}
+
+.cb-reward-button-arrow {
+  width: 16px;
+  height: 16px;
+  color: #8b5cf6;
+  filter: drop-shadow(0 0 4px rgba(139, 92, 246, 0.6));
+  transition: transform 0.3s ease;
+}
+
+.cb-reward-button:hover .cb-reward-button-arrow {
+  transform: translateX(4px);
+}
+
+/* Glow effect for popular button */
+.cb-reward-button-glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.3), rgba(251, 191, 36, 0.3));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+  filter: blur(8px);
+}
+
+.cb-reward-button--popular:hover .cb-reward-button-glow {
+  opacity: 0.6;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cb-reward-button {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+  
+  .cb-reward-button-icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .cb-reward-button-arrow {
+    width: 14px;
+    height: 14px;
+  }
+}

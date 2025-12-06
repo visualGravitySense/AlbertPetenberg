@@ -185,6 +185,34 @@
     display: block;
   }
 
+  /* Custom Icon (alternative to GitHub) */
+  .sh-custom-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 255, 255, 0.1);
+    border: 2px solid rgba(0, 255, 255, 0.5);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    color: cyan;
+  }
+
+  .sh-custom-icon:hover {
+    background: rgba(0, 255, 255, 0.2);
+    border-color: cyan;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+  }
+
+  .sh-custom-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+  }
+
   /* Mobile Menu Button */
   .sh-mobile-menu-btn {
     display: flex;

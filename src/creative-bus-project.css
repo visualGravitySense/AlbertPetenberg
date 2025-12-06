@@ -6,11 +6,43 @@
 
 /* Theme Variables */
 .creative-bus-theme {
-  --project-primary: #8b5cf6;      /* Violet */
-  --project-secondary: #a855f7;    /* Purple */
-  --project-accent: #eab308;       /* Yellow for highlights */
+  /* Brand Colors from Creative Bus Brandbook */
+  --cb-electric-blue: #667eea;
+  --cb-vivid-purple: #764ba2;
+  --cb-coral-pink: #f093fb;
+  --cb-deep-black: #0a0a0a;
+  --cb-pure-white: #ffffff;
+  
+  /* Legacy variables for backward compatibility */
+  --project-primary: #667eea;      /* Electric Blue */
+  --project-secondary: #764ba2;    /* Vivid Purple */
+  --project-accent: #f093fb;       /* Coral Pink */
   --project-success: #22c55e;      /* Green */
-  --project-tertiary: #c084fc;     /* Light Purple */
+  --project-tertiary: #764ba2;     /* Vivid Purple */
+  
+  /* Typography */
+  --cb-font-primary: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --cb-font-secondary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  
+  /* Brand Gradient */
+  --cb-gradient: linear-gradient(135deg, var(--cb-electric-blue) 0%, var(--cb-vivid-purple) 50%, var(--cb-coral-pink) 100%);
+}
+
+/* Base Typography - Apply Secondary Font (Inter) */
+.creative-bus-theme {
+  font-family: var(--cb-font-secondary);
+}
+
+/* Headings - Apply Primary Font (Space Grotesk) */
+.creative-bus-theme h1,
+.creative-bus-theme h2,
+.creative-bus-theme h3,
+.creative-bus-theme h4,
+.creative-bus-theme h5,
+.creative-bus-theme h6 {
+  font-family: var(--cb-font-primary);
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 /* Override heading glow for this project - purple tint */
@@ -22,6 +54,53 @@
     0 0 10px rgba(139, 92, 246, 0.4),
     0 0 15px rgba(139, 92, 246, 0.3),
     0 0 20px rgba(168, 85, 247, 0.2);
+}
+
+/* Additional typography elements - Primary Font (Space Grotesk) */
+.creative-bus-theme .sci-badge,
+.creative-bus-theme button:not(.bus-cta-button-main *),
+.creative-bus-theme .btn-primary,
+.creative-bus-theme .bus-cta-button-label,
+.creative-bus-theme [class*="text-"]:is(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--cb-font-primary);
+  font-weight: 500;
+}
+
+/* Body text, paragraphs, descriptions - Secondary Font (Inter) */
+.creative-bus-theme,
+.creative-bus-theme p,
+.creative-bus-theme span:not(.sci-badge):not(.bus-cta-button-label),
+.creative-bus-theme div:not(.sci-badge),
+.creative-bus-theme li,
+.creative-bus-theme .bus-cta-progress-value,
+.creative-bus-theme .bus-cta-progress-label,
+.creative-bus-theme .bus-cta-timer,
+.creative-bus-theme input,
+.creative-bus-theme textarea,
+.creative-bus-theme label {
+  font-family: var(--cb-font-secondary);
+}
+
+/* Ensure headings use primary font with proper weight */
+.creative-bus-theme h1 {
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.creative-bus-theme h2 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.creative-bus-theme h3 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.creative-bus-theme h4,
+.creative-bus-theme h5,
+.creative-bus-theme h6 {
+  font-weight: 500;
 }
 
 /* Custom badge colors for creative theme */
@@ -332,3 +411,599 @@
   filter: grayscale(0%);
   opacity: 1;
 }
+
+/* ===== Hero Bus Image ===== */
+.cb-hero-image-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(168, 85, 247, 0.15) 100%);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.cb-hero-image {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s ease;
+}
+
+.cb-hero-image-wrapper:hover .cb-hero-image {
+  transform: scale(1.03);
+}
+
+.cb-hero-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(17, 17, 27, 0.9) 0%,
+    rgba(17, 17, 27, 0.4) 30%,
+    transparent 60%,
+    rgba(139, 92, 246, 0.1) 100%
+  );
+  pointer-events: none;
+}
+
+.cb-hero-badges {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  z-index: 10;
+}
+
+.cb-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: rgba(139, 92, 246, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #c4b5fd;
+  transition: all 0.3s ease;
+}
+
+.cb-hero-badge:hover {
+  background: rgba(139, 92, 246, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+}
+
+@media (min-width: 768px) {
+  .cb-hero-image-wrapper {
+    min-height: 500px;
+  }
+  
+  .cb-hero-image {
+    min-height: 500px;
+  }
+}
+
+/* ===== Hero Section Tailwind Overrides ===== */
+/* Hero Title Gradient */
+.creative-bus-theme h1[class*="from-violet-400"][class*="to-purple-400"] {
+  background: linear-gradient(135deg, var(--project-primary) 0%, var(--project-secondary) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* Hero Text Colors */
+.creative-bus-theme [class*="text-violet-300"] {
+  color: var(--project-primary) !important;
+}
+
+/* Hero Service Cards */
+.creative-bus-theme [class*="bg-violet-900/20"] {
+  background-color: rgba(139, 92, 246, 0.2) !important;
+}
+
+.creative-bus-theme [class*="border-violet-500/20"] {
+  border-color: rgba(139, 92, 246, 0.2) !important;
+}
+
+.creative-bus-theme [class*="border-violet-500/50"] {
+  border-color: rgba(139, 92, 246, 0.5) !important;
+}
+
+.creative-bus-theme [class*="text-violet-400"] svg,
+.creative-bus-theme [class*="text-violet-400"] {
+  color: var(--project-primary) !important;
+}
+
+/* Quick Support Input */
+.creative-bus-theme [class*="border-violet-500"][class*="rounded-lg"] {
+  border-color: rgba(139, 92, 246, 0.3) !important;
+}
+
+.creative-bus-theme [class*="focus:border-violet-400"]:focus {
+  border-color: var(--project-primary) !important;
+}
+
+/* Quick Support Button */
+.creative-bus-theme [class*="bg-violet-600"],
+.creative-bus-theme [class*="bg-violet-700"] {
+  background-color: var(--project-primary) !important;
+}
+
+.creative-bus-theme [class*="hover:bg-violet-700"]:hover {
+  background-color: var(--project-secondary) !important;
+}
+
+/* Quick Support Button Overrides for Creative Bus Theme */
+.creative-bus-theme .qs-btn-default {
+  background: rgba(139, 92, 246, 0.15) !important;
+  border-color: var(--project-primary) !important;
+  box-shadow: 0 0 8px rgba(139, 92, 246, 0.5), 0 0 16px rgba(139, 92, 246, 0.2) !important;
+}
+
+.creative-bus-theme .qs-btn-default:hover {
+  background: rgba(139, 92, 246, 0.25) !important;
+  border-color: var(--project-primary) !important;
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.8), 0 0 24px rgba(168, 85, 247, 0.4) !important;
+}
+
+.creative-bus-theme .qs-btn-default .qs-btn-label {
+  color: white !important;
+  text-shadow: 0 0 8px rgba(139, 92, 246, 0.6) !important;
+}
+
+.creative-bus-theme .qs-btn-custom {
+  background: rgba(139, 92, 246, 0.2) !important;
+  border-color: var(--project-primary) !important;
+  box-shadow: 0 0 8px rgba(139, 92, 246, 0.6), 0 0 16px rgba(139, 92, 246, 0.3) !important;
+}
+
+.creative-bus-theme .qs-btn-custom:hover {
+  background: rgba(139, 92, 246, 0.3) !important;
+  border-color: var(--project-primary) !important;
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.9), 0 0 24px rgba(168, 85, 247, 0.5) !important;
+}
+
+.creative-bus-theme .qs-btn-custom .qs-btn-label {
+  color: white !important;
+  text-shadow: 0 0 8px rgba(139, 92, 246, 0.6) !important;
+}
+
+/* Recommended button keeps golden color but with purple accent */
+.creative-bus-theme .qs-btn-recommended:hover {
+  box-shadow: 0 0 16px rgba(255, 186, 8, 1), 0 0 30px rgba(139, 92, 246, 0.3) !important;
+}
+
+/* Hero Section Service Cards Hover */
+.creative-bus-theme [class*="bg-violet-900/20"]:hover {
+  background-color: rgba(139, 92, 246, 0.25) !important;
+  border-color: rgba(139, 92, 246, 0.4) !important;
+}
+
+/* Hero Badges Icon Colors */
+.creative-bus-theme .cb-hero-badge svg {
+  color: var(--project-primary);
+  filter: drop-shadow(0 0 4px var(--project-primary));
+}
+
+/* Hero Section Text Shadows */
+.creative-bus-theme [class*="text-violet-300"],
+.creative-bus-theme [class*="text-violet-400"] {
+  text-shadow: 0 0 8px rgba(139, 92, 246, 0.3);
+}
+
+/* ===== Location Icons ===== */
+.location-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  transition: all 0.3s ease;
+}
+
+.location-icon .blade-icon {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+}
+
+/* Park - Green */
+.location-icon--park {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(22, 163, 74, 0.3) 100%);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #4ade80;
+}
+
+/* Museum - Amber */
+.location-icon--museum {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(217, 119, 6, 0.3) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: #fbbf24;
+}
+
+/* Art - Pink */
+.location-icon--art {
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.2) 0%, rgba(219, 39, 119, 0.3) 100%);
+  border: 1px solid rgba(236, 72, 153, 0.3);
+  color: #f472b6;
+}
+
+/* Terrain - Blue */
+.location-icon--terrain {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(37, 99, 235, 0.3) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
+}
+
+/* Eco - Emerald */
+.location-icon--eco {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.3) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #34d399;
+}
+
+/* Castle - Slate */
+.location-icon--castle {
+  background: linear-gradient(135deg, rgba(148, 163, 184, 0.2) 0%, rgba(100, 116, 139, 0.3) 100%);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  color: #cbd5e1;
+}
+
+/* Hover effects for locations */
+.location-card:hover .location-icon {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.location-card:hover .location-icon--park {
+  box-shadow: 0 4px 20px rgba(34, 197, 94, 0.35);
+}
+
+.location-card:hover .location-icon--museum {
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.35);
+}
+
+.location-card:hover .location-icon--art {
+  box-shadow: 0 4px 20px rgba(236, 72, 153, 0.35);
+}
+
+.location-card:hover .location-icon--terrain {
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.35);
+}
+
+.location-card:hover .location-icon--eco {
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
+}
+
+.location-card:hover .location-icon--castle {
+  box-shadow: 0 4px 20px rgba(148, 163, 184, 0.35);
+}
+
+/* ===== Service Icons ===== */
+.service-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.service-icon .blade-icon {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+/* Web - Cyan */
+.service-icon--web {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(8, 145, 178, 0.3) 100%);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  color: #22d3ee;
+}
+
+/* App - Indigo */
+.service-icon--app {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(79, 70, 229, 0.3) 100%);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: #818cf8;
+}
+
+/* Photo - Rose */
+.service-icon--photo {
+  background: linear-gradient(135deg, rgba(251, 113, 133, 0.2) 0%, rgba(244, 63, 94, 0.3) 100%);
+  border: 1px solid rgba(251, 113, 133, 0.3);
+  color: #fda4af;
+}
+
+/* Brand - Orange */
+.service-icon--brand {
+  background: linear-gradient(135deg, rgba(251, 146, 60, 0.2) 0%, rgba(234, 88, 12, 0.3) 100%);
+  border: 1px solid rgba(251, 146, 60, 0.3);
+  color: #fdba74;
+}
+
+/* Drone - Sky */
+.service-icon--drone {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(14, 165, 233, 0.3) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #7dd3fc;
+}
+
+/* Creative - Yellow */
+.service-icon--creative {
+  background: linear-gradient(135deg, rgba(250, 204, 21, 0.2) 0%, rgba(234, 179, 8, 0.3) 100%);
+  border: 1px solid rgba(250, 204, 21, 0.3);
+  color: #fde047;
+}
+
+/* Hover effects for services */
+.group:hover .service-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.group:hover .service-icon--web {
+  box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);
+}
+
+.group:hover .service-icon--app {
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+}
+
+.group:hover .service-icon--photo {
+  box-shadow: 0 4px 20px rgba(251, 113, 133, 0.3);
+}
+
+.group:hover .service-icon--brand {
+  box-shadow: 0 4px 20px rgba(251, 146, 60, 0.3);
+}
+
+.group:hover .service-icon--drone {
+  box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
+}
+
+.group:hover .service-icon--creative {
+  box-shadow: 0 4px 20px rgba(250, 204, 21, 0.3);
+}
+
+/* ===== Header Brand Styles ===== */
+.creative-bus-theme .sci-header {
+  background: 
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 35rem), 
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 35rem),
+    rgba(10, 10, 10, 0.95);
+  border-bottom: 2px solid var(--project-primary);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(139, 92, 246, 0.15);
+}
+
+.creative-bus-theme .sh-title {
+  background: linear-gradient(135deg, var(--project-primary) 0%, var(--project-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: var(--cb-font-primary);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  text-shadow: none;
+  filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.3));
+}
+
+/* Stats Items */
+.creative-bus-theme .sh-stat-item {
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.creative-bus-theme .sh-stat-icon {
+  color: var(--project-primary);
+  filter: drop-shadow(0 0 4px var(--project-primary));
+}
+
+.creative-bus-theme .sh-stat-value {
+  color: var(--project-primary);
+  text-shadow: 0 0 6px var(--project-primary);
+  font-weight: 600;
+}
+
+.creative-bus-theme .sh-stat-label {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Navigation Links */
+.creative-bus-theme .sh-link {
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+}
+
+.creative-bus-theme .sh-link:hover {
+  color: var(--project-primary);
+  text-shadow: 0 0 8px var(--project-primary);
+}
+
+/* CTA Button - Support Us */
+.creative-bus-theme .sh-cta-path {
+  fill: rgba(139, 92, 246, 0.15);
+  stroke: var(--project-primary);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 8px var(--project-primary));
+}
+
+.creative-bus-theme .sh-cta-button:hover .sh-cta-path {
+  fill: rgba(139, 92, 246, 0.25);
+  filter: drop-shadow(0 0 12px var(--project-primary));
+  stroke-width: 2.5;
+}
+
+.creative-bus-theme .sh-cta-label {
+  color: var(--project-primary);
+  text-shadow: 0 0 6px var(--project-primary);
+  font-family: var(--cb-font-primary);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.creative-bus-theme .sh-cta-button:hover .sh-cta-label {
+  filter: drop-shadow(0 0 10px var(--project-primary));
+  transform: scale(1.05);
+}
+
+@keyframes pulse-glow-cb {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(168, 85, 247, 0.6));
+  }
+}
+
+.creative-bus-theme .sh-cta-button {
+  animation: pulse-glow-cb 2s ease-in-out infinite;
+}
+
+/* GitHub Button */
+.creative-bus-theme .sh-github-btn {
+  background: var(--project-primary);
+  border-color: var(--project-secondary);
+  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+}
+
+.creative-bus-theme .sh-github-btn:hover {
+  background: var(--project-secondary);
+  border-color: var(--project-primary);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+}
+
+/* Custom Icon */
+.creative-bus-theme .sh-custom-icon {
+  background: rgba(139, 92, 246, 0.1);
+  border: 2px solid rgba(139, 92, 246, 0.5);
+  color: var(--project-primary);
+}
+
+.creative-bus-theme .sh-custom-icon:hover {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: var(--project-primary);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+}
+
+/* Language Switcher */
+.creative-bus-theme .sh-language-btn {
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: var(--project-primary);
+}
+
+.creative-bus-theme .sh-language-btn:hover {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: var(--project-primary);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+}
+
+.creative-bus-theme .sh-language-menu {
+  background: 
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 35rem), 
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 35rem),
+    rgba(10, 10, 10, 0.98);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.creative-bus-theme .sh-language-option:hover {
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--project-primary);
+}
+
+.creative-bus-theme .sh-language-option.active {
+  background: rgba(139, 92, 246, 0.2);
+  color: var(--project-primary);
+}
+
+/* Mobile Menu */
+.creative-bus-theme .sh-mobile-menu-btn {
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: var(--project-primary);
+}
+
+.creative-bus-theme .sh-mobile-menu-btn:hover {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: var(--project-primary);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+}
+
+.creative-bus-theme .sh-mobile-nav {
+  background: 
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 35rem), 
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 35rem),
+    rgba(10, 10, 10, 0.98);
+  border-left: 2px solid var(--project-primary);
+  box-shadow: -5px 0 20px rgba(139, 92, 246, 0.3), inset 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.creative-bus-theme .sh-mobile-close-btn {
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: var(--project-primary);
+}
+
+.creative-bus-theme .sh-mobile-close-btn:hover {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: var(--project-primary);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+}
+
+.creative-bus-theme .sh-mobile-link:hover {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.3);
+  text-shadow: 0 0 8px var(--project-primary);
+}
+
+.creative-bus-theme .sh-mobile-github-btn {
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: var(--project-primary);
+}
+
+.creative-bus-theme .sh-mobile-github-btn:hover {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: var(--project-primary);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+}
+
+.creative-bus-theme .sh-mobile-stats {
+  border-top: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.creative-bus-theme .sh-mobile-language-switcher {
+  border-top: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.creative-bus-theme .sh-mobile-language-btn {
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.creative-bus-theme .sh-mobile-language-btn:hover {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: var(--project-primary);
+}
+
+.creative-bus-theme .sh-mobile-language-btn.active {
+  background: rgba(139, 92, 246, 0.3);
+  border-color: var(--project-primary);
+  color: var(--project-primary);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+}
+

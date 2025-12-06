@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // Blade Design System Filled Icons
 import { 
-  StarFilledIcon,
   LightningFilledIcon,
   TrendingUpFilledIcon,
   ClockFilledIcon,
@@ -13,7 +12,14 @@ import {
   HeartFilledIcon,
   CheckCircleFilledIcon,
   GiftFilledIcon,
-  WalletFilledIcon
+  WalletFilledIcon,
+  MusicNoteFilledIcon,
+  PaletteFilledIcon,
+  CamperVanFilledIcon,
+  SpaFilledIcon,
+  StarFilledIcon,
+  SearchFilledIcon,
+  EmojiEventsFilledIcon
 } from "./components/BladeIcons";
 // Blade Card Components
 import { 
@@ -30,13 +36,21 @@ import { PlatformFooter } from "./components/PlatformFooter";
 import { SocialIconButton, ActionIconButton } from "./components/IconButton";
 import { Language, getTranslation, translations } from "./locales";
 
+// Project Images
+import tiivallImage from './render-1.jpg';
+import colorPaletteImage from '../plan/gemini-image-2_Fine_art_photography_of_ColorPalette_Pro_device_as_an_artist_s_essential_tool_pl-0.jpg';
+import creativeBusImage from './cb-render-1.png';
+
 // Platform-specific styles (different from Albert sci-fi theme)
 import './crowdfunding-platform.css';
+
+type ProjectIconType = 'music' | 'palette' | 'bus' | 'yoga' | 'star' | 'rocket';
 
 interface Project {
   id: string;
   slug: string;
-  icon: string;
+  iconType: ProjectIconType;
+  image?: string;
   title: string;
   description: string;
   collected: number;
@@ -47,6 +61,28 @@ interface Project {
   category: string;
 }
 
+// Project Icon Component
+const ProjectIcon: React.FC<{ type: ProjectIconType; className?: string }> = ({ type, className = '' }) => {
+  const iconClass = `project-card-icon project-card-icon--${type} ${className}`;
+  
+  switch (type) {
+    case 'music':
+      return <div className={iconClass}><MusicNoteFilledIcon size="2xlarge" /></div>;
+    case 'palette':
+      return <div className={iconClass}><PaletteFilledIcon size="2xlarge" /></div>;
+    case 'bus':
+      return <div className={iconClass}><CamperVanFilledIcon size="2xlarge" /></div>;
+    case 'yoga':
+      return <div className={iconClass}><SpaFilledIcon size="2xlarge" /></div>;
+    case 'star':
+      return <div className={iconClass}><StarFilledIcon size="2xlarge" /></div>;
+    case 'rocket':
+      return <div className={iconClass}><RocketFilledIcon size="2xlarge" /></div>;
+    default:
+      return <div className={iconClass}><RocketFilledIcon size="2xlarge" /></div>;
+  }
+};
+
 export default function CrowdfundingPlatform() {
   const [language, setLanguage] = useState<Language>('et');
   const navigate = useNavigate();
@@ -56,7 +92,8 @@ export default function CrowdfundingPlatform() {
     {
       id: '1',
       slug: 'tiiva-all',
-      icon: '🎵',
+      iconType: 'music',
+      image: tiivallImage,
       title: language === 'et' ? 'Tiiva All — Muusikaprojekt' : 'Tiiva All — Музыкальный проект',
       description: language === 'et' 
         ? 'Albert Petenbergi uue laulu professionaalne salvestus ja muusikavideo. Atmosfääriline kompositsioon kodust ja igavesest armastusest.'
@@ -69,24 +106,10 @@ export default function CrowdfundingPlatform() {
       category: language === 'et' ? 'Muusika' : 'Музыка'
     },
     {
-      id: '2',
-      slug: 'course-reviews',
-      icon: '⭐',
-      title: language === 'et' ? 'Kursuste Arvustused' : 'Отзывы про Курсы',
-      description: language === 'et'
-        ? 'Aus platvorm kursuste ja haridusprogrammide arvustustega tõelistelt üliõpilastelt autentsuse kontrollimisega.'
-        : 'Честная платформа с отзывами о курсах и образовательных программах от реальных студентов с проверкой подлинности.',
-      collected: 0,
-      goal: 30000,
-      daysLeft: 22,
-      backers: 0,
-      gradient: 'from-cyan-500 to-blue-600',
-      category: language === 'et' ? 'Haridus' : 'Образование'
-    },
-    {
       id: '3',
       slug: 'color-palette-pro',
-      icon: '🎨',
+      iconType: 'palette',
+      image: colorPaletteImage,
       title: 'ColorPalette Pro',
       description: language === 'et'
         ? 'Maailma esimene kaasaskantav, professionaalse kvaliteediga värvipaleti generaator IoT seade disaineritele ja kunstnikele.'
@@ -101,7 +124,8 @@ export default function CrowdfundingPlatform() {
     {
       id: '4',
       slug: 'creative-bus',
-      icon: '🚐',
+      iconType: 'bus',
+      image: creativeBusImage,
       title: 'Creative Bus',
       description: language === 'et'
         ? 'Mobiilne disainistuudio premium-klassis. Ümberehitatud buss veebilehtede, foto- ja videosisu loomiseks inspireerivates kohtades.'
@@ -114,9 +138,24 @@ export default function CrowdfundingPlatform() {
       category: language === 'et' ? 'Disain' : 'Дизайн'
     },
     {
+      id: '6',
+      slug: 'course-reviews',
+      iconType: 'star',
+      title: 'TULEKUL',
+      description: language === 'et'
+        ? 'Aus platvorm kursuste ja haridusprogrammide arvustustega tõelistelt üliõpilastelt autentsuse kontrollimisega.'
+        : 'Честная платформа с отзывами о курсах и образовательных программах от реальных студентов с проверкой подлинности.',
+      collected: 0,
+      goal: 30000,
+      daysLeft: 22,
+      backers: 0,
+      gradient: 'from-cyan-500 to-blue-600',
+      category: language === 'et' ? 'Haridus' : 'Образование'
+    },
+    {
       id: '5',
       slug: 'yoga-bot',
-      icon: '🧘',
+      iconType: 'yoga',
       title: 'Yoga Bot',
       description: language === 'et'
         ? 'Tark AI-assistent joogaks personaliseeritud treeningprogrammidega, videojuhenditega ja edenemise jälgimisega.'
@@ -141,7 +180,7 @@ export default function CrowdfundingPlatform() {
           { label: t('about'), href: '/about' }, 
           { label: t('supportUs'), href: '/contact' }
         ]} 
-        title="Crowdfunding"
+        title="AMOE"
         currentLanguage={language}
         onLanguageChange={setLanguage}
       />
@@ -162,22 +201,36 @@ export default function CrowdfundingPlatform() {
               {/* Main Visual */}
               <div className="hero-split__visual">
                 <div className="hero-split__card hero-split__card--1">
-                  <span className="text-4xl">🎵</span>
+                  <div className="hero-split__card-icon hero-split__card-icon--music">
+                    <MusicNoteFilledIcon size="large" />
+                  </div>
                   <div className="hero-split__card-text">Tiiva All</div>
                 </div>
                 <div className="hero-split__card hero-split__card--2">
-                  <span className="text-4xl">🎨</span>
+                  <div className="hero-split__card-icon hero-split__card-icon--palette">
+                    <PaletteFilledIcon size="large" />
+                  </div>
                   <div className="hero-split__card-text">ColorPalette</div>
                 </div>
                 <div className="hero-split__card hero-split__card--3">
-                  <span className="text-4xl">🚐</span>
+                  <div className="hero-split__card-icon hero-split__card-icon--bus">
+                    <CamperVanFilledIcon size="large" />
+                  </div>
                   <div className="hero-split__card-text">Creative Bus</div>
                 </div>
-                <div className="hero-split__card hero-split__card--center">
+                <div 
+                  className="hero-split__card hero-split__card--center hero-split__card--clickable"
+                  onClick={() => navigate('/project/tiiva-all')}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && navigate('/project/tiiva-all')}
+                >
                   <div className="hero-split__logo">
                     <RocketFilledIcon size="2xlarge" className="blade-icon--primary" />
                   </div>
-                  <div className="hero-split__logo-text">Crowdfunding</div>
+                  <div className="hero-split__logo-text">
+                    {language === 'et' ? 'Nädala projekt' : 'Проект недели'}
+                  </div>
                 </div>
               </div>
 
@@ -314,12 +367,15 @@ export default function CrowdfundingPlatform() {
               >
                 {/* Project Image/Icon with CardMedia */}
                 <CardMedia 
-                  gradient={`linear-gradient(135deg, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 100%)`}
+                  src={project.image}
+                  alt={project.title}
+                  gradient={!project.image ? `linear-gradient(135deg, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 100%)` : undefined}
                   overlay
                   height={180}
-                  className={`bg-gradient-to-br ${project.gradient}`}
+                  className={!project.image ? `bg-gradient-to-br ${project.gradient}` : 'project-card-image'}
                 >
-                  <span className="text-7xl relative z-10 drop-shadow-lg">{project.icon}</span>
+                  {/* Show icon only if no image */}
+                  {!project.image && <ProjectIcon type={project.iconType} />}
                   
                   {/* Category Badge */}
                   <CardBadge variant="solid" color="default" position="top-left">
@@ -428,39 +484,53 @@ export default function CrowdfundingPlatform() {
           </h2>
           
           <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                step: '01',
-                icon: '🔍',
-                title: language === 'et' ? 'Avasta' : 'Откройте',
-                desc: language === 'et' 
-                  ? 'Sirvige meie kureeritud projektide valikut ja leidke need, mis teid inspireerivad'
-                  : 'Просмотрите нашу подборку проектов и найдите те, которые вас вдохновляют'
-              },
-              {
-                step: '02',
-                icon: '💝',
-                title: language === 'et' ? 'Toeta' : 'Поддержите',
-                desc: language === 'et'
-                  ? 'Valige oma toetuse summa ja saage ainulaadseid preemiaid'
-                  : 'Выберите сумму поддержки и получите уникальные награды'
-              },
-              {
-                step: '03',
-                icon: '🎉',
-                title: language === 'et' ? 'Jälgi' : 'Следите',
-                desc: language === 'et'
-                  ? 'Jälgige projekti edenemist ja olge osa loost!'
-                  : 'Следите за прогрессом проекта и станьте частью истории!'
-              }
-            ].map((item, idx) => (
-              <div key={idx} className="platform-step">
-                <div className="platform-step-icon">{item.icon}</div>
-                <div className="platform-step-number">{item.step}</div>
-                <h3 className="platform-step-title">{item.title}</h3>
-                <p className="platform-step-description">{item.desc}</p>
+            {/* Step 1 - Discover */}
+            <div className="platform-step">
+              <div className="platform-step-icon platform-step-icon--discover">
+                <SearchFilledIcon size="xlarge" />
               </div>
-            ))}
+              <div className="platform-step-number">01</div>
+              <h3 className="platform-step-title">
+                {language === 'et' ? 'Avasta' : 'Откройте'}
+              </h3>
+              <p className="platform-step-description">
+                {language === 'et' 
+                  ? 'Sirvige meie kureeritud projektide valikut ja leidke need, mis teid inspireerivad'
+                  : 'Просмотрите нашу подборку проектов и найдите те, которые вас вдохновляют'}
+              </p>
+            </div>
+
+            {/* Step 2 - Support */}
+            <div className="platform-step">
+              <div className="platform-step-icon platform-step-icon--support">
+                <GiftFilledIcon size="xlarge" />
+              </div>
+              <div className="platform-step-number">02</div>
+              <h3 className="platform-step-title">
+                {language === 'et' ? 'Toeta' : 'Поддержите'}
+              </h3>
+              <p className="platform-step-description">
+                {language === 'et'
+                  ? 'Valige oma toetuse summa ja saage ainulaadseid preemiaid'
+                  : 'Выберите сумму поддержки и получите уникальные награды'}
+              </p>
+            </div>
+
+            {/* Step 3 - Follow */}
+            <div className="platform-step">
+              <div className="platform-step-icon platform-step-icon--follow">
+                <EmojiEventsFilledIcon size="xlarge" />
+              </div>
+              <div className="platform-step-number">03</div>
+              <h3 className="platform-step-title">
+                {language === 'et' ? 'Jälgi' : 'Следите'}
+              </h3>
+              <p className="platform-step-description">
+                {language === 'et'
+                  ? 'Jälgige projekti edenemist ja olge osa loost!'
+                  : 'Следите за прогрессом проекта и станьте частью истории!'}
+              </p>
+            </div>
           </div>
         </div>
 

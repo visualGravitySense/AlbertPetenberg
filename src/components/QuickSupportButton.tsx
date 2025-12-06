@@ -9,8 +9,6 @@ interface QuickSupportButtonProps extends React.ButtonHTMLAttributes<HTMLButtonE
   children?: React.ReactNode;
 }
 
-const DEFAULT_PATH = "M10 10 L190 10 L200 30 L190 50 L10 50 L0 30 Z";
-
 export const QuickSupportButton: React.FC<QuickSupportButtonProps> = ({
   amount,
   isRecommended = false,
@@ -28,9 +26,6 @@ export const QuickSupportButton: React.FC<QuickSupportButtonProps> = ({
 
   return (
     <button className={`${getButtonClass()} ${className}`} {...props}>
-      <svg className="qs-btn-frame" viewBox="0 0 200 60" preserveAspectRatio="none">
-        <path d={DEFAULT_PATH} className="qs-btn-path" />
-      </svg>
       <span className="qs-btn-label">
         {children || (amount && `€${amount.toLocaleString()}`)}
       </span>

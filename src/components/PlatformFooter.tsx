@@ -31,7 +31,7 @@ export const PlatformFooter: React.FC<PlatformFooterProps> = ({ language = 'et' 
           <div className="platform-footer-brand">
             <Link to="/" className="platform-footer-logo">
               <PiRocketLaunchFill className="platform-footer-logo-icon" />
-              <span>Crowdfunding</span>
+              <span>AMOE</span>
             </Link>
             <p className="platform-footer-tagline">
               {language === 'et' 

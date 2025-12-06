@@ -13,7 +13,7 @@ interface PlatformHeaderProps {
 
 export const PlatformHeader: React.FC<PlatformHeaderProps> = ({ 
   links, 
-  title = "Crowdfunding",
+  title = "AMOE",
   currentLanguage = 'ru',
   onLanguageChange
 }) => {
