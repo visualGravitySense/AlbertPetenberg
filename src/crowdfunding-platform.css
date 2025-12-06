@@ -216,6 +216,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: url('./render-1.jpg');
+  background-size: auto;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: cover;
+  /* border-radius: 16px; */
+}
+
+.hero-split__image-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom right, rgba(88, 28, 135, 0.8), rgba(30, 58, 138, 0.8), rgba(0, 0, 0, 0.8));
 }
 
 /* Background Shapes */
@@ -299,21 +313,73 @@
   font-size: 14px;
 }
 
+/* Card Icon Wrappers - Subtle muted colors */
+.hero-split__card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.hero-split__card-icon .blade-icon {
+  fill: currentColor;
+  opacity: 0.9;
+}
+
+/* Music - Soft pink/rose */
+.hero-split__card-icon--music {
+  background: rgba(244, 114, 182, 0.15);
+  color: #f472b6;
+  border: 1px solid rgba(244, 114, 182, 0.2);
+}
+
+.hero-split__card:hover .hero-split__card-icon--music {
+  background: rgba(244, 114, 182, 0.25);
+  box-shadow: 0 0 20px rgba(244, 114, 182, 0.2);
+}
+
+/* Palette - Soft amber/orange */
+.hero-split__card-icon--palette {
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.2);
+}
+
+.hero-split__card:hover .hero-split__card-icon--palette {
+  background: rgba(251, 191, 36, 0.25);
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.2);
+}
+
+/* Bus - Soft violet/purple */
+.hero-split__card-icon--bus {
+  background: rgba(167, 139, 250, 0.15);
+  color: #a78bfa;
+  border: 1px solid rgba(167, 139, 250, 0.2);
+}
+
+.hero-split__card:hover .hero-split__card-icon--bus {
+  background: rgba(167, 139, 250, 0.25);
+  box-shadow: 0 0 20px rgba(167, 139, 250, 0.2);
+}
+
 .hero-split__card--1 {
   top: 0;
-  left: 0;
+  right: 0;
   animation: card-float-1 4s ease-in-out infinite;
 }
 
 .hero-split__card--2 {
-  top: 80px;
+  bottom: 10px;
   right: 0;
   animation: card-float-2 5s ease-in-out infinite 0.5s;
 }
 
 .hero-split__card--3 {
-  bottom: 40px;
-  left: 20px;
+  bottom: -45px;
+  left: -50px;
   animation: card-float-3 4.5s ease-in-out infinite 1s;
 }
 
@@ -332,6 +398,21 @@
   transform: translate(-50%, -50%) scale(1.05);
 }
 
+/* Clickable Card */
+.hero-split__card--clickable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.hero-split__card--clickable:active {
+  transform: translate(-50%, -50%) scale(0.98);
+}
+
+.hero-split__card--clickable:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 4px;
+}
+
 .hero-split__logo {
   width: 60px;
   height: 60px;
@@ -348,6 +429,7 @@
 }
 
 .hero-split__logo-text {
+  text-align: center;
   font-size: 16px;
   font-weight: 700;
   background: linear-gradient(135deg, #a5b4fc 0%, #c4b5fd 100%);
@@ -444,6 +526,7 @@
   background: rgba(30, 41, 59, 0.5);
   border: 1px solid rgba(148, 163, 184, 0.1);
   border-radius: 16px;
+  justify-content: center;
 }
 
 .hero-split__stat {
@@ -560,6 +643,7 @@
 
   .hero-split__stats {
     justify-content: center;
+    
   }
 
   .hero-split__buttons {
@@ -613,8 +697,8 @@
   }
 
   .hero-split__stats {
-    flex-direction: column;
-    gap: 16px;
+    flex-direction: row;
+    gap: 1px;
   }
 
   .hero-split__stat-divider {
@@ -630,6 +714,10 @@
   .hero-split__btn {
     width: 100%;
     justify-content: center;
+  }
+
+  .hero-split__image-wrapper {
+    background-position: center;
   }
 }
 
@@ -684,6 +772,132 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* ===== Project Card Icons ===== */
+.project-card-icon {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.project-card-icon .blade-icon {
+  width: 40px;
+  height: 40px;
+  fill: currentColor;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* Music Icon - Soft pink */
+.project-card-icon--music {
+  background: linear-gradient(135deg, rgba(244, 114, 182, 0.2) 0%, rgba(236, 72, 153, 0.3) 100%);
+  border: 1px solid rgba(244, 114, 182, 0.3);
+  color: #f9a8d4;
+}
+
+/* Palette Icon - Soft amber/orange */
+.project-card-icon--palette {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.2) 0%, rgba(245, 158, 11, 0.3) 100%);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  color: #fcd34d;
+}
+
+/* Bus Icon - Soft violet */
+.project-card-icon--bus {
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.2) 0%, rgba(139, 92, 246, 0.3) 100%);
+  border: 1px solid rgba(167, 139, 250, 0.3);
+  color: #c4b5fd;
+}
+
+/* Yoga Icon - Soft teal/emerald */
+.project-card-icon--yoga {
+  background: linear-gradient(135deg, rgba(52, 211, 153, 0.2) 0%, rgba(20, 184, 166, 0.3) 100%);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  color: #6ee7b7;
+}
+
+/* Star Icon - Soft cyan */
+.project-card-icon--star {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.2) 0%, rgba(6, 182, 212, 0.3) 100%);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  color: #67e8f9;
+}
+
+/* Rocket Icon - Soft indigo */
+.project-card-icon--rocket {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(79, 70, 229, 0.3) 100%);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: #a5b4fc;
+}
+
+/* Hover effects */
+.blade-card:hover .project-card-icon {
+  transform: scale(1.1) rotate(3deg);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.blade-card:hover .project-card-icon--music {
+  background: linear-gradient(135deg, rgba(244, 114, 182, 0.3) 0%, rgba(236, 72, 153, 0.4) 100%);
+  box-shadow: 0 12px 40px rgba(244, 114, 182, 0.3);
+}
+
+.blade-card:hover .project-card-icon--palette {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.3) 0%, rgba(245, 158, 11, 0.4) 100%);
+  box-shadow: 0 12px 40px rgba(251, 191, 36, 0.3);
+}
+
+.blade-card:hover .project-card-icon--bus {
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.3) 0%, rgba(139, 92, 246, 0.4) 100%);
+  box-shadow: 0 12px 40px rgba(167, 139, 250, 0.3);
+}
+
+.blade-card:hover .project-card-icon--yoga {
+  background: linear-gradient(135deg, rgba(52, 211, 153, 0.3) 0%, rgba(20, 184, 166, 0.4) 100%);
+  box-shadow: 0 12px 40px rgba(52, 211, 153, 0.3);
+}
+
+.blade-card:hover .project-card-icon--star {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.3) 0%, rgba(6, 182, 212, 0.4) 100%);
+  box-shadow: 0 12px 40px rgba(34, 211, 238, 0.3);
+}
+
+.blade-card:hover .project-card-icon--rocket {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(79, 70, 229, 0.4) 100%);
+  box-shadow: 0 12px 40px rgba(99, 102, 241, 0.3);
+}
+
+/* ===== Project Card Image Styles ===== */
+.project-card-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card-image .blade-card__media-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+
+.blade-card:hover .project-card-image .blade-card__media-image {
+  transform: scale(1.08);
+}
+
+.project-card-image .blade-card__media-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(17, 17, 27, 0.95) 0%,
+    rgba(17, 17, 27, 0.5) 40%,
+    transparent 70%
+  );
 }
 
 /* ===== Blade Card Integration (Razorpay Style) ===== */
@@ -766,8 +980,59 @@
 }
 
 .platform-step-icon {
-  font-size: 3rem;
-  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 16px;
+  border-radius: 18px;
+  transition: all 0.3s ease;
+}
+
+.platform-step-icon .blade-icon {
+  width: 32px;
+  height: 32px;
+  fill: currentColor;
+}
+
+/* Step icon variants */
+.platform-step-icon--discover {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.15) 0%, rgba(6, 182, 212, 0.25) 100%);
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  color: #67e8f9;
+}
+
+.platform-step-icon--support {
+  background: linear-gradient(135deg, rgba(251, 113, 133, 0.15) 0%, rgba(244, 63, 94, 0.25) 100%);
+  border: 1px solid rgba(251, 113, 133, 0.25);
+  color: #fda4af;
+}
+
+.platform-step-icon--follow {
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.15) 0%, rgba(139, 92, 246, 0.25) 100%);
+  border: 1px solid rgba(167, 139, 250, 0.25);
+  color: #c4b5fd;
+}
+
+/* Hover effects */
+.platform-step:hover .platform-step-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.platform-step:hover .platform-step-icon--discover {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.25) 0%, rgba(6, 182, 212, 0.35) 100%);
+  box-shadow: 0 8px 32px rgba(34, 211, 238, 0.25);
+}
+
+.platform-step:hover .platform-step-icon--support {
+  background: linear-gradient(135deg, rgba(251, 113, 133, 0.25) 0%, rgba(244, 63, 94, 0.35) 100%);
+  box-shadow: 0 8px 32px rgba(251, 113, 133, 0.25);
+}
+
+.platform-step:hover .platform-step-icon--follow {
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.25) 0%, rgba(139, 92, 246, 0.35) 100%);
+  box-shadow: 0 8px 32px rgba(167, 139, 250, 0.25);
 }
 
 .platform-step-title {

@@ -6,6 +6,14 @@ import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Button } from "./components/SciFiButton2";
 import { Language, getTranslation } from "./locales";
+import { 
+  DesignFilledIcon, 
+  HomeWorkFilledIcon, 
+  DressFilledIcon, 
+  LaptopFilledIcon, 
+  SchoolFilledIcon, 
+  BrushAltFilledIcon 
+} from "./components/BladeIcons";
 
 // Project-specific styles
 import './color-palette-project.css';
@@ -449,22 +457,95 @@ export default function ColorPaletteProProject() {
           </h2>
         </div>
         <div className="grid md:grid-cols-3 gap-4">
-          {[
-            { emoji: '👨‍🎨', title: language === 'et' ? 'Graafilised disainerid' : 'Графические дизайнеры', desc: language === 'et' ? 'Loo brändipalette inspiratsioonist' : 'Создавайте палитры бренда из вдохновения' },
-            { emoji: '🏠', title: language === 'et' ? 'Sisearhitektid' : 'Интерьерные дизайнеры', desc: language === 'et' ? 'Sobita värvid mööbli ja kangastega' : 'Сочетайте цвета с мебелью и тканями' },
-            { emoji: '👗', title: language === 'et' ? 'Moedisainerid' : 'Модные дизайнеры', desc: language === 'et' ? 'Jäädvusta poodiumivärvid' : 'Захватывайте цвета подиумов' },
-            { emoji: '💻', title: language === 'et' ? 'UI/UX disainerid' : 'UI/UX дизайнеры', desc: language === 'et' ? 'Loo ligipääsetavaid värvisüsteeme' : 'Создавайте доступные цветовые системы' },
-            { emoji: '🎓', title: language === 'et' ? 'Üliõpilased' : 'Студенты', desc: language === 'et' ? 'Õpi värviteooriat praktiliselt' : 'Изучайте теорию цвета на практике' },
-            { emoji: '🖌️', title: language === 'et' ? 'Kunstnikud' : 'Художники', desc: language === 'et' ? 'Ära kaota kunagi täiuslikku tooni' : 'Никогда не теряйте идеальный оттенок' },
-          ].map((item, idx) => (
-            <div key={idx} className="flex items-start gap-3 bg-black/20 rounded-lg p-4">
-              <span className="text-2xl">{item.emoji}</span>
-              <div>
-                <div className="font-semibold text-orange-300">{item.title}</div>
-                <div className="text-sm text-gray-400">{item.desc}</div>
+          {/* Graphic Designers */}
+          <div className="flex items-start gap-3 bg-black/20 rounded-lg p-4 group hover:bg-black/30 transition-all">
+            <div className="perfect-for-icon perfect-for-icon--design">
+              <DesignFilledIcon size="large" />
+            </div>
+            <div>
+              <div className="font-semibold text-orange-300">
+                {language === 'et' ? 'Graafilised disainerid' : 'Графические дизайнеры'}
+              </div>
+              <div className="text-sm text-gray-400">
+                {language === 'et' ? 'Loo brändipalette inspiratsioonist' : 'Создавайте палитры бренда из вдохновения'}
               </div>
             </div>
-          ))}
+          </div>
+
+          {/* Interior Architects */}
+          <div className="flex items-start gap-3 bg-black/20 rounded-lg p-4 group hover:bg-black/30 transition-all">
+            <div className="perfect-for-icon perfect-for-icon--interior">
+              <HomeWorkFilledIcon size="large" />
+            </div>
+            <div>
+              <div className="font-semibold text-orange-300">
+                {language === 'et' ? 'Sisearhitektid' : 'Интерьерные дизайнеры'}
+              </div>
+              <div className="text-sm text-gray-400">
+                {language === 'et' ? 'Sobita värvid mööbli ja kangastega' : 'Сочетайте цвета с мебелью и тканями'}
+              </div>
+            </div>
+          </div>
+
+          {/* Fashion Designers */}
+          <div className="flex items-start gap-3 bg-black/20 rounded-lg p-4 group hover:bg-black/30 transition-all">
+            <div className="perfect-for-icon perfect-for-icon--fashion">
+              <DressFilledIcon size="large" />
+            </div>
+            <div>
+              <div className="font-semibold text-orange-300">
+                {language === 'et' ? 'Moedisainerid' : 'Модные дизайнеры'}
+              </div>
+              <div className="text-sm text-gray-400">
+                {language === 'et' ? 'Jäädvusta poodiumivärvid' : 'Захватывайте цвета подиумов'}
+              </div>
+            </div>
+          </div>
+
+          {/* UI/UX Designers */}
+          <div className="flex items-start gap-3 bg-black/20 rounded-lg p-4 group hover:bg-black/30 transition-all">
+            <div className="perfect-for-icon perfect-for-icon--uiux">
+              <LaptopFilledIcon size="large" />
+            </div>
+            <div>
+              <div className="font-semibold text-orange-300">
+                {language === 'et' ? 'UI/UX disainerid' : 'UI/UX дизайнеры'}
+              </div>
+              <div className="text-sm text-gray-400">
+                {language === 'et' ? 'Loo ligipääsetavaid värvisüsteeme' : 'Создавайте доступные цветовые системы'}
+              </div>
+            </div>
+          </div>
+
+          {/* Students */}
+          <div className="flex items-start gap-3 bg-black/20 rounded-lg p-4 group hover:bg-black/30 transition-all">
+            <div className="perfect-for-icon perfect-for-icon--student">
+              <SchoolFilledIcon size="large" />
+            </div>
+            <div>
+              <div className="font-semibold text-orange-300">
+                {language === 'et' ? 'Üliõpilased' : 'Студенты'}
+              </div>
+              <div className="text-sm text-gray-400">
+                {language === 'et' ? 'Õpi värviteooriat praktiliselt' : 'Изучайте теорию цвета на практике'}
+              </div>
+            </div>
+          </div>
+
+          {/* Artists */}
+          <div className="flex items-start gap-3 bg-black/20 rounded-lg p-4 group hover:bg-black/30 transition-all">
+            <div className="perfect-for-icon perfect-for-icon--artist">
+              <BrushAltFilledIcon size="large" />
+            </div>
+            <div>
+              <div className="font-semibold text-orange-300">
+                {language === 'et' ? 'Kunstnikud' : 'Художники'}
+              </div>
+              <div className="text-sm text-gray-400">
+                {language === 'et' ? 'Ära kaota kunagi täiuslikku tooni' : 'Никогда не теряйте идеальный оттенок'}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

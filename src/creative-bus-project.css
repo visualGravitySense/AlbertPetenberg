@@ -332,3 +332,260 @@
   filter: grayscale(0%);
   opacity: 1;
 }
+
+/* ===== Hero Bus Image ===== */
+.cb-hero-image-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(168, 85, 247, 0.15) 100%);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.cb-hero-image {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s ease;
+}
+
+.cb-hero-image-wrapper:hover .cb-hero-image {
+  transform: scale(1.03);
+}
+
+.cb-hero-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(17, 17, 27, 0.9) 0%,
+    rgba(17, 17, 27, 0.4) 30%,
+    transparent 60%,
+    rgba(139, 92, 246, 0.1) 100%
+  );
+  pointer-events: none;
+}
+
+.cb-hero-badges {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  z-index: 10;
+}
+
+.cb-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: rgba(139, 92, 246, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #c4b5fd;
+  transition: all 0.3s ease;
+}
+
+.cb-hero-badge:hover {
+  background: rgba(139, 92, 246, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+}
+
+@media (min-width: 768px) {
+  .cb-hero-image-wrapper {
+    min-height: 500px;
+  }
+  
+  .cb-hero-image {
+    min-height: 500px;
+  }
+}
+
+/* ===== Location Icons ===== */
+.location-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  transition: all 0.3s ease;
+}
+
+.location-icon .blade-icon {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+}
+
+/* Park - Green */
+.location-icon--park {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(22, 163, 74, 0.3) 100%);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #4ade80;
+}
+
+/* Museum - Amber */
+.location-icon--museum {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(217, 119, 6, 0.3) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: #fbbf24;
+}
+
+/* Art - Pink */
+.location-icon--art {
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.2) 0%, rgba(219, 39, 119, 0.3) 100%);
+  border: 1px solid rgba(236, 72, 153, 0.3);
+  color: #f472b6;
+}
+
+/* Terrain - Blue */
+.location-icon--terrain {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(37, 99, 235, 0.3) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
+}
+
+/* Eco - Emerald */
+.location-icon--eco {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.3) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #34d399;
+}
+
+/* Castle - Slate */
+.location-icon--castle {
+  background: linear-gradient(135deg, rgba(148, 163, 184, 0.2) 0%, rgba(100, 116, 139, 0.3) 100%);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  color: #cbd5e1;
+}
+
+/* Hover effects for locations */
+.location-card:hover .location-icon {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.location-card:hover .location-icon--park {
+  box-shadow: 0 4px 20px rgba(34, 197, 94, 0.35);
+}
+
+.location-card:hover .location-icon--museum {
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.35);
+}
+
+.location-card:hover .location-icon--art {
+  box-shadow: 0 4px 20px rgba(236, 72, 153, 0.35);
+}
+
+.location-card:hover .location-icon--terrain {
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.35);
+}
+
+.location-card:hover .location-icon--eco {
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
+}
+
+.location-card:hover .location-icon--castle {
+  box-shadow: 0 4px 20px rgba(148, 163, 184, 0.35);
+}
+
+/* ===== Service Icons ===== */
+.service-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.service-icon .blade-icon {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+/* Web - Cyan */
+.service-icon--web {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(8, 145, 178, 0.3) 100%);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  color: #22d3ee;
+}
+
+/* App - Indigo */
+.service-icon--app {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(79, 70, 229, 0.3) 100%);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: #818cf8;
+}
+
+/* Photo - Rose */
+.service-icon--photo {
+  background: linear-gradient(135deg, rgba(251, 113, 133, 0.2) 0%, rgba(244, 63, 94, 0.3) 100%);
+  border: 1px solid rgba(251, 113, 133, 0.3);
+  color: #fda4af;
+}
+
+/* Brand - Orange */
+.service-icon--brand {
+  background: linear-gradient(135deg, rgba(251, 146, 60, 0.2) 0%, rgba(234, 88, 12, 0.3) 100%);
+  border: 1px solid rgba(251, 146, 60, 0.3);
+  color: #fdba74;
+}
+
+/* Drone - Sky */
+.service-icon--drone {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(14, 165, 233, 0.3) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #7dd3fc;
+}
+
+/* Creative - Yellow */
+.service-icon--creative {
+  background: linear-gradient(135deg, rgba(250, 204, 21, 0.2) 0%, rgba(234, 179, 8, 0.3) 100%);
+  border: 1px solid rgba(250, 204, 21, 0.3);
+  color: #fde047;
+}
+
+/* Hover effects for services */
+.group:hover .service-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.group:hover .service-icon--web {
+  box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);
+}
+
+.group:hover .service-icon--app {
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+}
+
+.group:hover .service-icon--photo {
+  box-shadow: 0 4px 20px rgba(251, 113, 133, 0.3);
+}
+
+.group:hover .service-icon--brand {
+  box-shadow: 0 4px 20px rgba(251, 146, 60, 0.3);
+}
+
+.group:hover .service-icon--drone {
+  box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
+}
+
+.group:hover .service-icon--creative {
+  box-shadow: 0 4px 20px rgba(250, 204, 21, 0.3);
+}

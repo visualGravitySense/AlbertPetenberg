@@ -6,9 +6,25 @@ import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Button } from "./components/SciFiButton2";
 import { Language, getTranslation } from "./locales";
+import { 
+  ParkFilledIcon,
+  MuseumFilledIcon,
+  PaletteFilledIcon,
+  TerrainFilledIcon,
+  EcoFilledIcon,
+  CastleFilledIcon,
+  WebFilledIcon,
+  SmartphoneFilledIcon,
+  CameraFilledIcon,
+  DroneFilledIcon,
+  LightbulbFilledIcon
+} from "./components/BladeIcons";
 
 // Project-specific styles
 import './creative-bus-project.css';
+
+// Hero Image
+import heroImage from './cb-render-1.png';
 
 export default function CreativeBusProject() {
   const [language, setLanguage] = useState<Language>('et');
@@ -192,14 +208,14 @@ export default function CreativeBusProject() {
     { icon: Sparkles, label: language === 'et' ? 'Loovseansid' : 'Креативные сессии' },
   ];
 
-  // Locations
+  // Locations with icons
   const locations = [
-    { emoji: '🌳', name: language === 'et' ? 'Pargid ja rannad' : 'Парки и набережные' },
-    { emoji: '🏛️', name: language === 'et' ? 'Muuseumid' : 'Музеи' },
-    { emoji: '🎨', name: language === 'et' ? 'Kunstikvartalid' : 'Арт-кварталы' },
-    { emoji: '🏔️', name: language === 'et' ? 'Vaateplatvormid' : 'Смотровые площадки' },
-    { emoji: '🌿', name: language === 'et' ? 'Botaanikaaiad' : 'Ботанические сады' },
-    { emoji: '🏰', name: language === 'et' ? 'Ajaloolised kohad' : 'Исторические места' },
+    { icon: ParkFilledIcon, iconClass: 'location-icon--park', name: language === 'et' ? 'Pargid ja rannad' : 'Парки и набережные' },
+    { icon: MuseumFilledIcon, iconClass: 'location-icon--museum', name: language === 'et' ? 'Muuseumid' : 'Музеи' },
+    { icon: PaletteFilledIcon, iconClass: 'location-icon--art', name: language === 'et' ? 'Kunstikvartalid' : 'Арт-кварталы' },
+    { icon: TerrainFilledIcon, iconClass: 'location-icon--terrain', name: language === 'et' ? 'Vaateplatvormid' : 'Смотровые площадки' },
+    { icon: EcoFilledIcon, iconClass: 'location-icon--eco', name: language === 'et' ? 'Botaanikaaiad' : 'Ботанические сады' },
+    { icon: CastleFilledIcon, iconClass: 'location-icon--castle', name: language === 'et' ? 'Ajaloolised kohad' : 'Исторические места' },
   ];
 
   return (
@@ -392,31 +408,31 @@ export default function CreativeBusProject() {
             </div>
           </div>
 
-          {/* Right Side: Bus Illustration */}
+          {/* Right Side: Bus Image */}
           <div className="relative">
-            <div className="relative w-full h-full min-h-[300px] md:min-h-[500px] rounded-xl overflow-hidden bg-gradient-to-br from-violet-600/20 to-purple-600/20 border border-violet-500/30 flex items-center justify-center">
-              <div className="text-center p-8">
-                <div className="text-9xl mb-6">🚐</div>
-                <h3 className="text-2xl font-bold text-violet-300 mb-2">
-                  {language === 'et' ? 'Mobiilne Disainistuudio' : 'Мобильная Дизайн-Студия'}
-                </h3>
-                <p className="text-gray-400 mb-4">
-                  {language === 'et' ? 'Premium VIP-teenus inspireerivates kohtades' : 'Premium VIP-сервис в вдохновляющих локациях'}
-                </p>
-                <div className="flex flex-wrap justify-center gap-2">
-                  <span className="bg-violet-600/30 px-3 py-1 rounded-full text-sm text-violet-300">
-                    <Laptop className="w-4 h-4 inline mr-1" />
-                    {language === 'et' ? '3 töökohta' : '3 рабочих места'}
-                  </span>
-                  <span className="bg-violet-600/30 px-3 py-1 rounded-full text-sm text-violet-300">
-                    <Wifi className="w-4 h-4 inline mr-1" />
-                    5G Internet
-                  </span>
-                  <span className="bg-violet-600/30 px-3 py-1 rounded-full text-sm text-violet-300">
-                    <Sun className="w-4 h-4 inline mr-1" />
-                    {language === 'et' ? 'Päikesepaneelid' : 'Солнечные панели'}
-                  </span>
-                </div>
+            <div className="cb-hero-image-wrapper">
+              <img 
+                src={heroImage} 
+                alt="Creative Bus - Mobile Design Studio" 
+                className="cb-hero-image"
+              />
+              {/* Gradient Overlay */}
+              <div className="cb-hero-image-overlay"></div>
+              
+              {/* Feature Badges */}
+              <div className="cb-hero-badges">
+                <span className="cb-hero-badge">
+                  <Laptop className="w-4 h-4" />
+                  {language === 'et' ? '3 töökohta' : '3 рабочих места'}
+                </span>
+                <span className="cb-hero-badge">
+                  <Wifi className="w-4 h-4" />
+                  5G Internet
+                </span>
+                <span className="cb-hero-badge">
+                  <Sun className="w-4 h-4" />
+                  {language === 'et' ? 'Päikesepaneelid' : 'Солнечные панели'}
+                </span>
               </div>
             </div>
           </div>
@@ -487,8 +503,10 @@ export default function CreativeBusProject() {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {locations.map((loc, idx) => (
-            <div key={idx} className="bg-violet-900/20 rounded-lg p-4 text-center border border-violet-500/20 hover:border-violet-500/50 transition-all">
-              <div className="text-3xl mb-2">{loc.emoji}</div>
+            <div key={idx} className="location-card bg-violet-900/20 rounded-lg p-4 text-center border border-violet-500/20 hover:border-violet-500/50 transition-all group">
+              <div className={`location-icon ${loc.iconClass} mb-3 mx-auto`}>
+                <loc.icon size="large" />
+              </div>
               <div className="text-sm text-gray-300">{loc.name}</div>
             </div>
           ))}
@@ -511,22 +529,71 @@ export default function CreativeBusProject() {
           
           {showServices && (
             <div className="mt-6 grid md:grid-cols-2 gap-4 animate-fadeIn">
-              {[
-                { icon: '🌐', title: language === 'et' ? 'Veebilehtede disain' : 'Дизайн сайтов', desc: language === 'et' ? 'Loome veebilehti inspireerival lokatsioonis' : 'Создаём сайты на вдохновляющей локации' },
-                { icon: '📱', title: language === 'et' ? 'UI/UX rakendused' : 'UI/UX приложения', desc: language === 'et' ? 'Kasutajaliideste disain' : 'Дизайн пользовательских интерфейсов' },
-                { icon: '📸', title: language === 'et' ? 'Foto & video' : 'Фото и видео', desc: language === 'et' ? 'Professionaalne sisu loomine' : 'Профессиональный контент' },
-                { icon: '🎨', title: language === 'et' ? 'Bränding' : 'Брендинг', desc: language === 'et' ? 'Logo, stiiliraamat, identiteet' : 'Логотип, стайлгайд, айдентика' },
-                { icon: '🚁', title: language === 'et' ? 'Droonivõtted' : 'Дрон-съёмка', desc: language === 'et' ? 'Aerofotograafia ja video' : 'Аэрофотосъёмка и видео' },
-                { icon: '💡', title: language === 'et' ? 'Loovseansid' : 'Креативные сессии', desc: language === 'et' ? 'Ajurünnakud ja ideede genereerimine' : 'Мозговые штурмы и генерация идей' },
-              ].map((service, idx) => (
-                <div key={idx} className="flex items-start gap-3 bg-black/20 rounded-lg p-4">
-                  <span className="text-2xl">{service.icon}</span>
-                  <div>
-                    <div className="font-semibold text-violet-300">{service.title}</div>
-                    <div className="text-sm text-gray-400">{service.desc}</div>
-                  </div>
+              {/* Web Design */}
+              <div className="flex items-start gap-3 bg-black/20 rounded-lg p-4 group hover:bg-black/30 transition-all">
+                <div className="service-icon service-icon--web">
+                  <WebFilledIcon size="large" />
                 </div>
-              ))}
+                <div>
+                  <div className="font-semibold text-violet-300">{language === 'et' ? 'Veebilehtede disain' : 'Дизайн сайтов'}</div>
+                  <div className="text-sm text-gray-400">{language === 'et' ? 'Loome veebilehti inspireerival lokatsioonis' : 'Создаём сайты на вдохновляющей локации'}</div>
+                </div>
+              </div>
+
+              {/* UI/UX Apps */}
+              <div className="flex items-start gap-3 bg-black/20 rounded-lg p-4 group hover:bg-black/30 transition-all">
+                <div className="service-icon service-icon--app">
+                  <SmartphoneFilledIcon size="large" />
+                </div>
+                <div>
+                  <div className="font-semibold text-violet-300">{language === 'et' ? 'UI/UX rakendused' : 'UI/UX приложения'}</div>
+                  <div className="text-sm text-gray-400">{language === 'et' ? 'Kasutajaliideste disain' : 'Дизайн пользовательских интерфейсов'}</div>
+                </div>
+              </div>
+
+              {/* Photo & Video */}
+              <div className="flex items-start gap-3 bg-black/20 rounded-lg p-4 group hover:bg-black/30 transition-all">
+                <div className="service-icon service-icon--photo">
+                  <CameraFilledIcon size="large" />
+                </div>
+                <div>
+                  <div className="font-semibold text-violet-300">{language === 'et' ? 'Foto & video' : 'Фото и видео'}</div>
+                  <div className="text-sm text-gray-400">{language === 'et' ? 'Professionaalne sisu loomine' : 'Профессиональный контент'}</div>
+                </div>
+              </div>
+
+              {/* Branding */}
+              <div className="flex items-start gap-3 bg-black/20 rounded-lg p-4 group hover:bg-black/30 transition-all">
+                <div className="service-icon service-icon--brand">
+                  <PaletteFilledIcon size="large" />
+                </div>
+                <div>
+                  <div className="font-semibold text-violet-300">{language === 'et' ? 'Bränding' : 'Брендинг'}</div>
+                  <div className="text-sm text-gray-400">{language === 'et' ? 'Logo, stiiliraamat, identiteet' : 'Логотип, стайлгайд, айдентика'}</div>
+                </div>
+              </div>
+
+              {/* Drone */}
+              <div className="flex items-start gap-3 bg-black/20 rounded-lg p-4 group hover:bg-black/30 transition-all">
+                <div className="service-icon service-icon--drone">
+                  <DroneFilledIcon size="large" />
+                </div>
+                <div>
+                  <div className="font-semibold text-violet-300">{language === 'et' ? 'Droonivõtted' : 'Дрон-съёмка'}</div>
+                  <div className="text-sm text-gray-400">{language === 'et' ? 'Aerofotograafia ja video' : 'Аэрофотосъёмка и видео'}</div>
+                </div>
+              </div>
+
+              {/* Creative Sessions */}
+              <div className="flex items-start gap-3 bg-black/20 rounded-lg p-4 group hover:bg-black/30 transition-all">
+                <div className="service-icon service-icon--creative">
+                  <LightbulbFilledIcon size="large" />
+                </div>
+                <div>
+                  <div className="font-semibold text-violet-300">{language === 'et' ? 'Loovseansid' : 'Креативные сессии'}</div>
+                  <div className="text-sm text-gray-400">{language === 'et' ? 'Ajurünnakud ja ideede genereerimine' : 'Мозговые штурмы и генерация идей'}</div>
+                </div>
+              </div>
             </div>
           )}
         </div>
