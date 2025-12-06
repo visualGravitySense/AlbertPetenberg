@@ -11,7 +11,7 @@ import {
   PiHeartFill
 } from "react-icons/pi";
 import "./platform-footer.css";
-import { Language, getTranslation } from "../locales";
+import { Language } from "../locales";
 
 interface PlatformFooterProps {
   language?: Language;
