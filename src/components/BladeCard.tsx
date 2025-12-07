@@ -277,6 +277,8 @@ interface CardActionProps {
   fullWidth?: boolean;
   icon?: React.ReactNode;
   iconPosition?: 'left' | 'right';
+  disabled?: boolean;
+  loading?: boolean;
 }
 
 export const CardAction: React.FC<CardActionProps> = ({
@@ -286,17 +288,30 @@ export const CardAction: React.FC<CardActionProps> = ({
   fullWidth = false,
   icon,
   iconPosition = 'right',
+  disabled = false,
+  loading = false,
 }) => (
   <button
-    className={`blade-card__action blade-card__action--${variant} ${fullWidth ? 'blade-card__action--full' : ''}`}
+    className={`blade-card__action blade-card__action--${variant} ${fullWidth ? 'blade-card__action--full' : ''} ${disabled ? 'blade-card__action--disabled' : ''} ${loading ? 'blade-card__action--loading' : ''}`}
     onClick={(e) => {
       e.stopPropagation();
-      onClick?.();
+      if (!disabled && !loading) {
+        onClick?.();
+      }
     }}
+    disabled={disabled || loading}
+    aria-disabled={disabled || loading}
   >
-    {icon && iconPosition === 'left' && <span className="blade-card__action-icon">{icon}</span>}
+    {loading && (
+      <span className="blade-card__action-spinner">
+        <svg className="blade-card__spinner" viewBox="0 0 24 24">
+          <circle className="blade-card__spinner-circle" cx="12" cy="12" r="10" fill="none" strokeWidth="2" />
+        </svg>
+      </span>
+    )}
+    {!loading && icon && iconPosition === 'left' && <span className="blade-card__action-icon">{icon}</span>}
     <span>{children}</span>
-    {icon && iconPosition === 'right' && <span className="blade-card__action-icon">{icon}</span>}
+    {!loading && icon && iconPosition === 'right' && <span className="blade-card__action-icon">{icon}</span>}
   </button>
 );
 

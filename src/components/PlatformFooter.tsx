@@ -38,13 +38,13 @@ export const PlatformFooter: React.FC<PlatformFooterProps> = ({ language = 'et' 
             </p>
             {/* Social Links */}
             <div className="platform-footer-social">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="platform-footer-social-link">
+              <a href="/" target="_blank" rel="noopener noreferrer" className="platform-footer-social-link">
                 <PiGithubLogoFill />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="platform-footer-social-link">
+              <a href="/" target="_blank" rel="noopener noreferrer" className="platform-footer-social-link">
                 <PiLinkedinLogoFill />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="platform-footer-social-link">
+              <a href="/" target="_blank" rel="noopener noreferrer" className="platform-footer-social-link">
                 <PiTwitterLogoFill />
               </a>
             </div>
@@ -57,9 +57,9 @@ export const PlatformFooter: React.FC<PlatformFooterProps> = ({ language = 'et' 
             </h4>
             <ul className="platform-footer-links-list">
               <li><Link to="/">{language === 'et' ? 'Kõik projektid' : 'Все проекты'}</Link></li>
-              <li><Link to="/about">{language === 'et' ? 'Meist' : 'О нас'}</Link></li>
-              <li><Link to="/how-it-works">{language === 'et' ? 'Kuidas see töötab' : 'Как это работает'}</Link></li>
-              <li><Link to="/start-project">{language === 'et' ? 'Alusta projekti' : 'Начать проект'}</Link></li>
+              <li><Link to="/">{language === 'et' ? 'Meist' : 'О нас'}</Link></li>
+              <li><Link to="/">{language === 'et' ? 'Kuidas see töötab' : 'Как это работает'}</Link></li>
+              <li><Link to="mailto:helikeel@gmail.com">{language === 'et' ? 'Alusta projekti' : 'Начать проект'}</Link></li>
             </ul>
           </div>
 
@@ -69,10 +69,10 @@ export const PlatformFooter: React.FC<PlatformFooterProps> = ({ language = 'et' 
               {language === 'et' ? 'Tugi' : 'Поддержка'}
             </h4>
             <ul className="platform-footer-links-list">
-              <li><Link to="/faq">{language === 'et' ? 'KKK' : 'FAQ'}</Link></li>
-              <li><Link to="/contact">{language === 'et' ? 'Kontakt' : 'Контакты'}</Link></li>
-              <li><Link to="/terms">{language === 'et' ? 'Kasutustingimused' : 'Условия использования'}</Link></li>
-              <li><Link to="/privacy">{language === 'et' ? 'Privaatsus' : 'Конфиденциальность'}</Link></li>
+              <li><Link to="/">{language === 'et' ? 'KKK' : 'FAQ'}</Link></li>
+              <li><Link to="mailto:helikeel@gmail.com">{language === 'et' ? 'Kontakt' : 'Контакты'}</Link></li>
+              <li><Link to="/">{language === 'et' ? 'Kasutustingimused' : 'Условия использования'}</Link></li>
+              <li><Link to="/">{language === 'et' ? 'Privaatsus' : 'Конфиденциальность'}</Link></li>
             </ul>
           </div>
 
@@ -81,9 +81,9 @@ export const PlatformFooter: React.FC<PlatformFooterProps> = ({ language = 'et' 
             <h4 className="platform-footer-links-title">
               {language === 'et' ? 'Kontakt' : 'Связаться'}
             </h4>
-            <a href="mailto:info@crowdfunding.ee" className="platform-footer-email">
+            <a href="mailto:helikeel@gmail.com" className="platform-footer-email">
               <PiEnvelopeFill />
-              <span>info@crowdfunding.ee</span>
+              <span>helikeel@gmail.com</span>
             </a>
             {/* Trust Badges */}
             <div className="platform-footer-trust">
