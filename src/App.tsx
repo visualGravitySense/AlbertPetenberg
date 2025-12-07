@@ -8,7 +8,7 @@ import { ScrollToTop } from './components/ScrollToTop'
 
 function App() {
   return (
-    <Router basename="/AlbertPetenberg">
+    <Router basename="">
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<CrowdfundingPlatform />} />
