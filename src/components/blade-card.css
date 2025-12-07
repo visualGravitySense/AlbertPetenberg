@@ -449,6 +449,71 @@
   height: 18px;
 }
 
+/* ===== Card Action States ===== */
+.blade-card__action--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.blade-card__action--disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.blade-card__action--loading {
+  cursor: wait;
+  pointer-events: none;
+}
+
+.blade-card__action--loading:hover {
+  transform: none;
+}
+
+.blade-card__action-spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+}
+
+.blade-card__spinner {
+  width: 18px;
+  height: 18px;
+  animation: blade-spin 1s linear infinite;
+}
+
+.blade-card__spinner-circle {
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-dasharray: 31.416;
+  stroke-dashoffset: 31.416;
+  animation: blade-spinner-dash 1.5s ease-in-out infinite;
+}
+
+@keyframes blade-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes blade-spinner-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124;
+  }
+}
+
 /* ===== Ripple Effect ===== */
 .blade-card--interactive::after {
   content: '';

@@ -98,10 +98,10 @@ export default function CrowdfundingPlatform() {
       description: language === 'et' 
         ? 'Albert Petenbergi uue laulu professionaalne salvestus ja muusikavideo. Atmosfääriline kompositsioon kodust ja igavesest armastusest.'
         : 'Профессиональная запись новой песни Альберта Петенберга и создание музыкального клипа. Атмосферная композиция о доме и вечной любви.',
-      collected: 0,
-      goal: 500,
-      daysLeft: 23,
-      backers: 0,
+      collected: 50,
+      goal: 1000,
+      daysLeft: 50,
+      backers: 2,
       gradient: 'from-pink-500 to-rose-600',
       category: language === 'et' ? 'Muusika' : 'Музыка'
     },
@@ -116,7 +116,7 @@ export default function CrowdfundingPlatform() {
         : 'Первый в мире портативный генератор цветовых палитр профессионального уровня. IoT устройство для дизайнеров и художников.',
       collected: 0,
       goal: 150000,
-      daysLeft: 28,
+      daysLeft: 74,
       backers: 0,
       gradient: 'from-orange-500 to-amber-600',
       category: language === 'et' ? 'IoT Disain' : 'IoT Дизайн'
@@ -128,11 +128,11 @@ export default function CrowdfundingPlatform() {
       image: creativeBusImage,
       title: 'Creative Bus',
       description: language === 'et'
-        ? 'Mobiilne disainistuudio premium-klassis. Ümberehitatud buss veebilehtede, foto- ja videosisu loomiseks inspireerivates kohtades.'
+        ? 'Mobiilne disainistuudio premium-klassis. Ümberehitatud buss veebiaplikatsioonide, foto- ja videosisu loomiseks inspireerivates kohtades.'
         : 'Мобильная дизайн-студия премиум-класса. Переоборудованный автобус для создания сайтов и контента на вдохновляющих локациях.',
       collected: 0,
       goal: 65000,
-      daysLeft: 35,
+      daysLeft: 105 ,
       backers: 0,
       gradient: 'from-violet-500 to-purple-600',
       category: language === 'et' ? 'Disain' : 'Дизайн'
@@ -177,8 +177,7 @@ export default function CrowdfundingPlatform() {
       <PlatformHeader 
         links={[
           { label: t('main'), href: '/' }, 
-          { label: t('about'), href: '/about' }, 
-          { label: t('supportUs'), href: '/contact' }
+          
         ]} 
         title="AMOE"
         currentLanguage={language}
@@ -311,11 +310,16 @@ export default function CrowdfundingPlatform() {
                   <span>{language === 'et' ? 'Avasta projekte' : 'Открыть проекты'}</span>
                   <ArrowRightFilledIcon size="medium" />
                 </button>
-                <button className="hero-split__btn hero-split__btn--secondary">
+                <button 
+                  className="hero-split__btn hero-split__btn--secondary"
+                  onClick={() => window.location.href = 'mailto:helikeel@gmail.com'}
+                >
                   <RocketFilledIcon size="medium" />
                   <span>{language === 'et' ? 'Alusta projekti' : 'Начать проект'}</span>
                 </button>
               </div>
+
+              
 
               {/* Social Links */}
               <div className="hero-split__social">
@@ -323,11 +327,11 @@ export default function CrowdfundingPlatform() {
                   {language === 'et' ? 'Jälgi meid:' : 'Следите за нами:'}
                 </span>
                 <div className="icon-button-group">
-                  <SocialIconButton platform="twitter" href="https://twitter.com/crowdfunding" size="medium" />
-                  <SocialIconButton platform="telegram" href="https://t.me/crowdfunding" size="medium" />
-                  <SocialIconButton platform="discord" href="https://discord.gg/crowdfunding" size="medium" />
-                  <SocialIconButton platform="instagram" href="https://instagram.com/crowdfunding" size="medium" />
-                  <SocialIconButton platform="github" href="https://github.com/crowdfunding" size="medium" />
+                  <SocialIconButton platform="twitter" href="/" size="medium" />
+                  <SocialIconButton platform="telegram" href="/" size="medium" />
+                  <SocialIconButton platform="discord" href="/" size="medium" />
+                  <SocialIconButton platform="instagram" href="/" size="medium" />
+                  <SocialIconButton platform="github" href="/" size="medium" />
                 </div>
               </div>
             </div>
@@ -353,7 +357,7 @@ export default function CrowdfundingPlatform() {
         <div className="blade-card-grid blade-card-grid--3 max-w-7xl mx-auto">
           {projects.map((project) => {
             const progressPercent = (project.collected / project.goal) * 100;
-            const isActive = project.slug === 'tiiva-all' || project.slug === 'course-reviews' || project.slug === 'color-palette-pro' || project.slug === 'creative-bus';
+            const isActive = project.slug === 'tiiva-all' || project.slug === 'color-palette-pro' || project.slug === 'creative-bus';
             
             return (
               <BladeCard
@@ -460,6 +464,8 @@ export default function CrowdfundingPlatform() {
                       variant="primary"
                       icon={<ArrowRightFilledIcon size="small" />}
                       onClick={() => navigate(`/project/${project.slug}`)}
+                      disabled={false} // Можно установить true для отключения кнопки
+                      loading={false} // Можно установить true для показа состояния загрузки
                     >
                       {language === 'et' ? 'Toeta projekti' : 'Поддержать проект'}
                     </CardAction>
@@ -467,6 +473,7 @@ export default function CrowdfundingPlatform() {
                     <CardAction 
                       fullWidth 
                       variant="ghost"
+                      disabled={true} // Отключаем кнопку для неактивных проектов
                     >
                       {language === 'et' ? 'Tulekul' : 'Скоро'}
                     </CardAction>
@@ -594,12 +601,17 @@ export default function CrowdfundingPlatform() {
               ? 'Kui teil on projekt, mida soovite ellu viia, võtke meiega ühendust. Aitame teil unistusi teoks teha!'
               : 'Если у вас есть проект, который вы хотите воплотить в жизнь, свяжитесь с нами. Поможем осуществить мечту!'}
           </p>
-          <button className="platform-btn-primary text-lg px-10 py-4">
+          <button className="platform-btn-primary text-lg px-10 py-4"
+          onClick={() => window.location.href = 'mailto:helikeel@gmail.com'}
+          >
             <span className="flex items-center gap-2">
               <RocketFilledIcon size="medium" />
               {language === 'et' ? 'Alusta oma projekti' : 'Начать свой проект'}
             </span>
           </button>
+
+          
+                
         </div>
       </div>
 
