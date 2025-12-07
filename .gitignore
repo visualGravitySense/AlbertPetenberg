@@ -34,6 +34,10 @@ lerna-debug.log*
 *.sln
 *.sw?
 
+# Cursor IDE temporary files
+**/c__Users_Admin_AppData_Roaming_Cursor_User_workspaceStorage_*
+assets/c__Users_Admin_AppData_Roaming_Cursor_User_workspaceStorage_*
+
 # Vite
 .vite
 
