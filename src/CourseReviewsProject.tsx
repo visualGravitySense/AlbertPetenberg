@@ -170,7 +170,7 @@ export default function CourseReviewsProject() {
       {/* Header */}
       <div className="pt-0">
         <Header 
-          links={[{ label: t('allProjects'), href: '/' }, { label: t('about'), href: '/about' }, { label: t('supportUs'), href: '/contact' }]} 
+          links={[{ label: t('allProjects'), href: '/' }]} 
           title={projectTitle}
           githubUrl="https://github.com/visualGravitySense/CourseReviews"
           daysLeft={timeLeft.days}

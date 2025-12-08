@@ -62,14 +62,14 @@ export default function ColorPaletteProProject() {
     return () => clearInterval(interval);
   }, []);
 
-  // Payment links
-  const paymentLinks: Record<number, string> = {
-    99: 'https://buy.stripe.com/test_colorpalette_99',
-    149: 'https://buy.stripe.com/test_colorpalette_149',
-    279: 'https://buy.stripe.com/test_colorpalette_279',
-    499: 'https://buy.stripe.com/test_colorpalette_499',
-    1999: 'https://buy.stripe.com/test_colorpalette_1999'
-  };
+  // Payment links - временно отключены
+  // const paymentLinks: Record<number, string> = {
+  //   99: 'https://buy.stripe.com/test_colorpalette_99',
+  //   149: 'https://buy.stripe.com/test_colorpalette_149',
+  //   279: 'https://buy.stripe.com/test_colorpalette_279',
+  //   499: 'https://buy.stripe.com/test_colorpalette_499',
+  //   1999: 'https://buy.stripe.com/test_colorpalette_1999'
+  // };
 
   // Project-specific rewards based on Kickstarter tiers
   const rewards = [
