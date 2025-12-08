@@ -534,10 +534,10 @@
 }
 
 /* Quick Support Button */
-.creative-bus-theme [class*="bg-violet-600"],
+/* .creative-bus-theme [class*="bg-violet-600"],
 .creative-bus-theme [class*="bg-violet-700"] {
   background-color: var(--project-primary) !important;
-}
+} */
 
 .creative-bus-theme [class*="hover:bg-violet-700"]:hover {
   background-color: var(--project-secondary) !important;

@@ -5,9 +5,9 @@ export const translations = {
     // Header
     main: 'Главная',
     allProjects: 'Все проекты',
-    about: 'О проекте',
-    supportUs: 'Поддержать',
-    github: 'GitHub',
+    // about: 'О проекте',
+    // supportUs: 'Поддержать',
+    // github: 'GitHub',
     
     // Hero Section
     crowdfunding: 'Краудфандинг',
@@ -182,9 +182,9 @@ export const translations = {
     // Header
     main: 'Pealeht',
     allProjects: 'Kõik projektid',
-    about: 'Projektist',
-    supportUs: 'Toeta',
-    github: 'GitHub',
+    // about: 'Projektist',
+    // supportUs: 'Toeta',
+    // github: 'GitHub',
     
     // Hero Section
     crowdfunding: 'Rahvahalgatus',
@@ -206,7 +206,7 @@ export const translations = {
     
     // About Song Section
     aboutSong: 'Laulust',
-    songTitle: 'Uue kontseptsiooni ja heli näide',
+    songTitle: 'Uue kontseptsiooni ja heli näide.',
     songDescription: '"Särab su valgus minule ja tuul viib pilved eemale" — elu jõgi, lähedaste kaitse, valgus, mis hajutab pilved.',
     songQuote: 'Kodu pole koht, vaid inimesed.',
     
