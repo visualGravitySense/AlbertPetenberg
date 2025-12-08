@@ -67,14 +67,14 @@ export default function CreativeBusProject() {
     return () => clearInterval(interval);
   }, []);
 
-  // Payment links
-  const paymentLinks: Record<number, string> = {
-    25: 'https://buy.stripe.com/test_creativebus_25',
-    75: 'https://buy.stripe.com/test_creativebus_75',
-    150: 'https://buy.stripe.com/test_creativebus_150',
-    500: 'https://buy.stripe.com/test_creativebus_500',
-    1500: 'https://buy.stripe.com/test_creativebus_1500'
-  };
+  // Payment links - временно отключены
+  // const paymentLinks: Record<number, string> = {
+  //   25: 'https://buy.stripe.com/test_creativebus_25',
+  //   75: 'https://buy.stripe.com/test_creativebus_75',
+  //   150: 'https://buy.stripe.com/test_creativebus_150',
+  //   500: 'https://buy.stripe.com/test_creativebus_500',
+  //   1500: 'https://buy.stripe.com/test_creativebus_1500'
+  // };
 
   // Project-specific rewards
   const rewards = [
