@@ -114,9 +114,9 @@ export const translations = {
     composer: 'Автор музыки и аранжировки',
     composerDesc: 'Альберт Петенберг — 12 лет опыта',
     lyricist: 'Автор текста',
-    lyricistDesc: 'Ребекка Контус — опубликованный поэт',
+    lyricistDesc: 'Ребекка Контус — поэт',
     videoDirector: 'Режиссер клипа',
-    videoDirectorDesc: 'AMOE Studio — 50+ музыкальных видео',
+    videoDirectorDesc: 'AMOE Studio — музыкальные видео',
     
     // Rewards card
     from: 'от',
@@ -192,7 +192,7 @@ export const translations = {
     daysLeft: 'päeva jäänud',
     daysFull: 'päeva',
     title: 'Tiiva All — Albert Petenbergi uus laul',
-    description: 'Salvestus Funkifactoris ja Room667s + miksimine Roland Anton Randilt + videoklipp AMOE Studiolt. Osalevad Otta Manninen (kitarr) ja parimad Eesti muusikud.',
+    description: 'Salvestus + videoklipp AMOE Studiolt. Osalevad parimad Eesti muusikud.',
     joinText: 'Liitu',
     joinTextFirst: 'Ole esimene selle väljaande sponsor',
     people: 'inimesega',
@@ -206,9 +206,9 @@ export const translations = {
     
     // About Song Section
     aboutSong: 'Laulust',
-    songTitle: 'Tiiva All — Tiiva all',
-    songDescription: '"Särab su valgus minule ja tuul viib pilved eemale" — elu jõgi, lähedaste kaitse, valgus, mis hajutab pilved. Lugu eesti keeles inglise subtiitritega.',
-    songQuote: 'Kompositsioon sellest, et kodu pole koht, vaid inimesed',
+    songTitle: 'Uue kontseptsiooni ja heli näide',
+    songDescription: '"Särab su valgus minule ja tuul viib pilved eemale" — elu jõgi, lähedaste kaitse, valgus, mis hajutab pilved.',
+    songQuote: 'Kodu pole koht, vaid inimesed.',
     
     // Rewards Section
     rewardsTitle: 'Mida saate',

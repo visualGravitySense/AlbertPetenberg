@@ -6,6 +6,7 @@ import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Button } from "./components/SciFiButton2";
 import { Language, getTranslation } from "./locales";
+import heroImage from './render-1.jpg';
               
               
 
@@ -13,12 +14,12 @@ export default function MusicCrowdfundingLanding() {
   const [language, setLanguage] = useState<Language>('et');
   const t = (key: keyof typeof import('./locales').translations.ru) => getTranslation(language, key);
   
-  const [progress] = useState(0);
-  const goal = 500;
+  const [progress] = useState(50);
+  const goal = 1000;
   const progressPercent = (progress / goal) * 100;
-  const [timeLeft, setTimeLeft] = useState({ days: 23, hours: 14, minutes: 32 });
-  const totalBackers = 0;
-  const recentBackers: string[] = [];
+  const [timeLeft, setTimeLeft] = useState({ days: 50, hours: 14, minutes: 32 });
+  const totalBackers = 2;
+  const recentBackers: string[] = ['Sponsor 1', 'Sponsor 2'];
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [lastSupportedAmount, setLastSupportedAmount] = useState<number | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -84,7 +85,7 @@ export default function MusicCrowdfundingLanding() {
       title: t('reward2Title'),
       description: t('reward2Desc'),
       icon: Headphones,
-      backers: 0
+      backers: 2
     },
     {
       amount: 50,
@@ -235,9 +236,9 @@ export default function MusicCrowdfundingLanding() {
       {/* Header - Navigation */}
       <div className="pt-0">
         <Header 
-          links={[{ label: t('allProjects'), href: '/' }, { label: t('about'), href: '/about' }, { label: t('supportUs'), href: '/contact' }]} 
+          links={[{ label: t('allProjects'), href: '/' },  ]} 
           title="Tiiva All"
-          githubUrl="https://github.com/visualGravitySense/AlbertPetenberg"
+          // githubUrl="https://github.com/visualGravitySense/AlbertPetenberg"
           daysLeft={timeLeft.days}
           totalBackers={totalBackers}
           progressPercent={progressPercent}
@@ -335,7 +336,7 @@ export default function MusicCrowdfundingLanding() {
             </div>
           </div>
           <button 
-            onClick={() => handleSupport()}
+            onClick={() => window.open('https://buy.stripe.com/test_5kQ8wPc3h00Jbfb5eJaR201', '_blank')}
             className="sci-cta-button-main"
           >
             <svg className="sci-cta-button-frame" viewBox="0 0 200 50" preserveAspectRatio="none">
@@ -507,15 +508,12 @@ export default function MusicCrowdfundingLanding() {
             </div>
           </div>
 
-          {/* Right Side: Video Animation */}
+          {/* Right Side: Hero Image */}
           <div className="relative">
             <div className="relative w-full h-full min-h-[300px] md:min-h-[500px] rounded-xl overflow-hidden">
-              <video 
-                src={new URL('./make_animation_1.mp4', import.meta.url).href}
-                autoPlay
-                loop
-                muted
-                playsInline
+              <img 
+                src={heroImage}
+                alt="Hero"
                 className="w-full h-full object-cover object-center"
               />
               {/* Optional overlay for better visual integration */}
@@ -563,17 +561,15 @@ export default function MusicCrowdfundingLanding() {
                 />
               </svg>
               <div className="relative z-10 aspect-video bg-gray-900 rounded overflow-hidden">
-                <iframe
-                  width="100%"
-                  height="100%"
-                  src="https://www.youtube.com/embed/KghgZkii32c?si=PuzqwKVYCYbmmfAB"
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
+                <iframe 
+                  className="w-full h-full absolute inset-0"
+                  src="https://www.youtube.com/embed/Ck70iFGJklg?si=D_-Ro6Ie09U6lXnx" 
+                  title="YouTube video player" 
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  referrerPolicy="strict-origin-when-cross-origin" 
                   allowFullScreen
-                  className="w-full h-full"
-                ></iframe>
+                />
                 {/* Overlay glow effect on hover */}
                 <div className="absolute inset-0 bg-cyan-500/0 hover:bg-cyan-500/5 transition-all duration-300 pointer-events-none"></div>
               </div>
@@ -616,13 +612,13 @@ export default function MusicCrowdfundingLanding() {
                 icon: Music,
                 color: "cyan"
               },
-              { 
-                name: "Rebecca Kontus", 
-                role: t('lyricist'), 
-                desc: t('lyricistDesc'),
-                icon: BookOpen,
-                color: "pink"
-              },
+              // { 
+              //   name: "Rebecca Kontus", 
+              //   role: t('lyricist'), 
+              //   desc: t('lyricistDesc'),
+              //   icon: BookOpen,
+              //   color: "pink"
+              // },
               // { 
               //   name: "Роланд Антон Ранд", 
               //   role: "Аранжировщик и звукорежиссер", 
