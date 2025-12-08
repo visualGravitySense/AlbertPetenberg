@@ -29,7 +29,7 @@ export default function ColorPaletteProProject() {
   const [progress] = useState(0);
   const goal = 150000;
   const progressPercent = (progress / goal) * 100;
-  const [timeLeft, setTimeLeft] = useState({ days: 28, hours: 14, minutes: 22 });
+  const [timeLeft, setTimeLeft] = useState({ days: 74, hours: 14, minutes: 22 });
   const totalBackers = 0;
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [lastSupportedAmount, setLastSupportedAmount] = useState<number | null>(null);
@@ -165,9 +165,10 @@ export default function ColorPaletteProProject() {
     setShowConfirmation(true);
     setErrors([]);
     
-    if (amount && paymentLinks[amount]) {
-      setTimeout(() => window.open(paymentLinks[amount], '_blank'), 1000);
-    }
+    // Stripe переходы временно отключены
+    // if (amount && paymentLinks[amount]) {
+    //   setTimeout(() => window.open(paymentLinks[amount], '_blank'), 1000);
+    // }
     
     setTimeout(() => { setShowConfirmation(false); setSelectedReward(null); }, 5000);
     setTimeout(() => { setShowUndo(false); setLastAction(null); }, 10000);
@@ -769,7 +770,7 @@ export default function ColorPaletteProProject() {
       </div>
 
       {/* Press Section */}
-      <div className="max-w-5xl mx-auto mb-16 px-4 relative z-10">
+      {/* <div className="max-w-5xl mx-auto mb-16 px-4 relative z-10">
         <div className="cpp-press-container cpp-content-above">
           <h3 className="cpp-press-title">
             {language === 'et' ? 'Mida ajakirjandus ütleb' : 'Что пишет пресса'}
@@ -789,7 +790,7 @@ export default function ColorPaletteProProject() {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Footer */}
       <Footer totalBackers={totalBackers} language={language} />

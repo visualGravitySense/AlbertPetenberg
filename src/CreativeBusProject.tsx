@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Star, Users, Clock, CheckCircle, TrendingUp, Zap, ArrowRight, ShoppingCart, Bus, HelpCircle, Trophy, Camera, Eye, EyeOff, X, RotateCcw, AlertTriangle, CheckCircle2, Palette, Monitor, Smartphone, MapPin, Wifi, Video, Laptop, Sun, Sparkles, Shield } from 'lucide-react';
 import { CreativeBusBadge } from "./components/CreativeBusBadge";
 import { QuickSupportButton } from "./components/QuickSupportButton";
-import { Header } from "./components/Header";
+import { CreativeBusHeader } from "./components/CreativeBusHeader";
 import { Footer } from "./components/Footer";
 import { CreativeBusRewardButton } from "./components/CreativeBusRewardButton";
 import { Language, getTranslation } from "./locales";
@@ -34,7 +34,7 @@ export default function CreativeBusProject() {
   const [progress] = useState(0);
   const goal = 65000;
   const progressPercent = (progress / goal) * 100;
-  const [timeLeft, setTimeLeft] = useState({ days: 35, hours: 8, minutes: 15 });
+  const [timeLeft, setTimeLeft] = useState({ days: 105, hours: 8, minutes: 15 });
   const totalBackers = 0;
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [lastSupportedAmount, setLastSupportedAmount] = useState<number | null>(null);
@@ -168,9 +168,10 @@ export default function CreativeBusProject() {
     setShowConfirmation(true);
     setErrors([]);
     
-    if (amount && paymentLinks[amount]) {
-      setTimeout(() => window.open(paymentLinks[amount], '_blank'), 1000);
-    }
+    // Stripe переходы временно отключены
+    // if (amount && paymentLinks[amount]) {
+    //   setTimeout(() => window.open(paymentLinks[amount], '_blank'), 1000);
+    // }
     
     setTimeout(() => { setShowConfirmation(false); setSelectedReward(null); }, 5000);
     setTimeout(() => { setShowUndo(false); setLastAction(null); }, 10000);
@@ -222,10 +223,8 @@ export default function CreativeBusProject() {
     <div className="min-h-screen text-white bg-grid-pattern creative-bus-theme">
       {/* Header */}
       <div className="pt-0">
-        <Header 
-          links={[{ label: t('allProjects'), href: '/' }, { label: t('about'), href: '/about' }, { label: t('supportUs'), href: '/contact' }]} 
-          title={projectTitle}
-          githubUrl="https://github.com/creativebus/studio"
+        <CreativeBusHeader 
+          links={[{ label: t('allProjects'), href: '/' }]} 
           daysLeft={timeLeft.days}
           totalBackers={totalBackers}
           progressPercent={progressPercent}
@@ -781,7 +780,7 @@ export default function CreativeBusProject() {
       </div>
 
       {/* Footer */}
-      <Footer totalBackers={totalBackers} language={language} />
+      <Footer totalBackers={totalBackers} language={language} hideCredits={true} projectName="Creative Bus" />
     </div>
   );
 }

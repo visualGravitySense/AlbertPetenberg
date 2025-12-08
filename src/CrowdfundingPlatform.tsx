@@ -293,7 +293,10 @@ export default function CrowdfundingPlatform() {
                 <div className="hero-split__stat">
                   <div className="hero-split__stat-value">
                     <WalletFilledIcon size="medium" className="blade-icon--warning" />
-                    <span>€{(projects.reduce((acc, p) => acc + p.collected, 0) / 1000).toFixed(0)}K</span>
+                    <span>€{(() => {
+                      const total = projects.reduce((acc, p) => acc + p.collected, 0);
+                      return total >= 1000 ? `${(total / 1000).toFixed(0)}K` : total.toLocaleString();
+                    })()}</span>
                   </div>
                   <div className="hero-split__stat-label">
                     {language === 'et' ? 'Kogutud' : 'Собрано'}

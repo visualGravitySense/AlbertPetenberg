@@ -6,9 +6,11 @@ import { Language, getTranslation } from "../locales";
 interface FooterProps {
   totalBackers?: number;
   language?: Language;
+  hideCredits?: boolean;
+  projectName?: string;
 }
 
-export const Footer: React.FC<FooterProps> = ({ totalBackers = 28, language = 'et' }) => {
+export const Footer: React.FC<FooterProps> = ({ totalBackers = 28, language = 'et', hideCredits = false, projectName }) => {
   const t = (key: keyof typeof import('../locales').translations.ru) => getTranslation(language, key);
   return (
     <footer className="sci-footer">
@@ -41,18 +43,22 @@ export const Footer: React.FC<FooterProps> = ({ totalBackers = 28, language = 'e
       
 
       {/* Credits */}
-      <div className="sf-credits">
-        <span>{t('music')} Albert Petenberg</span>
-        <span>•</span>
-        <span>{t('lyrics')} Rebecca Kontus</span>
-        <span>•</span>
-        <span>{t('artDirector')} Dmitri Gornakov</span>
-      </div>
+      {!hideCredits && (
+        <>
+          <div className="sf-credits">
+            <span>{t('music')} Albert Petenberg</span>
+            <span>•</span>
+            <span>{t('lyrics')} Rebecca Kontus</span>
+            <span>•</span>
+            <span>{t('artDirector')} Dmitri Gornakov</span>
+          </div>
 
-      <div className="sf-line"></div>
+          <div className="sf-line"></div>
+        </>
+      )}
 
       {/* Copyright */}
-      <div className="sf-copyright">© 2025 Tiiva All</div>
+      <div className="sf-copyright">© 2025 {projectName || 'Tiiva All'}</div>
     </footer>
   );
 };
