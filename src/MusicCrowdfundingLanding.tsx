@@ -65,11 +65,11 @@ export default function MusicCrowdfundingLanding() {
 
   // Payment links mapping
   const paymentLinks: Record<number, string> = {
-    8: 'https://buy.stripe.com/test_cNiaEXd7l3cV5UR6iNaR200',
-    25: 'https://buy.stripe.com/test_5kQ8wPc3h00Jbfb5eJaR201',
-    50: 'https://buy.stripe.com/test_fZu5kDgjx5l32IF6iNaR202',
-    100: 'https://buy.stripe.com/test_dRmbJ15ETbJr9738qVaR203',
-    150: 'https://buy.stripe.com/test_28EfZh3wLcNv82Z9uZaR204'
+    8: 'https://buy.stripe.com/eVq6oH16C4AzdY22hx8g000',
+    25: 'https://buy.stripe.com/28E4gz6qWffd3jobS78g001',
+    50: 'https://buy.stripe.com/eVqfZh6qW0kjf26g8n8g002',
+    100: 'https://buy.stripe.com/bJe9ATcPkd759HM6xN8g003',
+    150: 'https://buy.stripe.com/14A7sL9D88QP7zE2hx8g004'
   };
 
   const rewards = [
@@ -336,7 +336,7 @@ export default function MusicCrowdfundingLanding() {
             </div>
           </div>
           <button 
-            onClick={() => window.open('https://buy.stripe.com/test_5kQ8wPc3h00Jbfb5eJaR201', '_blank')}
+            onClick={() => window.open('https://buy.stripe.com/28E4gz6qWffd3jobS78g001', '_blank')}
             className="sci-cta-button-main"
           >
             <svg className="sci-cta-button-frame" viewBox="0 0 200 50" preserveAspectRatio="none">
