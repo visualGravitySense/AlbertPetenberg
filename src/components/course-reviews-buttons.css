@@ -1,0 +1,158 @@
+/* Course Reviews Button Styles - Based on design mockup */
+
+/* Import this CSS in CourseReviewsProject.tsx */
+
+/* Primary Button - Градиент с фиолетовым */
+.cr-btn-primary {
+  padding: 12px 28px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 15px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.cr-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.cr-btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary Button - Белый фон с фиолетовой рамкой */
+.cr-btn-secondary {
+  padding: 12px 28px;
+  border-radius: 10px;
+  border: 2px solid #667eea;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 15px;
+  background: white;
+  color: #667eea;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.cr-btn-secondary:hover {
+  background: #667eea;
+  color: white;
+}
+
+.cr-btn-secondary:active {
+  transform: scale(0.98);
+}
+
+/* Badge - Verified (Проверенный отзыв) */
+.cr-badge-verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #d1fae5;
+  color: #065f46;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  white-space: nowrap;
+}
+
+.cr-badge-verified-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 3px;
+  background: #065f46;
+  border-radius: 50%;
+  color: white;
+  flex-shrink: 0;
+}
+
+.cr-badge-verified-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Badge - Recommended (Рекомендуем) */
+.cr-badge-recommended {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #e0e7ff;
+  color: #3730a3;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  white-space: nowrap;
+}
+
+.cr-badge-recommended-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 3px;
+  background: #3730a3;
+  border-radius: 50%;
+  color: white;
+  flex-shrink: 0;
+}
+
+.cr-badge-recommended-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Dark theme variants */
+.course-reviews-theme .cr-btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.course-reviews-theme .cr-btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid #667eea;
+  color: #667eea;
+}
+
+.course-reviews-theme .cr-btn-secondary:hover {
+  background: #667eea;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cr-btn-primary,
+  .cr-btn-secondary {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+  
+  .cr-badge-verified,
+  .cr-badge-recommended {
+    padding: 5px 12px;
+    font-size: 12px;
+  }
+}
+

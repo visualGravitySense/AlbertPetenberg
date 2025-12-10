@@ -40,6 +40,7 @@ import { Language, getTranslation, translations } from "./locales";
 import tiivallImage from './render-1.jpg';
 import colorPaletteImage from '../plan/gemini-image-2_Fine_art_photography_of_ColorPalette_Pro_device_as_an_artist_s_essential_tool_pl-0.jpg';
 import creativeBusImage from './cb-render-1.png';
+import courseReviewsImage from './classes-reviews.jpg';
 
 // Platform-specific styles (different from Albert sci-fi theme)
 import './crowdfunding-platform.css';
@@ -141,14 +142,15 @@ export default function CrowdfundingPlatform() {
       id: '6',
       slug: 'course-reviews',
       iconType: 'star',
-      title: 'TULEKUL',
+      image: courseReviewsImage,
+      title: language === 'et' ? 'Kursuste Arvustused' : 'Отзывы про Курсы',
       description: language === 'et'
         ? 'Aus platvorm kursuste ja haridusprogrammide arvustustega tõelistelt üliõpilastelt autentsuse kontrollimisega.'
         : 'Честная платформа с отзывами о курсах и образовательных программах от реальных студентов с проверкой подлинности.',
-      collected: 0,
+      collected: 1250,
       goal: 30000,
       daysLeft: 22,
-      backers: 0,
+      backers: 45,
       gradient: 'from-cyan-500 to-blue-600',
       category: language === 'et' ? 'Haridus' : 'Образование'
     },
@@ -360,7 +362,7 @@ export default function CrowdfundingPlatform() {
         <div className="blade-card-grid blade-card-grid--3 max-w-7xl mx-auto">
           {projects.map((project) => {
             const progressPercent = (project.collected / project.goal) * 100;
-            const isActive = project.slug === 'tiiva-all' || project.slug === 'color-palette-pro' || project.slug === 'creative-bus';
+            const isActive = project.slug === 'tiiva-all' || project.slug === 'color-palette-pro' || project.slug === 'creative-bus' || project.slug === 'course-reviews';
             
             return (
               <BladeCard
