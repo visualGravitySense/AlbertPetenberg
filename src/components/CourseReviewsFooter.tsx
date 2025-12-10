@@ -75,7 +75,7 @@ export const CourseReviewsFooter: React.FC<CourseReviewsFooterProps> = ({
 
       {/* Copyright */}
       <div className="cr-footer__copyright">
-        © 2025 {language === 'et' ? 'Kursuste Arvustused' : 'Отзывы про Курсы'}
+        © 2025 TarkValik
       </div>
     </footer>
   );

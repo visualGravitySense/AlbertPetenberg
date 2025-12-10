@@ -143,7 +143,7 @@ export default function CrowdfundingPlatform() {
       slug: 'course-reviews',
       iconType: 'star',
       image: courseReviewsImage,
-      title: language === 'et' ? 'Kursuste Arvustused' : 'Отзывы про Курсы',
+      title: 'TarkValik',
       description: language === 'et'
         ? 'Aus platvorm kursuste ja haridusprogrammide arvustustega tõelistelt üliõpilastelt autentsuse kontrollimisega.'
         : 'Честная платформа с отзывами о курсах и образовательных программах от реальных студентов с проверкой подлинности.',
