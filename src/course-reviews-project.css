@@ -6,38 +6,60 @@
 
 /* Theme Variables */
 .course-reviews-theme {
-  --project-primary: #06b6d4;      /* Cyan */
-  --project-secondary: #3b82f6;    /* Blue */
+  --project-primary: #667eea;      /* Purple - Primary */
+  --project-secondary: #764ba2;    /* Purple - Secondary */
   --project-accent: #f59e0b;       /* Amber for highlights */
   --project-success: #10b981;      /* Emerald */
 }
 
-/* Override heading glow for this project - more blue tint */
+/* Override heading glow for this project - purple tint */
 .course-reviews-theme h1,
 .course-reviews-theme h2,
 .course-reviews-theme h3 {
   text-shadow: 
-    0 0 5px rgba(6, 182, 212, 0.5),
-    0 0 10px rgba(6, 182, 212, 0.4),
-    0 0 15px rgba(6, 182, 212, 0.3),
-    0 0 20px rgba(59, 130, 246, 0.2);
+    0 0 5px rgba(102, 126, 234, 0.5),
+    0 0 10px rgba(102, 126, 234, 0.4),
+    0 0 15px rgba(118, 75, 162, 0.3),
+    0 0 20px rgba(118, 75, 162, 0.2);
 }
 
 /* Custom badge colors for education theme */
 .course-reviews-theme .sci-badge {
-  border-color: rgba(6, 182, 212, 0.5);
-  background: rgba(6, 182, 212, 0.1);
+  border-color: rgba(102, 126, 234, 0.5);
+  background: rgba(102, 126, 234, 0.1);
 }
 
-/* Progress bar with blue gradient */
+.course-reviews-theme .sci-badge-path {
+  fill: rgba(102, 126, 234, 0.1);
+  stroke: #667eea;
+  filter: drop-shadow(0 0 6px #667eea) drop-shadow(0 0 12px rgba(102, 126, 234, 0.3));
+}
+
+.course-reviews-theme .sci-badge:hover .sci-badge-path {
+  fill: rgba(102, 126, 234, 0.2);
+  filter: drop-shadow(0 0 12px #667eea) drop-shadow(0 0 20px rgba(102, 126, 234, 0.5));
+}
+
+.course-reviews-theme .sci-badge-icon {
+  background: rgba(102, 126, 234, 0.2);
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.course-reviews-theme .sci-badge-label {
+  color: #667eea;
+  text-shadow: 0 0 4px #667eea;
+}
+
+/* Progress bar with purple gradient */
 .course-reviews-theme .progress-bar {
-  background: linear-gradient(90deg, var(--project-primary) 0%, var(--project-secondary) 100%);
+  background: linear-gradient(135deg, var(--project-primary) 0%, var(--project-secondary) 100%);
 }
 
 /* Card hover effects */
 .course-reviews-theme .reward-card:hover {
   border-color: var(--project-primary);
-  box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+  box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
 }
 
 /* Custom CTA bar styling */
@@ -45,7 +67,7 @@
   background: 
     repeating-linear-gradient(0deg, #ffffff0d 0, #ffffff0d 1px, #0000 1px, #0000 35rem), 
     repeating-linear-gradient(90deg, #ffffff0d 0, #ffffff0d 1px, #0000 1px, #0000 35rem),
-    rgba(6, 182, 212, 0.08);
+    rgba(102, 126, 234, 0.08);
   border-top: 2px solid var(--project-primary);
 }
 
@@ -55,7 +77,7 @@
 }
 
 .course-reviews-theme .sci-cta-button-path {
-  fill: rgba(6, 182, 212, 0.15);
+  fill: rgba(102, 126, 234, 0.15);
   stroke: var(--project-primary);
   filter: drop-shadow(0 0 8px var(--project-primary));
 }
@@ -68,7 +90,7 @@
 /* Stats styling */
 .course-reviews-theme .stat-icon {
   color: var(--project-primary);
-  filter: drop-shadow(0 0 4px var(--project-primary));
+  filter: drop-shadow(0 0 4px rgba(102, 126, 234, 0.6));
 }
 
 .course-reviews-theme .stat-value {
@@ -77,35 +99,35 @@
 
 /* Trust badges */
 .course-reviews-theme .trust-badge {
-  border-color: rgba(6, 182, 212, 0.3);
-  background: rgba(6, 182, 212, 0.1);
+  border-color: rgba(102, 126, 234, 0.3);
+  background: rgba(102, 126, 234, 0.1);
 }
 
 /* FAQ and info sections */
 .course-reviews-theme .info-section {
-  border-color: rgba(6, 182, 212, 0.2);
+  border-color: rgba(102, 126, 234, 0.2);
 }
 
 .course-reviews-theme .info-section:hover {
-  border-color: rgba(6, 182, 212, 0.4);
+  border-color: rgba(102, 126, 234, 0.4);
 }
 
 /* Testimonials */
 .course-reviews-theme .testimonial-card {
-  border-color: rgba(6, 182, 212, 0.2);
+  border-color: rgba(102, 126, 234, 0.2);
 }
 
 .course-reviews-theme .testimonial-card:hover {
-  border-color: rgba(6, 182, 212, 0.5);
+  border-color: rgba(102, 126, 234, 0.5);
 }
 
 /* Animation overrides */
 @keyframes course-glow {
   0%, 100% {
-    box-shadow: 0 0 5px rgba(6, 182, 212, 0.5);
+    box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
   }
   50% {
-    box-shadow: 0 0 20px rgba(6, 182, 212, 0.8), 0 0 30px rgba(59, 130, 246, 0.6);
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.8), 0 0 30px rgba(118, 75, 162, 0.6);
   }
 }
 
@@ -119,9 +141,74 @@
   filter: drop-shadow(0 0 4px var(--project-primary));
 }
 
+/* Make all icons circular */
+.course-reviews-theme .sci-badge-icon,
+.course-reviews-theme .cr-badge-verified-icon,
+.course-reviews-theme .cr-badge-recommended-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 6px;
+}
+
+.course-reviews-theme .sci-badge-icon svg,
+.course-reviews-theme .sci-badge-icon .lucide {
+  width: 100%;
+  height: 100%;
+}
+
+/* Icons in reward cards */
+.course-reviews-theme .reward-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  padding: 12px;
+  background: rgba(102, 126, 234, 0.2);
+  border: 2px solid rgba(102, 126, 234, 0.3);
+}
+
+/* Hero section large icon */
+.course-reviews-theme .hero-main-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  padding: 24px;
+  background: rgba(34, 211, 238, 0.15);
+  border: 3px solid rgba(34, 211, 238, 0.6);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.4), inset 0 0 20px rgba(34, 211, 238, 0.1);
+}
+
+/* Small icons in text labels */
+.course-reviews-theme .inline-icon-small {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  padding: 2px;
+  background: rgba(102, 126, 234, 0.15);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+}
+
+/* Icons in buttons */
+.course-reviews-theme .cr-btn-primary .lucide,
+.course-reviews-theme .cr-btn-secondary .lucide {
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+}
+
 /* Hero section gradient */
 .course-reviews-theme .hero-gradient {
-  background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
 }
 
 /* Button styles */
@@ -130,5 +217,5 @@
 }
 
 .course-reviews-theme .btn-primary:hover {
-  box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
 }

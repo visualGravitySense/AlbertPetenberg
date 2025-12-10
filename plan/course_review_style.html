@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Стиль платформы отзывов о курсах</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+            padding: 40px 20px;
+        }
+
+        .logo {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .tagline {
+            font-size: 20px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .style-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .style-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .style-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+        }
+
+        .style-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #2d3748;
+        }
+
+        .color-palette {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .color-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .color-box:hover {
+            transform: scale(1.1);
+        }
+
+        .color-label {
+            font-size: 10px;
+            color: #718096;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        .typography-example {
+            margin: 20px 0;
+        }
+
+        .h1-example {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1a202c;
+            margin-bottom: 10px;
+        }
+
+        .h2-example {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .body-example {
+            font-size: 16px;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .component-showcase {
+            background: #f7fafc;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 15px;
+            margin: 5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .rating-demo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .stars {
+            color: #f59e0b;
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+
+        .rating-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .review-card-demo {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin: 15px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .reviewer {
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .date {
+            color: #a0aec0;
+            font-size: 14px;
+        }
+
+        .review-text {
+            color: #4a5568;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin: 5px;
+        }
+
+        .badge-verified {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge-recommended {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .principles {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .principle-item {
+            margin: 20px 0;
+            padding-left: 30px;
+            border-left: 3px solid #667eea;
+        }
+
+        .principle-title {
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .principle-desc {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .icon-demo {
+            font-size: 32px;
+            margin: 10px 15px 10px 0;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🎓 KursuseKvaliteet</div>
+            <div class="tagline">Ausad arvustused, targad valikud</div>
+        </div>
+
+        <div class="style-grid">
+            <!-- Цветовая палитра -->
+            <div class="style-card">
+                <div class="style-title">🎨 Цветовая палитра</div>
+                <p style="color: #4a5568; margin-bottom: 15px;">Профессиональная, но доступная. Фиолетовый создаёт доверие + креативность.</p>
+                <div class="color-palette">
+                    <div>
+                        <div class="color-box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                        <div class="color-label">Primary</div>
+                    </div>
+                    <div>
+                        <div class="color-box" style="background: #10b981;"></div>
+                        <div class="color-label">Success</div>
+                    </div>
+                    <div>
+                        <div class="color-box" style="background: #f59e0b;"></div>
+                        <div class="color-label">Warning</div>
+                    </div>
+                    <div>
+                        <div class="color-box" style="background: #ef4444;"></div>
+                        <div class="color-label">Error</div>
+                    </div>
+                    <div>
+                        <div class="color-box" style="background: #f7fafc;"></div>
+                        <div class="color-label">Background</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Типографика -->
+            <div class="style-card">
+                <div class="style-title">📝 Типографика</div>
+                <div class="typography-example">
+                    <div class="h1-example">Найди лучший курс</div>
+                    <div class="h2-example">Категории курсов</div>
+                    <div class="body-example">Более 500 курсов с честными отзывами от реальных студентов. Читай опыт других и делай правильный выбор.</div>
+                </div>
+                <p style="color: #718096; margin-top: 15px; font-size: 14px;">Системный шрифт для быстрой загрузки и читаемости</p>
+            </div>
+
+            <!-- Кнопки -->
+            <div class="style-card">
+                <div class="style-title">🔘 Кнопки и интерактив</div>
+                <div class="component-showcase">
+                    <button class="btn btn-primary">Оставить отзыв</button>
+                    <button class="btn btn-secondary">Узнать больше</button>
+                    <div style="margin-top: 20px;">
+                        <span class="badge badge-verified">✓ Проверенный отзыв</span>
+                        <span class="badge badge-recommended">★ Рекомендуем</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Рейтинги -->
+            <div class="style-card">
+                <div class="style-title">⭐ Система рейтингов</div>
+                <div class="rating-demo">
+                    <div class="stars">★★★★★</div>
+                    <div class="rating-text">4.8</div>
+                </div>
+                <div class="rating-demo">
+                    <div class="stars">★★★★☆</div>
+                    <div class="rating-text">3.9</div>
+                </div>
+                <p style="color: #718096; margin-top: 15px; font-size: 14px;">Визуально понятная система оценок</p>
+            </div>
+
+            <!-- Карточка отзыва -->
+            <div class="style-card">
+                <div class="style-title">💬 Карточки отзывов</div>
+                <div class="review-card-demo">
+                    <div class="review-header">
+                        <div class="reviewer">Мария К.</div>
+                        <div class="date">2 недели назад</div>
+                    </div>
+                    <div class="rating-demo" style="margin: 10px 0;">
+                        <div class="stars" style="font-size: 16px;">★★★★★</div>
+                    </div>
+                    <div class="review-text">
+                        Отличный курс по веб-разработке! Преподаватель объясняет понятно, много практики. Нашла работу через месяц после окончания.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Иконки -->
+            <div class="style-card">
+                <div class="style-title">🎯 Иконки и символы</div>
+                <div>
+                    <span class="icon-demo">💼</span>
+                    <span class="icon-demo">🎓</span>
+                    <span class="icon-demo">📊</span>
+                    <span class="icon-demo">✓</span>
+                    <span class="icon-demo">⚠️</span>
+                    <span class="icon-demo">🏆</span>
+                </div>
+                <p style="color: #718096; margin-top: 15px; font-size: 14px;">Простые эмодзи для быстрого понимания</p>
+            </div>
+        </div>
+
+        <!-- Принципы дизайна -->
+        <div class="principles">
+            <h2 style="font-size: 32px; margin-bottom: 30px; color: #1a202c;">Принципы дизайна</h2>
+            
+            <div class="principle-item">
+                <div class="principle-title">1. Доверие и прозрачность</div>
+                <div class="principle-desc">Все отзывы проверяются. Показываем и хорошие, и плохие стороны. Никакой фальши.</div>
+            </div>
+
+            <div class="principle-item">
+                <div class="principle-title">2. Простота навигации</div>
+                <div class="principle-desc">Пользователь должен найти нужный курс за 30 секунд. Чёткие категории, мощный поиск.</div>
+            </div>
+
+            <div class="principle-item">
+                <div class="principle-title">3. Мобильность прежде всего</div>
+                <div class="principle-desc">70% пользователей в Эстонии на мобильных. Дизайн сначала для телефонов.</div>
+            </div>
+
+            <div class="principle-item">
+                <div class="principle-title">4. Быстрая загрузка</div>
+                <div class="principle-desc">Никаких тяжёлых изображений. Системные шрифты. Страница загружается < 2 секунд.</div>
+            </div>
+
+            <div class="principle-item">
+                <div class="principle-title">5. Доступность (A11y)</div>
+                <div class="principle-desc">Контрастные цвета, читаемые шрифты, работа с клавиатуры. Для всех возрастов.</div>
+            </div>
+
+            <div class="principle-item">
+                <div class="principle-title">6. Эстонский + Русский</div>
+                <div class="principle-desc">Полноценная поддержка обоих языков. Переключение в один клик.</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,25 +1,25 @@
 import { useState, useEffect } from 'react';
-import { Star, Users, Clock, CheckCircle, TrendingUp, Zap, ArrowRight, ShoppingCart, HelpCircle, Trophy, BookOpen, Eye, EyeOff, X, RotateCcw, AlertTriangle, CheckCircle2, GraduationCap, MessageSquare, ThumbsUp } from 'lucide-react';
-import { SciFiBadge } from "./components/SciFiBadge";
+import { Star, Users, Clock, CheckCircle, Zap, ArrowRight, ShoppingCart, HelpCircle, Trophy, BookOpen, Eye, EyeOff, X, RotateCcw, AlertTriangle, CheckCircle2, GraduationCap, MessageSquare, ThumbsUp } from 'lucide-react';
 import { QuickSupportButton } from "./components/QuickSupportButton";
-import { Header } from "./components/Header";
-import { Footer } from "./components/Footer";
-import { Button } from "./components/SciFiButton2";
+import { CourseReviewsHeader } from "./components/CourseReviewsHeader";
+import { CourseReviewsFooter } from "./components/CourseReviewsFooter";
 import { Language, getTranslation } from "./locales";
+import classesReviewsImage from "./classes-reviews.jpg";
 
-// Project-specific styles - TODO: Create separate CSS file
+// Project-specific styles
 import './course-reviews-project.css';
+import './components/course-reviews-buttons.css';
 
 export default function CourseReviewsProject() {
   const [language, setLanguage] = useState<Language>('et');
   const t = (key: keyof typeof import('./locales').translations.ru) => getTranslation(language, key);
   
   // Project-specific data - CHANGE THESE VALUES
-  const [progress] = useState(0);
+  const [progress] = useState(1250);
   const goal = 30000;
   const progressPercent = (progress / goal) * 100;
   const [timeLeft, setTimeLeft] = useState({ days: 22, hours: 10, minutes: 45 });
-  const totalBackers = 0;
+  const totalBackers = 45;
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [lastSupportedAmount, setLastSupportedAmount] = useState<number | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -169,7 +169,7 @@ export default function CourseReviewsProject() {
     <div className="min-h-screen text-white bg-grid-pattern course-reviews-theme">
       {/* Header */}
       <div className="pt-0">
-        <Header 
+        <CourseReviewsHeader 
           links={[{ label: t('allProjects'), href: '/' }]} 
           title={projectTitle}
           githubUrl="https://github.com/visualGravitySense/CourseReviews"
@@ -183,16 +183,16 @@ export default function CourseReviewsProject() {
 
       {/* Undo notification */}
       {showUndo && lastAction && (
-        <div className="fixed top-20 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white px-6 py-4 rounded-lg shadow-2xl z-[55] flex items-center gap-4 animate-fadeIn border-2 border-blue-400">
+        <div className="fixed top-20 left-1/2 transform -translate-x-1/2 bg-purple-600 text-white px-6 py-4 rounded-lg shadow-2xl z-[55] flex items-center gap-4 animate-fadeIn border-2 border-purple-400">
           <CheckCircle2 className="w-5 h-5" />
           <div>
             <div className="font-semibold">Поддержка €{lastAction.amount} принята!</div>
-            <div className="text-sm text-blue-100">Можно отменить в течение 10 секунд</div>
+            <div className="text-sm text-purple-100">Можно отменить в течение 10 секунд</div>
           </div>
           <button onClick={handleUndo} className="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg font-semibold transition-all flex items-center gap-2">
             <RotateCcw className="w-4 h-4" /> Отменить
           </button>
-          <button onClick={() => setShowUndo(false)} className="text-blue-100 hover:text-white">
+          <button onClick={() => setShowUndo(false)} className="text-purple-100 hover:text-white">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -231,15 +231,10 @@ export default function CourseReviewsProject() {
               <span>Осталось <span className="font-bold">{timeLeft.days}д {timeLeft.hours}ч</span></span>
             </div>
           </div>
-          <button onClick={() => handleSupport()} className="sci-cta-button-main">
-            <svg className="sci-cta-button-frame" viewBox="0 0 200 50" preserveAspectRatio="none">
-              <path d="M10 10 L190 10 L200 25 L190 40 L10 40 L0 25 Z" className="sci-cta-button-path" />
-            </svg>
-            <span className="sci-cta-button-label">
-              <Zap className="w-5 h-5" />
-              Поддержать проект
-              <ArrowRight className="w-4 h-4" />
-            </span>
+          <button onClick={() => handleSupport()} className="cr-btn-primary">
+            <Zap className="w-5 h-5" />
+            {language === 'et' ? 'Toeta projekti' : 'Поддержать проект'}
+            <ArrowRight className="w-4 h-4" />
           </button>
         </div>
       </div>
@@ -250,18 +245,19 @@ export default function CourseReviewsProject() {
           <div className="relative z-10">
             <div className="mb-8">
               <div className="flex flex-wrap items-center justify-start gap-3 mb-6">
-                <SciFiBadge icon={<GraduationCap className="w-5 h-5 animate-bounce-subtle" />} className="animate-fadeIn">
+                {/* <SciFiBadge icon={<GraduationCap className="w-5 h-5 animate-bounce-subtle" />} className="animate-fadeIn">
                   {language === 'et' ? 'Haridus' : 'Образование'}
-                </SciFiBadge>
-                <SciFiBadge icon={<TrendingUp className="w-5 h-5" />} className="animate-fadeIn delay-100">
+                </SciFiBadge> */}
+                <div className="cr-badge-verified animate-fadeIn delay-100">
+                  <CheckCircle className="cr-badge-verified-icon" />
                   {totalBackers} {t('sponsors')}
-                </SciFiBadge>
-                <SciFiBadge icon={<Clock className="w-5 h-5 animate-pulse" />} className="animate-fadeIn delay-200">
+                </div>
+                {/* <SciFiBadge icon={<Clock className="w-5 h-5 animate-pulse" />} className="animate-fadeIn delay-200">
                   {timeLeft.days} {t('daysLeft')}
-                </SciFiBadge>
+                </SciFiBadge> */}
               </div>
               
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent animate-fadeIn delay-300 text-left">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent animate-fadeIn delay-300 text-left">
                 {projectTitle}
               </h1>
 
@@ -269,19 +265,27 @@ export default function CourseReviewsProject() {
                 <p className="text-lg md:text-xl text-gray-300 mb-4 text-left">
                   {projectDescription}
                 </p>
-                <p className="text-base md:text-lg text-cyan-300 mb-6 font-medium text-left">
+                <p className="text-base md:text-lg text-purple-300 mb-6 font-medium text-left">
                   {totalBackers > 0 
-                    ? `Присоединяйтесь к ${totalBackers} спонсорам, которые уже поддержали проект!`
-                    : 'Станьте первым спонсором этого проекта!'}
+                    ? (language === 'et' 
+                        ? `Liituge ${totalBackers} toetajaga, kes on juba projekti toetanud!`
+                        : `Присоединяйтесь к ${totalBackers} спонсорам, которые уже поддержали проект!`)
+                    : (language === 'et' 
+                        ? 'Ole esimene selle projekti sponsor!'
+                        : 'Станьте первым спонсором этого проекта!')}
                 </p>
               </div>
 
               {/* Quick Support Buttons */}
               <div className="flex flex-wrap items-start justify-start gap-3 mb-8 animate-fadeIn delay-700">
                 <span className="text-sm text-gray-400 w-full mb-2 flex items-center gap-2">
-                  <Zap className="w-4 h-4 text-yellow-400" />
-                  <ShoppingCart className="w-4 h-4 text-cyan-400" />
-                  Быстрая поддержка:
+                  <span className="inline-icon-small">
+                    <Zap className="w-3 h-3 text-yellow-400" />
+                  </span>
+                  <span className="inline-icon-small">
+                    <ShoppingCart className="w-3 h-3 text-purple-400" />
+                  </span>
+                  {language === 'et' ? 'Hetketoetus:' : 'Быстрая поддержка:'}
                 </span>
                 <div className="flex flex-wrap items-center justify-start gap-3">
                   {[10, 25, 50, 100].map((amount) => {
@@ -315,13 +319,13 @@ export default function CourseReviewsProject() {
                       <span>Своя сумма</span>
                     </QuickSupportButton>
                     {showCustomInput && (
-                      <div className="absolute top-full mt-2 left-0 bg-gray-800 border-2 border-cyan-500 rounded-lg p-4 shadow-2xl z-10 min-w-[200px] animate-fadeIn">
+                      <div className="absolute top-full mt-2 left-0 bg-gray-800 border-2 border-purple-500 rounded-lg p-4 shadow-2xl z-10 min-w-[200px] animate-fadeIn">
                         <input
                           type="number"
                           value={customAmount}
                           onChange={(e) => { setCustomAmount(e.target.value); setErrors([]); }}
                           placeholder="от €5"
-                          className="w-full bg-gray-900 border border-cyan-500/50 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-400"
+                          className="w-full bg-gray-900 border border-purple-500/50 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-purple-400"
                         />
                         {errors.find(e => e.field === 'amount') && (
                           <div className="mt-2 text-xs text-red-400 flex items-center gap-1">
@@ -329,8 +333,8 @@ export default function CourseReviewsProject() {
                             {errors.find(e => e.field === 'amount')?.message}
                           </div>
                         )}
-                        <button onClick={() => handleSupport()} className="w-full mt-3 bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 rounded-lg transition-all">
-                          Подтвердить
+                        <button onClick={() => handleSupport()} className="w-full mt-3 cr-btn-primary">
+                          {language === 'et' ? 'Kinnita' : 'Подтвердить'}
                         </button>
                       </div>
                     )}
@@ -342,13 +346,22 @@ export default function CourseReviewsProject() {
 
           {/* Right Side: Project Image/Preview */}
           <div className="relative">
-            <div className="relative w-full h-full min-h-[300px] md:min-h-[500px] rounded-xl overflow-hidden bg-gradient-to-br from-cyan-600/20 to-blue-600/20 border border-cyan-500/30 flex items-center justify-center">
-              <div className="text-center p-8">
-                <GraduationCap className="w-24 h-24 text-cyan-400 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-cyan-300 mb-2">
+            <div 
+              className="relative w-full h-full min-h-[300px] md:min-h-[500px] rounded-xl overflow-hidden border border-purple-500/30 flex items-center justify-center bg-cover bg-center"
+              style={{ backgroundImage: `url(${classesReviewsImage})` }}
+            >
+              {/* Overlay для лучшей читаемости */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 rounded-xl"></div>
+              
+              {/* Content overlay */}
+              <div className="relative z-10 text-center p-8">
+                <div className="hero-main-icon mx-auto mb-4">
+                  <GraduationCap className="w-12 h-12 text-cyan-400" />
+                </div>
+                <h3 className="text-2xl font-bold text-cyan-300 mb-2" style={{ textShadow: '0 0 12px rgba(34, 211, 238, 0.8)' }}>
                   {language === 'et' ? 'Kursuste Arvustused' : 'Отзывы про Курсы'}
                 </h3>
-                <p className="text-gray-400">
+                <p className="text-gray-200" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.8)' }}>
                   {language === 'et' ? 'Aus platvorm hariduse hindamiseks' : 'Честная платформа для оценки образования'}
                 </p>
               </div>
@@ -358,15 +371,15 @@ export default function CourseReviewsProject() {
       </div>
 
       {/* About Project Section */}
-      <div className="max-w-4xl mx-auto mt-8 md:mt-16 mb-8 md:mb-16 bg-gradient-to-br to-blue-900/40 rounded-xl p-4 md:p-8 border border-cyan-500/30">
+      <div className="max-w-4xl mx-auto mt-8 md:mt-16 mb-8 md:mb-16 bg-gradient-to-br to-purple-900/40 rounded-xl p-4 md:p-8 border border-purple-500/30">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 bg-cyan-600/30 px-6 py-3 rounded-full border border-cyan-500/50 mb-4">
-            <BookOpen className="w-6 h-6 text-cyan-400" />
-            <span className="text-lg font-bold text-cyan-400">
+          <div className="inline-flex items-center gap-2 bg-purple-600/30 px-6 py-3 rounded-full border border-purple-500/50 mb-4">
+            <BookOpen className="w-6 h-6 text-purple-400" />
+            <span className="text-lg font-bold text-purple-400">
               {language === 'et' ? 'Projekti kohta' : 'О проекте'}
             </span>
           </div>
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-cyan-300">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-purple-300">
             {language === 'et' ? 'Miks me seda teeme?' : 'Зачем мы это делаем?'}
           </h2>
           <p className="text-base md:text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto">
@@ -380,7 +393,7 @@ export default function CourseReviewsProject() {
       {/* Rewards Section */}
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-4">
-          <h2 className="text-2xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+          <h2 className="text-2xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
             {language === 'et' ? 'Vali oma toetuse tase' : 'Выберите уровень поддержки'}
           </h2>
           <p className="text-gray-400 text-base md:text-lg mb-2">
@@ -398,22 +411,25 @@ export default function CourseReviewsProject() {
                 className={`bg-gradient-to-br rounded-xl p-4 md:p-6 border-2 transition-all hover:scale-105 relative ${
                   isPopular 
                     ? 'border-yellow-500/50 hover:border-yellow-500 shadow-xl shadow-yellow-500/20' 
-                    : 'border-cyan-500/20 hover:border-cyan-500/50'
+                    : 'border-purple-500/20 hover:border-purple-500/50'
                 }`}
               >
                 {isPopular && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-yellow-500 text-black text-xs font-bold px-3 py-1 rounded-full">
-                    {language === 'et' ? 'Populaarseim' : 'Популярный выбор'}
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                    <div className="cr-badge-recommended">
+                      <Star className="cr-badge-recommended-icon w-3.5 h-3.5 fill-current" />
+                      {language === 'et' ? 'Soovitatud' : 'Рекомендуем'}
+                    </div>
                   </div>
                 )}
                 
                 <div className="flex items-start justify-between mb-4">
-                  <div className={`p-3 rounded-lg ${isPopular ? 'bg-yellow-600/30' : 'bg-cyan-600/30'}`}>
-                    <Icon className={`w-6 h-6 ${isPopular ? 'text-yellow-400' : 'text-cyan-400'}`} />
+                  <div className={`reward-icon-wrapper ${isPopular ? 'bg-yellow-600/30 border-yellow-500/50' : 'bg-purple-600/30 border-purple-500/50'}`}>
+                    <Icon className={`w-6 h-6 ${isPopular ? 'text-yellow-400' : 'text-purple-400'}`} />
                   </div>
                   <div className="text-right">
                     <div className="text-sm text-gray-400">{language === 'et' ? 'Alates' : 'От'}</div>
-                    <div className={`text-2xl font-bold ${isPopular ? 'text-yellow-400' : 'text-cyan-400'}`}>
+                    <div className={`text-2xl font-bold ${isPopular ? 'text-yellow-400' : 'text-purple-400'}`}>
                       €{reward.amount}
                     </div>
                   </div>
@@ -424,24 +440,21 @@ export default function CourseReviewsProject() {
                 
                 <div className="mb-4 flex items-center justify-between text-sm">
                   <div className="flex items-center gap-2 text-gray-400">
-                    <Users className="w-4 h-4" />
+                    <span className="inline-icon-small">
+                      <Users className="w-3 h-3" />
+                    </span>
                     <span>{reward.backers} {language === 'et' ? 'toetajat' : 'спонсоров'}</span>
                   </div>
                 </div>
                 
-                <Button 
+                <button 
                   onClick={() => handleSupport(reward.amount, index)}
-                  variant={isPopular ? "accent" : "default"}
-                  shape="flat"
-                  className={`w-full ${selectedReward === index ? 'ring-4 ring-green-400 ring-offset-2 ring-offset-gray-900' : ''}`}
-                  style={{ '--color-primary': 'cyan', '--color-accent': '#eab308' } as React.CSSProperties}
+                  className={`w-full cr-btn-primary ${selectedReward === index ? 'ring-4 ring-green-400 ring-offset-2 ring-offset-gray-900' : ''}`}
                 >
-                  <span className="flex items-center justify-center gap-2">
-                    <ShoppingCart className="w-5 h-5" />
-                    {language === 'et' ? 'Toeta €' : 'Поддержать €'}{reward.amount}
-                    <ArrowRight className="w-4 h-4" />
-                  </span>
-                </Button>
+                  <ShoppingCart className="w-5 h-5" />
+                  {language === 'et' ? 'Toeta €' : 'Поддержать €'}{reward.amount}
+                  <ArrowRight className="w-4 h-4" />
+                </button>
               </div>
             );
           })}
@@ -450,13 +463,13 @@ export default function CourseReviewsProject() {
 
       {/* FAQ Section */}
       <div className="max-w-4xl mx-auto mt-16 mb-8 px-4">
-        <div className="bg-gray-800/30 rounded-xl p-6 border border-cyan-500/20">
+        <div className="bg-gray-800/30 rounded-xl p-6 border border-purple-500/20">
           <button
             onClick={() => setShowFAQ(!showFAQ)}
             className="flex items-center justify-between w-full text-left"
           >
             <div className="flex items-center gap-2">
-              <HelpCircle className="w-5 h-5 text-cyan-400" />
+              <HelpCircle className="w-5 h-5 text-purple-400" />
               <h3 className="text-xl font-bold">{language === 'et' ? 'Korduma kippuvad küsimused' : 'Часто задаваемые вопросы'}</h3>
             </div>
             <ArrowRight className={`w-5 h-5 transition-transform ${showFAQ ? 'rotate-90' : ''}`} />
@@ -478,8 +491,8 @@ export default function CourseReviewsProject() {
                   a: language === 'et' ? 'Kõik toetused tagastatakse täies ulatuses.' : 'Все средства будут возвращены в полном объёме.' 
                 }
               ].map((faq, idx) => (
-                <div key={idx} className="border-l-2 border-cyan-500/50 pl-4">
-                  <div className="font-semibold text-cyan-300 mb-1">{faq.q}</div>
+                <div key={idx} className="border-l-2 border-purple-500/50 pl-4">
+                  <div className="font-semibold text-purple-300 mb-1">{faq.q}</div>
                   <div className="text-sm text-gray-400">{faq.a}</div>
                 </div>
               ))}
@@ -489,7 +502,7 @@ export default function CourseReviewsProject() {
       </div>
 
       {/* Footer */}
-      <Footer totalBackers={totalBackers} language={language} />
+      <CourseReviewsFooter totalBackers={totalBackers} language={language} />
     </div>
   );
 }
