@@ -2,6 +2,7 @@
  * Course Reviews Project - Custom Styles
  * Education-focused design theme
  * Different from Music project (Tiiva All)
+ * Typography: Manrope + System UI
  */
 
 /* Theme Variables */
@@ -10,6 +11,44 @@
   --project-secondary: #764ba2;    /* Purple - Secondary */
   --project-accent: #f59e0b;       /* Amber for highlights */
   --project-success: #10b981;      /* Emerald */
+  
+  /* Typography */
+  --cr-font-primary: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --cr-font-body: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  
+  /* Apply fonts to theme */
+  font-family: var(--cr-font-body);
+}
+
+/* Headings use Manrope */
+.course-reviews-theme h1,
+.course-reviews-theme h2,
+.course-reviews-theme h3,
+.course-reviews-theme h4,
+.course-reviews-theme h5,
+.course-reviews-theme h6 {
+  font-family: var(--cr-font-primary);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Body text uses System UI */
+.course-reviews-theme p,
+.course-reviews-theme span,
+.course-reviews-theme div,
+.course-reviews-theme button:not(.sci-badge *):not(.cr-btn-primary):not(.cr-btn-secondary),
+.course-reviews-theme input,
+.course-reviews-theme textarea,
+.course-reviews-theme label {
+  font-family: var(--cr-font-body);
+}
+
+/* Buttons use Manrope */
+.course-reviews-theme .cr-btn-primary,
+.course-reviews-theme .cr-btn-secondary,
+.course-reviews-theme button.cr-btn-primary,
+.course-reviews-theme button.cr-btn-secondary {
+  font-family: var(--cr-font-primary);
 }
 
 /* Override heading glow for this project - purple tint */
@@ -49,6 +88,7 @@
 .course-reviews-theme .sci-badge-label {
   color: #667eea;
   text-shadow: 0 0 4px #667eea;
+  font-family: var(--cr-font-primary);
 }
 
 /* Progress bar with purple gradient */
@@ -214,8 +254,10 @@
 /* Button styles */
 .course-reviews-theme .btn-primary {
   background: linear-gradient(135deg, var(--project-primary) 0%, var(--project-secondary) 100%);
+  font-family: var(--cr-font-primary);
 }
 
 .course-reviews-theme .btn-primary:hover {
   box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
 }
+

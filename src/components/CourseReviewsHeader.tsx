@@ -18,7 +18,7 @@ interface CourseReviewsHeaderProps {
 
 export const CourseReviewsHeader: React.FC<CourseReviewsHeaderProps> = ({ 
   links, 
-  title = "Kursuste Arvustused", 
+  title = "TarkValik", 
   githubUrl,
   customIcon,
   daysLeft,

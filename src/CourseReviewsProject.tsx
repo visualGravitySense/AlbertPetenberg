@@ -59,40 +59,50 @@ export default function CourseReviewsProject() {
     200: 'https://buy.stripe.com/test_placeholder_200'
   };
 
-  // Project-specific rewards - CUSTOMIZE THESE
+  // Project-specific rewards - based on monetization plan
   const rewards = [
     {
       amount: 10,
       title: language === 'et' ? 'Varajane toetaja' : 'Ранний спонсор',
-      description: language === 'et' ? 'Saate eksklusiivse juurdepääsu beetaversioonile ja täname teid platvormi leheküljel' : 'Получите эксклюзивный доступ к бета-версии и благодарность на странице платформы',
+      description: language === 'et' 
+        ? 'Eksklusiivne juurdepääs beetaversioonile + tänuplatvormi leheküljel + 3 kuud tasuta Premium liikmesus (väärtus €21)'
+        : 'Эксклюзивный доступ к бета-версии + благодарность на странице платформы + 3 месяца бесплатного Premium членства (стоимость €21)',
       icon: Star,
       backers: 45
     },
     {
       amount: 25,
       title: language === 'et' ? 'Aktiivne kasutaja' : 'Активный пользователь',
-      description: language === 'et' ? 'Kõik eelmise taseme hüved + võimalus lisada oma arvustused prioriteediga' : 'Все преимущества предыдущего уровня + возможность добавлять свои отзывы с приоритетом',
+      description: language === 'et' 
+        ? 'Kõik eelmise taseme hüved + 12 kuud Premium liikmesus (väärtus €84) + prioriteetne juurdepääs uutele funktsioonidele + võimalus lisada arvustusi prioriteediga'
+        : 'Все преимущества предыдущего уровня + 12 месяцев Premium членства (стоимость €84) + приоритетный доступ к новым функциям + возможность добавлять отзывы с приоритетом',
       icon: MessageSquare,
       backers: 67
     },
     {
       amount: 50,
       title: language === 'et' ? 'Premium liige' : 'Премиум участник',
-      description: language === 'et' ? 'Kõik eelmised hüved + eluaegne premium liikmesus ja ligipääs eksklusiivsetele kursuste hinnangutele' : 'Все предыдущие преимущества + пожизненное премиум членство и доступ к эксклюзивным рейтингам',
+      description: language === 'et' 
+        ? 'Kõik eelmised hüved + eluaegne Premium liikmesus (väärtus €600+) + AI-soovitused kursustele + statistika tööhõive kohta + ligipääs suletud kogukonnale lõpetajatele'
+        : 'Все предыдущие преимущества + пожизненное Premium членство (стоимость €600+) + AI-рекомендации курсов + статистика трудоустройства + доступ к закрытому сообществу выпускников',
       icon: ThumbsUp,
       backers: 28
     },
     {
       amount: 100,
       title: language === 'et' ? 'Toetaja' : 'Меценат',
-      description: language === 'et' ? 'Kõik eelmised hüved + teie nimi platvormi asutajate nimekirjas + isiklik konsultatsioon' : 'Все предыдущие преимущества + ваше имя в списке основателей + персональная консультация',
+      description: language === 'et' 
+        ? 'Kõik eelmised hüved + teie nimi platvormi asutajate nimekirjas + isiklik konsultatsioon kursuste valikul + eriline "Founder" märgis profiilil'
+        : 'Все предыдущие преимущества + ваше имя в списке основателей платформы + персональная консультация по выбору курсов + специальный значок "Founder" в профиле',
       icon: Trophy,
       backers: 12
     },
     {
       amount: 200,
       title: language === 'et' ? 'Kaasasutaja' : 'Соучредитель',
-      description: language === 'et' ? 'Kõik eelmised hüved + osalemine platvormi arendamise otsustes + VIP staatuse ikoon' : 'Все предыдущие преимущества + участие в решениях по развитию платформы + VIP статус',
+      description: language === 'et' 
+        ? 'Kõik eelmised hüved + osalemine platvormi arendamise otsustes + kord kvartalis kohtumised meeskonnaga + VIP staatuse ikoon + esimene juurdepääs uutele funktsioonidele'
+        : 'Все предыдущие преимущества + участие в решениях по развитию платформы + ежеквартальные встречи с командой + VIP статус с особым значком + первый доступ ко всем новым функциям',
       icon: GraduationCap,
       backers: 4
     }
@@ -160,10 +170,14 @@ export default function CourseReviewsProject() {
   };
 
   // Project-specific content - CHANGE THESE
-  const projectTitle = language === 'et' ? 'Kursuste Arvustused' : 'Отзывы про Курсы';
+  const projectTitle = 'TarkValik';
   const projectDescription = language === 'et' 
-    ? 'Aus platvorm kursuste ja haridusprogrammide arvustustega tõelistelt üliõpilastelt autentsuse kontrollimisega.'
-    : 'Честная платформа с отзывами о курсах и образовательных программах от реальных студентов с проверкой подлинности.';
+    ? 'Riigikontroll tuvastas: vähem kui pooled kursuste lõpetajad leiavad tööd õpitud valdkonnas. Meie platvorm annab sulle ausad arvustused tõelistelt üliõpilastelt, et teha õige valik enne tuhandete eurode investeeringut.'
+    : 'Riigikontroll установил: менее половины выпускников курсов находят работу в изученной области. Наша платформа даёт вам честные отзывы от реальных студентов, чтобы сделать правильный выбор до инвестиции тысяч евро.';
+  
+  const projectSubDescription = language === 'et'
+    ? 'Alates 2023. aastast pole Töötukassa kursuste otsing enam avalik. Meie platvorm lahendab riikliku ulatusega probleemi, pakkudes läbipaistvat infot 500+ koolituse pakkuja kohta.'
+    : 'С 2023 года поиск курсов Töötukassa больше не публичен. Наша платформа решает проблему государственного масштаба, предоставляя прозрачную информацию о 500+ провайдерах обучения.';
 
   return (
     <div className="min-h-screen text-white bg-grid-pattern course-reviews-theme">
@@ -262,17 +276,20 @@ export default function CourseReviewsProject() {
               </h1>
 
               <div className="mb-6 animate-fadeIn delay-400">
-                <p className="text-lg md:text-xl text-gray-300 mb-4 text-left">
+                <p className="text-lg md:text-xl text-gray-300 mb-4 text-left leading-relaxed">
                   {projectDescription}
                 </p>
-                <p className="text-base md:text-lg text-purple-300 mb-6 font-medium text-left">
+                <p className="text-base md:text-lg text-purple-300/90 mb-4 text-left leading-relaxed">
+                  {projectSubDescription}
+                </p>
+                <p className="text-base md:text-lg text-yellow-300 mb-6 font-semibold text-left">
                   {totalBackers > 0 
                     ? (language === 'et' 
-                        ? `Liituge ${totalBackers} toetajaga, kes on juba projekti toetanud!`
-                        : `Присоединяйтесь к ${totalBackers} спонсорам, которые уже поддержали проект!`)
+                        ? `🚀 Liituge ${totalBackers} toetajaga, kes usuvad läbipaistvusse hariduses!`
+                        : `🚀 Присоединяйтесь к ${totalBackers} спонсорам, которые верят в прозрачность образования!`)
                     : (language === 'et' 
-                        ? 'Ole esimene selle projekti sponsor!'
-                        : 'Станьте первым спонсором этого проекта!')}
+                        ? '🚀 Ole esimene, kes toetab läbipaistvat haridust!'
+                        : '🚀 Станьте первым, кто поддержит прозрачность образования!')}
                 </p>
               </div>
 
@@ -359,7 +376,7 @@ export default function CourseReviewsProject() {
                   <GraduationCap className="w-12 h-12 text-cyan-400" />
                 </div>
                 <h3 className="text-2xl font-bold text-cyan-300 mb-2" style={{ textShadow: '0 0 12px rgba(34, 211, 238, 0.8)' }}>
-                  {language === 'et' ? 'Kursuste Arvustused' : 'Отзывы про Курсы'}
+                  TarkValik
                 </h3>
                 <p className="text-gray-200" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.8)' }}>
                   {language === 'et' ? 'Aus platvorm hariduse hindamiseks' : 'Честная платформа для оценки образования'}
@@ -379,14 +396,29 @@ export default function CourseReviewsProject() {
               {language === 'et' ? 'Projekti kohta' : 'О проекте'}
             </span>
           </div>
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-purple-300">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-purple-300">
             {language === 'et' ? 'Miks me seda teeme?' : 'Зачем мы это делаем?'}
           </h2>
-          <p className="text-base md:text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            {language === 'et' 
-              ? 'Paljud inimesed kulutavad tuhandeid eurosid kursustele, mis ei vasta ootustele. Meie platvorm aitab teha teadlikke valikuid, pakkudes ausaid arvustusi tõelistelt üliõpilastelt.'
-              : 'Многие люди тратят тысячи евро на курсы, которые не оправдывают ожиданий. Наша платформа помогает делать осознанный выбор, предоставляя честные отзывы от реальных студентов.'}
-          </p>
+          
+          <div className="space-y-4 text-base md:text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto text-left">
+            <p>
+              {language === 'et' 
+                ? <>Riigikontroll tuvastas 2022. aastal: Töötukassa ei kontrolli kursuste kvaliteeti ega kontrolli, kas need tõesti aitavad leida tööd. <strong className="text-yellow-300">Vähem kui pooled kursuste lõpetajad leiavad tööd õpitud valdkonnas.</strong></>
+                : <>Riigikontroll (Госконтроль) установил в 2022 году: Töötukassa не контролирует качество курсов и не проверяет, действительно ли они помогают найти работу. <strong className="text-yellow-300">Менее половины выпускников курсов находят работу в изученной области.</strong></>}
+            </p>
+            
+            <p>
+              {language === 'et'
+                ? <>Alates 2023. aastast pole kursuste otsing enam avalik. Inimesed ei saa võrrelda enne registreerumist ja peavad tuginema ainult konsultandi soovitustele. <strong className="text-purple-300">500+ erineva kvaliteediga koolituse pakkuja</strong> – kuid kuidas teha õige valik?</>
+                : <>С 2023 года поиск курсов больше не публичен. Люди не могут сравнивать до регистрации и должны полагаться только на рекомендации консультанта. <strong className="text-purple-300">500+ провайдеров обучения</strong> с очень разным качеством – но как сделать правильный выбор?</>}
+            </p>
+            
+            <p className="text-purple-200 font-medium pt-2">
+              {language === 'et'
+                ? 'Meie platvorm lahendab riikliku ulatusega probleemi: pakume läbipaistvat, kontrollitud infot tõelistelt üliõpilastelt, et inimesed saaksid teha teadlikke otsuseid enne tuhandete eurode investeeringut haridusse.'
+                : 'Наша платформа решает проблему государственного масштаба: мы предоставляем прозрачную, проверенную информацию от реальных студентов, чтобы люди могли принимать осознанные решения до инвестиции тысяч евро в образование.'}
+            </p>
+          </div>
         </div>
       </div>
 

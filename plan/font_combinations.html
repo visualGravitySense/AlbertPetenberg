@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шрифтовые комбинации</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 20px;
+            opacity: 0.9;
+        }
+
+        .font-card {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .font-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .combo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .combo-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a202c;
+        }
+
+        .rating {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .badge-best {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .badge-free {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge-premium {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .font-demo {
+            margin: 30px 0;
+        }
+
+        .font-label {
+            font-size: 12px;
+            color: #718096;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .demo-headline {
+            font-size: 48px;
+            font-weight: 800;
+            color: #1a202c;
+            margin-bottom: 15px;
+            line-height: 1.1;
+        }
+
+        .demo-subheadline {
+            font-size: 32px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .demo-body {
+            font-size: 16px;
+            color: #4a5568;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .demo-small {
+            font-size: 14px;
+            color: #718096;
+            line-height: 1.6;
+        }
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .pros, .cons {
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .pros {
+            background: #f0fdf4;
+        }
+
+        .cons {
+            background: #fef2f2;
+        }
+
+        .pros h4 {
+            color: #065f46;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .cons h4 {
+            color: #991b1b;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .pros ul, .cons ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pros li, .cons li {
+            padding: 5px 0;
+            font-size: 14px;
+        }
+
+        .pros li:before {
+            content: "✓ ";
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .cons li:before {
+            content: "× ";
+            color: #ef4444;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .technical-specs {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 14px;
+        }
+
+        .spec-row:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            color: #718096;
+            font-weight: 600;
+        }
+
+        .spec-value {
+            color: #2d3748;
+        }
+
+        .usage-example {
+            background: #eef2ff;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        .example-title {
+            font-weight: 700;
+            color: #4c1d95;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+
+            .demo-headline {
+                font-size: 36px;
+            }
+
+            .demo-subheadline {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔤 Идеальные шрифтовые пары</h1>
+            <p>Для платформы отзывов о курсах</p>
+        </div>
+
+        <!-- Комбинация 1: Inter + Inter -->
+        <div class="font-card">
+            <div class="combo-header">
+                <div class="combo-title">1. Inter (Моношрифт)</div>
+                <div class="rating">
+                    <span class="badge badge-best">🏆 ЛУЧШИЙ ВЫБОР</span>
+                    <span class="badge badge-free">FREE</span>
+                </div>
+            </div>
+
+            <div class="font-demo">
+                <div class="font-label">Заголовок (Inter 800)</div>
+                <div class="demo-headline" style="font-family: 'Inter', sans-serif; font-weight: 800;">
+                    Найди лучший курс для твоей карьеры
+                </div>
+
+                <div class="font-label">Подзаголовок (Inter 600)</div>
+                <div class="demo-subheadline" style="font-family: 'Inter', sans-serif; font-weight: 600;">
+                    Более 500 курсов с честными отзывами
+                </div>
+
+                <div class="font-label">Основной текст (Inter 400)</div>
+                <div class="demo-body" style="font-family: 'Inter', sans-serif; font-weight: 400;">
+                    Государственный аудит подтвердил проблемы с качеством курсов Töötukassa. Менее половины выпускников находят работу. Мы создаём платформу, где каждый может прочитать реальные отзывы и сделать осознанный выбор.
+                </div>
+
+                <div class="font-label">Мелкий текст (Inter 400, 14px)</div>
+                <div class="demo-small" style="font-family: 'Inter', sans-serif; font-weight: 400;">
+                    Отзыв проверен • 2 недели назад • Tallinn
+                </div>
+            </div>
+
+            <div class="pros-cons">
+                <div class="pros">
+                    <h4>Плюсы</h4>
+                    <ul>
+                        <li>Отлично читается на всех размерах</li>
+                        <li>Оптимизирован для цифровых экранов</li>
+                        <li>Поддержка кириллицы на 100%</li>
+                        <li>Google Fonts (бесплатно + быстро)</li>
+                        <li>Современный, нейтральный, надёжный</li>
+                        <li>Один шрифт = быстрая загрузка</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <h4>Минусы</h4>
+                    <ul>
+                        <li>Очень популярен (менее уникален)</li>
+                        <li>Может выглядеть "как все стартапы"</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="technical-specs">
+                <div class="spec-row">
+                    <span class="spec-label">Источник:</span>
+                    <span class="spec-value">Google Fonts (бесплатно)</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Нужные начертания:</span>
+                    <span class="spec-value">400, 500, 600, 700, 800</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Размер файла:</span>
+                    <span class="spec-value">~90KB (5 начертаний)</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Читаемость:</span>
+                    <span class="spec-value">⭐⭐⭐⭐⭐ (отлично)</span>
+                </div>
+            </div>
+
+            <div class="usage-example">
+                <div class="example-title">Почему это лучший выбор:</div>
+                Inter создан специально для интерфейсов. Он отлично читается на маленьких экранах, имеет идеальную кириллицу, и все его начертания визуально сочетаются. Это безопасный, профессиональный выбор для серьёзной платформы.
+            </div>
+        </div>
+
+        <!-- Комбинация 2: Manrope + System -->
+        <div class="font-card">
+            <div class="combo-header">
+                <div class="combo-title">2. Manrope + System UI</div>
+                <div class="rating">
+                    <span class="badge badge-free">FREE</span>
+                </div>
+            </div>
+
+            <div class="font-demo">
+                <div class="font-label">Заголовок (Manrope 800)</div>
+                <div class="demo-headline" style="font-family: 'Manrope', sans-serif; font-weight: 800;">
+                    Найди лучший курс для твоей карьеры
+                </div>
+
+                <div class="font-label">Подзаголовок (Manrope 600)</div>
+                <div class="demo-subheadline" style="font-family: 'Manrope', sans-serif; font-weight: 600;">
+                    Более 500 курсов с честными отзывами
+                </div>
+
+                <div class="font-label">Основной текст (System UI)</div>
+                <div class="demo-body" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;">
+                    Государственный аудит подтвердил проблемы с качеством курсов Töötukassa. Менее половины выпускников находят работу. Мы создаём платформу, где каждый может прочитать реальные отзывы и сделать осознанный выбор.
+                </div>
+            </div>
+
+            <div class="pros-cons">
+                <div class="pros">
+                    <h4>Плюсы</h4>
+                    <ul>
+                        <li>Геометричный, современный стиль</li>
+                        <li>Заголовки выделяются</li>
+                        <li>System UI = нулевая загрузка</li>
+                        <li>Отличная кириллица</li>
+                        <li>Бесплатный (Google Fonts)</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <h4>Минусы</h4>
+                    <ul>
+                        <li>Два шрифта = медленнее Inter</li>
+                        <li>Нужно тестировать на разных ОС</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="technical-specs">
+                <div class="spec-row">
+                    <span class="spec-label">Источник:</span>
+                    <span class="spec-value">Manrope (Google Fonts) + System</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Размер файла:</span>
+                    <span class="spec-value">~50KB (только заголовки)</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Читаемость:</span>
+                    <span class="spec-value">⭐⭐⭐⭐⭐</span>
+                </div>
+            </div>
+
+            <div class="usage-example">
+                <div class="example-title">Когда использовать:</div>
+                Если хотите более яркую индивидуальность в заголовках, но максимально быструю загрузку. System UI для тела текста = нулевые миллисекунды загрузки.
+            </div>
+        </div>
+
+        <!-- Комбинация 3: Plus Jakarta Sans -->
+        <div class="font-card">
+            <div class="combo-header">
+                <div class="combo-title">3. Plus Jakarta Sans</div>
+                <div class="rating">
+                    <span class="badge badge-free">FREE</span>
+                </div>
+            </div>
+
+            <div class="font-demo">
+                <div class="font-label">Заголовок (Plus Jakarta Sans 800)</div>
+                <div class="demo-headline" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;">
+                    Найди лучший курс для твоей карьеры
+                </div>
+
+                <div class="font-label">Подзаголовок (Plus Jakarta Sans 600)</div>
+                <div class="demo-subheadline" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600;">
+                    Более 500 курсов с честными отзывами
+                </div>
+
+                <div class="font-label">Основной текст (Plus Jakarta Sans 400)</div>
+                <div class="demo-body" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400;">
+                    Государственный аудит подтвердил проблемы с качеством курсов Töötukassa. Менее половины выпускников находят работу. Мы создаём платформу, где каждый может прочитать реальные отзывы и сделать осознанный выбор.
+                </div>
+            </div>
+
+            <div class="pros-cons">
+                <div class="pros">
+                    <h4>Плюсы</h4>
+                    <ul>
+                        <li>Тёплый, дружелюбный характер</li>
+                        <li>Закруглённые формы = доверие</li>
+                        <li>Отличная кириллица</li>
+                        <li>Уникальнее Inter</li>
+                        <li>Бесплатный (Google Fonts)</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <h4>Минусы</h4>
+                    <ul>
+                        <li>Чуть шире Inter = больше места</li>
+                        <li>Менее "официальный" вид</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="technical-specs">
+                <div class="spec-row">
+                    <span class="spec-label">Размер файла:</span>
+                    <span class="spec-value">~95KB (5 начертаний)</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Читаемость:</span>
+                    <span class="spec-value">⭐⭐⭐⭐⭐</span>
+                </div>
+            </div>
+
+            <div class="usage-example">
+                <div class="example-title">Когда использовать:</div>
+                Если хотите более дружелюбную, менее корпоративную атмосферу. Подходит, если целевая аудитория молодая (25-35 лет).
+            </div>
+        </div>
+
+        <!-- Комбинация 4: Space Grotesk + DM Sans -->
+        <div class="font-card">
+            <div class="combo-header">
+                <div class="combo-title">4. Space Grotesk + DM Sans</div>
+                <div class="rating">
+                    <span class="badge badge-free">FREE</span>
+                </div>
+            </div>
+
+            <div class="font-demo">
+                <div class="font-label">Заголовок (Space Grotesk 700)</div>
+                <div class="demo-headline" style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;">
+                    Найди лучший курс для твоей карьеры
+                </div>
+
+                <div class="font-label">Подзаголовок (DM Sans 500)</div>
+                <div class="demo-subheadline" style="font-family: 'DM Sans', sans-serif; font-weight: 500;">
+                    Более 500 курсов с честными отзывами
+                </div>
+
+                <div class="font-label">Основной текст (DM Sans 400)</div>
+                <div class="demo-body" style="font-family: 'DM Sans', sans-serif; font-weight: 400;">
+                    Государственный аудит подтвердил проблемы с качеством курсов Töötukassa. Менее половины выпускников находят работу. Мы создаём платформу, где каждый может прочитать реальные отзывы и сделать осознанный выбор.
+                </div>
+            </div>
+
+            <div class="pros-cons">
+                <div class="pros">
+                    <h4>Плюсы</h4>
+                    <ul>
+                        <li>Уникальный, запоминающийся стиль</li>
+                        <li>Tech/startup вайб</li>
+                        <li>Сильная визуальная иерархия</li>
+                        <li>Оба бесплатные</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <h4>Минусы</h4>
+                    <ul>
+                        <li>Space Grotesk может быть слишком модным</li>
+                        <li>Два шрифта = больше загрузка</li>
+                        <li>Менее консервативный стиль</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="technical-specs">
+                <div class="spec-row">
+                    <span class="spec-label">Размер файла:</span>
+                    <span class="spec-value">~110KB (два шрифта)</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Читаемость:</span>
+                    <span class="spec-value">⭐⭐⭐⭐</span>
+                </div>
+            </div>
+
+            <div class="usage-example">
+                <div class="example-title">Когда использовать:</div>
+                Если хотите выделиться среди конкурентов и не боитесь смелых решений. Подходит для молодой, технологичной аудитории.
+            </div>
+        </div>
+
+        <!-- Комбинация 5: Outfit -->
+        <div class="font-card">
+            <div class="combo-header">
+                <div class="combo-title">5. Outfit (Моношрифт)</div>
+                <div class="rating">
+                    <span class="badge badge-free">FREE</span>
+                </div>
+            </div>
+
+            <div class="font-demo">
+                <div class="font-label">Заголовок (Outfit 800)</div>
+                <div class="demo-headline" style="font-family: 'Outfit', sans-serif; font-weight: 800;">
+                    Найди лучший курс для твоей карьеры
+                </div>
+
+                <div class="font-label">Подзаголовок (Outfit 600)</div>
+                <div class="demo-subheadline" style="font-family: 'Outfit', sans-serif; font-weight: 600;">
+                    Более 500 курсов с честными отзывами
+                </div>
+
+                <div class="font-label">Основной текст (Outfit 400)</div>
+                <div class="demo-body" style="font-family: 'Outfit', sans-serif; font-weight: 400;">
+                    Государственный аудит подтвердил проблемы с качеством курсов Töötukassa. Менее половины выпускников находят работу. Мы создаём платформу, где каждый может прочитать реальные отзывы и сделать осознанный выбор.
+                </div>
+            </div>
+
+            <div class="pros-cons">
+                <div class="pros">
+                    <h4>Плюсы</h4>
+                    <ul>
+                        <li>Геометричный, элегантный</li>
+                        <li>Круглые формы = дружелюбие</li>
+                        <li>Хорошая кириллица</li>
+                        <li>Один шрифт = быстро</li>
+                        <li>Менее популярен чем Inter</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <h4>Минусы</h4>
+                    <ul>
+                        <li>При 400 может быть тонковат</li>
+                        <li>Чуть шире Inter</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="technical-specs">
+                <div class="spec-row">
+                    <span class="spec-label">Размер файла:</span>
+                    <span class="spec-value">~85KB</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Читаемость:</span>
+                    <span class="spec-value">⭐⭐⭐⭐</span>
+                </div>
+            </div>
+
+            <div class="usage-example">
+                <div class="example-title">Когда использовать:</div>
+                Альтернатива Inter с более мягким характером. Хороший компромисс между профессионализмом и дружелюбием.
+            </div>
+        </div>
+
+        <!-- Финальная рекомендация -->
+        <div class="font-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+            <h2 style="font-size: 36px; margin-bottom: 20px;">🎯 Финальная рекомендация</h2>
+            <p style="font-size: 18px; line-height: 1.7; margin-bottom: 20px;">
+                <strong>Для вашего проекта лучше всего подходит INTER:</strong>
+            </p>
+            <ul style="font-size: 16px; line-height: 1.8; padding-left: 20px;">
+                <li>✓ Серьёзная платформа = нужен надёжный, профессиональный шрифт</li>
+                <li>✓ Целевая аудитория 25-50 лет = классика лучше моды</li>
+                <li>✓ Много текста (отзывы) = нужна максимальная читаемость</li>
+                <li>✓ Бюджет ограничен = бесплатный + быстрая загрузка</li>
+                <li>✓ Поддержка эстонского + русского = идеальная кириллица</li>
+            </ul>
+            <p style="font-size: 16px; margin-top: 20px; opacity: 0.9;">
+                Inter используют: Figma, GitHub, Mozilla, Vercel — это индустриальный стандарт для веб-платформ.
+            </p>
+        </div>
+
+    </div>
+</body>
+</html>
